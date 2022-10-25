@@ -12,16 +12,35 @@ $msg = "";
 $succes = true;
 
 
-switch ($accion){
-    case "login":
+try {
+    switch ($accion) {
+        case "login":
+            $user = new Usuarios($login['dni'],$login['pass']);
 
-        $msg = "Conectandose";
-        $data = Usuarios::Login($login);
-        if(empty($data)) {
-            $data = "No hay registros con esos datos proporcionados";
-        }
+            /*Llama a la funcion Login esta devuelve un array con los datos del usuario
+             Si este existe y la contraseña y dni introducido son correctos*/
 
-        echo json_encode(array("data" => $data, "msg" => $msg, "success" => $succes));
-    case  "is_logged":
+            $data=$user->login($login['check']);
 
+            /*Si no devuelve nada, entonces no ha encontrado a nadie con ese dni y password
+             Lo cual en msg estará el aviso de lo que ha sucedido*/
+
+            if (empty($data)) {
+                $msg = "DNI o password incorrecta";
+                $succes = false;
+            }
+
+            #Comprobar si tiene un token en las cookies, y este coincide con alguno en la base de datos
+            #Si es así, no hará falta loguearse con dni y password
+        case  "is_logged":
+
+    }
+    #Todas las excepciones que se ejecuten en Usuarios.php o Conexion single, serán lanzadas a esta clase
+}catch (Exception $e){
+    $succes = false;
+    $msg = $e;
+    $data = null;
 }
+
+#JSON QUE DEVOLVER
+echo json_encode(array("data" => $data, "msg" => $msg, "success" => $succes));
