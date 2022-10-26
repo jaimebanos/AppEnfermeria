@@ -23,7 +23,7 @@ try {
                 /*Llama a la funcion Login esta devuelve un array con los datos del usuario
                 Si este existe y la contraseña y dni introducido son correctos*/
 
-                $data=$user->login();
+                $data= $user->login();
 
                 if (empty($data)) {
                     $msg = "DNI o password incorrecta";

@@ -34,18 +34,20 @@ class Usuarios
             $sql = "select * from usuarios where dni = '$this->dni'";
             $sth = $conexion->prepare($sql);
             $sth->execute();
+            $registro = $sth->fetch(PDO::FETCH_ASSOC);
+            if($registro != false){
+                if($registro['pass']== sha1($this->pass)) {
+                    
+                    $token = $this->crear_token($this->dni,$this->pass);
+                    $datos_devolver = array('token'=>$token);
+                    return $datos_devolver;
+                }
+            }
         }catch (Exception $e){
             Throw($e);
         }
 
-        $registro = $sth->fetch(PDO::FETCH_ASSOC);
 
-        if($registro['pass']== sha1($this->pass)) {
-
-            $token = $this->crear_token($this->dni,$this->pass);
-            $datos_devolver = array('token'=>$token);
-            return $datos_devolver;
-        }
     }
 
     /**
