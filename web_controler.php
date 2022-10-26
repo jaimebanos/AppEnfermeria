@@ -29,11 +29,6 @@ try {
                 $msg = "DNI o password incorrecta";
                 $succes = false;
             }
-
-            #Comprobar si tiene un token en las cookies, y este coincide con alguno en la base de datos
-            #Si es así, no hará falta loguearse con dni y password
-        case  "is_logged":
-
     }
     #Todas las excepciones que se ejecuten en Usuarios.php o Conexion single, serán lanzadas a esta clase
 }catch (Exception $e){

@@ -15,7 +15,7 @@ $( document ).ready(function() {
 
         /* Capturamos si al concetarnos está el check marcado o no
         *  WARNING- Devuelve un string en formate true o false!!*/
-        let $value_check = $("#remember_check")[0].checked;
+        var $value_check = $("#remember_check")[0].checked;
 
         var request = $.ajax({
             url: "web_controler.php",
@@ -25,7 +25,6 @@ $( document ).ready(function() {
                 "datos": {
                     'dni':$("#dni").val(),
                     'pass':$("#pass").val(),
-                    'check': $value_check,
                 }
 
             },
@@ -34,8 +33,12 @@ $( document ).ready(function() {
         
         request.done(function (msg) {
           if (msg['success']){
-              sessionStorage.setItem("dni", msg['data'].dni)
-              sessionStorage.setItem("nombre", msg['data'].nombre);
+              if ($value_check) {
+                  localStorage.setItem("token", msg['data'].token)
+
+              }else{
+                  sessionStorage.setItem("token",msg['data'].token)
+              }
               window.location.href = "\\AppEnfermeria\\Sesion\\index.html";
           }
         });
