@@ -5,7 +5,6 @@ include "Usuarios.php";
 $accion = isset($_POST['accion'])?$_POST['accion']:"";
 $login = isset($_POST['datos'])?$_POST['datos']:[];
 
-
 #LO QUE CONTENDRÁ EL JSON
 $data = "";
 $msg = "";
@@ -32,6 +31,19 @@ try {
             }else{
                 $succes = false;
             }
+            break;
+        case "comprobar_login":
+
+        if($login['token']!=null){
+            $data = Usuarios::comprobar_token($login);
+
+            if (empty($data)) {
+                $succes = false;
+            }
+            break;
+        }else{
+            $succes = false;
+        }
     }
     #Todas las excepciones que se ejecuten en Usuarios.php o Conexion single, serán lanzadas a esta clase
 }catch (Exception $e){

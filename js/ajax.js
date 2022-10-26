@@ -37,7 +37,9 @@ $( document ).ready(function() {
 
               }else{
                   sessionStorage.setItem("token",msg['data'].token)
-              }
+                }
+
+                window.location.href = "../index.html";
           }
         });
 
