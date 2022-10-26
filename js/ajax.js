@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-
     /**
      * Lanza la conexión, donde le mandará al servidor web, un dni, password y el check true o false
      * El servidor le tendrá que devolver un json, y con ese json guardaremos en sesion los siguientes datos:
@@ -12,13 +11,12 @@ $( document ).ready(function() {
      */
     // BOTON CONECTAR
     $("#enviar").click(function () {
-
         /* Capturamos si al concetarnos está el check marcado o no
         *  WARNING- Devuelve un string en formate true o false!!*/
         var $value_check = $("#remember_check")[0].checked;
 
         var request = $.ajax({
-            url: "web_controler.php",
+            url: '../php/web_controler.php',
             method: "POST",
             data: {
                 "accion": "login",
@@ -32,23 +30,23 @@ $( document ).ready(function() {
         });
         
         request.done(function (msg) {
-          if (msg['success']){
+            if (msg['success']){
+                console.log("Usuario Encontrado");
               if ($value_check) {
                   localStorage.setItem("token", msg['data'].token)
 
               }else{
                   sessionStorage.setItem("token",msg['data'].token)
               }
-              window.location.href = "\\AppEnfermeria\\Sesion\\index.html";
           }
         });
 
         request.fail(function (jqXHR, textStatus) {
+            console.log("Error");
             alert("Request failed: " + textStatus);
         });
     });
 
-    /*Sesion Iniciado*/
 
 
 
