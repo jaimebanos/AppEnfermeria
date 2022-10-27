@@ -6,7 +6,7 @@
  */
 
 :root {
-	--blue: #7CB18E;
+	--blue: #007bff;
 	--indigo: #6610f2;
 	--purple: #6f42c1;
 	--pink: #e83e8c;
@@ -3141,8 +3141,8 @@ fieldset:disabled a.btn {
 
 .btn-outline-info:hover {
 	color: #fff;
-	background-color: #8AC79E;
-	border-color: #8AC79E
+	border-color: #6ce6f4;
+	background-color: #6ce6f4;
 }
 
 .btn-outline-info.focus,
@@ -3152,7 +3152,7 @@ fieldset:disabled a.btn {
 
 .btn-outline-info.disabled,
 .btn-outline-info:disabled {
-	color: #8AC79E;
+	color: #6ce6f4;
 	background-color: transparent
 }
 
@@ -7119,6 +7119,9 @@ button.bg-dark:hover {
 
 .bg-white {
 	background-color: #fff!important
+}
+.bg-blue {
+	background-color: #8AC79E!important
 }
 
 .bg-transparent {
