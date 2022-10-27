@@ -32,7 +32,9 @@ CREATE TABLE `usuarios` (
 insert  into `usuarios`(`nombre`,`dni`,`pass`,`token`) values 
 ('pedro','12345678A','8cb2237d0679ca88db6464eac60da96345513964','$2y$11$ibzgBn1rf.kcGtfKwLvmr.VeA1KGBWTqJtwY5TW5yCcJefI86HuAm');
 
+/*usuario: 12345678A CONTRASEÑA 12345*/;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

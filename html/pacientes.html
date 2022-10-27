@@ -43,7 +43,7 @@
                <ul id="iq-sidebar-toggle" class="iq-menu">
                   <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>Tablero</span></li>
                   <li>
-                     <a href="../html/perfil.html" class="iq-waves-effect"><i class="ri-hospital-fill"></i><span>Mi
+                     <a href="perfil_usuario.html" class="iq-waves-effect"><i class="ri-hospital-fill"></i><span>Mi
                            Perfil</span></a>
                   </li>
 
@@ -52,8 +52,8 @@
                            class="ri-group-fill"></i><span>Pacientes</span></a>
                   </li>
                   <li>
-                     <a href="../html/enfermeros.html" class="iq-waves-effect"><i
-                           class="ri-user-fill"></i><span>Enfermer@s</span></a>
+                     <a href="personal.html" class="iq-waves-effect"><i
+                           class="ri-user-fill"></i><span>Personal</span></a>
 
                   </li>
                   <li><a href="../html/calendario.html" class="iq-waves-effect"><i
@@ -64,7 +64,7 @@
 
 
 
-
+</ul>
 
             </nav>
             <div class="p-3"></div>
@@ -203,7 +203,7 @@
                                     <h5 class="mb-0 text-white line-height">Hello Bini Jets</h5>
                                     <span class="text-white font-size-12">Available</span>
                                  </div>
-                                 <a href="../html/perfil.html" class="iq-sub-card iq-bg-primary-hover">
+                                 <a href="perfil_usuario.html" class="iq-sub-card iq-bg-primary-hover">
                                     <div class="media align-items-center">
                                        <div class="rounded iq-card-icon iq-bg-primary">
                                           <i class="ri-file-user-line"></i>
@@ -249,13 +249,13 @@
                         </div>
                      </div>
                      <div class="iq-card-body">
-                        <div id="table" class="table-editable">
+                        <div id="table" class="">
                            <span class="table-add float-right mb-3 mr-2">
                               <button class="btn btn-sm iq-bg-success"><i class="ri-add-fill"><span class="pl-1">Añadir
                                        Paciente</span></i>
                               </button>
                            </span>
-                           <table class="table table-bordered table-responsive-md table-striped text-center">
+                           <table class="table  table-hover table-bordered table-responsive-md table-striped text-center">
                               <thead>
                                  <tr>
                                     <th>Nombre</th>
@@ -263,6 +263,7 @@
                                     <th>Company Name</th>
                                     <th>Country</th>
                                     <th>City</th>
+                                    <th>Ver</th>
                                     <th>Editar</th>
                                     <th>Eliminar</th>
                                  </tr>
@@ -271,12 +272,13 @@
 
                                  
                                  <tr class="hide">
-                                    <td contenteditable="true">Anna Mull</td>
-                                    <td contenteditable="true">35</td>
-                                    <td contenteditable="true">Portica</td>
-                                    <td contenteditable="true">USA</td>
-                                    <td contenteditable="true">Oregon</td>
+                                    <td>Anna Mull</td>
+                                    <td>35</td>
+                                    <td>Portica</td>
+                                    <td>USA</td>
+                                    <td >Oregon</td>
                                     <td><a href="perfil_pacientes.html"> <button  class="btn-outline-info btn-sm"  ><i class="ion-search "></i></button></a></td>
+                                    <td><a href="editar_pacientes.html"> <button  class="btn-outline-dark btn-sm"  ><i class="ion-edit "></i></button></a></td>
 
                                     <td>
 
@@ -371,6 +373,7 @@
       <script src="../js/chart-custom.js"></script>
       <!-- Custom JavaScript -->
       <script src="../js/custom.js"></script>
+   </div>
 </body>
 
 </html>
