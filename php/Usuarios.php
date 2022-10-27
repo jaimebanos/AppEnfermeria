@@ -77,5 +77,27 @@ class Usuarios
         return $token;
     }
 
+    /**
+    * Te devuelve el dni y el nombre del token pasado por parametro, si no tienes token, se te devolverá al login..
+    */
+    public static function comprobar_token($var_token){
+        $conexion = ConexionSingle::getInstancia();
+        $token = $var_token['token'];
+        try {
+            $sql = "select * from usuarios where token = '$token'";
+            $sth = $conexion->prepare($sql);
+            $sth->execute();
+            $campo_token = $sth->fetch(PDO::FETCH_ASSOC);
+            if($campo_token != false){
+                if ($token == $campo_token['token']){
+                    return true;
+                }
+            }
+        }catch (Exception $e){
+            Throw $e;
+        }
+
+    }
+
 
 }
