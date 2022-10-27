@@ -37,10 +37,14 @@ class Usuarios
             $registro = $sth->fetch(PDO::FETCH_ASSOC);
             if($registro != false){
                 if($registro['pass']== sha1($this->pass)) {
-                    
-                    $token = $this->crear_token($this->dni,$this->pass);
-                    $datos_devolver = array('token'=>$token);
-                    return $datos_devolver;
+                    $existe = self::token_exist($this->dni);
+                    if($existe == "error"){
+                        $token = $this->crear_token($this->dni,$this->pass);
+                        $datos_devolver = array('token'=>$token);
+                        return $datos_devolver;
+                    }else{
+                        return $existe;
+                    }
                 }
             }
         }catch (Exception $e){
@@ -98,6 +102,25 @@ class Usuarios
         }
 
     }
+
+    public static function token_exist($dni){
+     $conexion = ConexionSingle::getInstancia();
+      try {
+         $sql = "select token from usuarios where dni = '$dni'";
+         $sth = $conexion->prepare($sql);
+         $sth->execute();
+         $token = $sth->fetch(PDO::FETCH_ASSOC); 
+         if($token['token'] == ""){
+             return "error";
+         }else{
+             return $token;    
+         }
+     }catch (Exception $e){
+          Throw $e;
+     }
+        
+   }
+
 
 
 }
