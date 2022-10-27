@@ -37,8 +37,8 @@ class Usuarios
             $registro = $sth->fetch(PDO::FETCH_ASSOC);
             if($registro != false){
                 if($registro['pass']== sha1($this->pass)) {
-                    $existe = token_exist($this->dni);
-                    if($existe == true){
+                    $existe = self::token_exist($this->dni);
+                    if($existe == "error"){
                         $token = $this->crear_token($this->dni,$this->pass);
                         $datos_devolver = array('token'=>$token);
                         return $datos_devolver;
@@ -111,7 +111,7 @@ class Usuarios
          $sth->execute();
          $token = $sth->fetch(PDO::FETCH_ASSOC); 
          if($token['token'] == ""){
-             return true;
+             return "error";
          }else{
              return $token;    
          }
