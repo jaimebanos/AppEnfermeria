@@ -16,6 +16,45 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`appenfermeria` /*!40100 DEFAULT CHARACT
 
 USE `appenfermeria`;
 
+/*Table structure for table `admin` */
+
+DROP TABLE IF EXISTS `admin`;
+
+CREATE TABLE `admin` (
+  `id_usuario` char(9) NOT NULL,
+  `email` char(40) NOT NULL,
+  `nombre` char(15) DEFAULT NULL,
+  `apellidos` varchar(30) DEFAULT NULL,
+  `telefono` varchar(15) DEFAULT NULL,
+  `Fecha_nacimiento` date DEFAULT NULL,
+  `genero` enum('Hombre','Mujer','Indefinido') NOT NULL,
+  PRIMARY KEY (`id_usuario`),
+  CONSTRAINT `FK_admin_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`dni`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `admin` */
+
+insert  into `admin`(`id_usuario`,`email`,`nombre`,`apellidos`,`telefono`,`Fecha_nacimiento`,`genero`) values 
+('89765432P','juan@torreAledua.org','juan',NULL,NULL,NULL,'Hombre');
+
+/*Table structure for table `alumno` */
+
+DROP TABLE IF EXISTS `alumno`;
+
+CREATE TABLE `alumno` (
+  `id_usuario` char(9) NOT NULL,
+  `email` char(40) NOT NULL,
+  `nombre` char(15) DEFAULT NULL,
+  `apellidos` varchar(30) DEFAULT NULL,
+  `telefono` varchar(15) DEFAULT NULL,
+  `Fecha_nacimiento` date DEFAULT NULL,
+  `genero` enum('Hombre','Mujer','Indefinido') NOT NULL,
+  PRIMARY KEY (`id_usuario`),
+  CONSTRAINT `FK_alumno_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`dni`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `alumno` */
+
 /*Table structure for table `mensaje` */
 
 DROP TABLE IF EXISTS `mensaje`;
@@ -83,29 +122,11 @@ insert  into `paciente`(`dni`,`nombre`,`apellidos`,`telefono`,`id_usuario`,`pato
 ('81276354V','Victor','Ruiz Sanchez','677249639',NULL,NULL,NULL,'Hombre','valencia',NULL),
 ('87654321A','Manuel','Fernandez Gonzalez','675409639',NULL,NULL,NULL,'Hombre','valencia',NULL);
 
-/*Table structure for table `usario_alumno` */
+/*Table structure for table `profesor` */
 
-DROP TABLE IF EXISTS `usario_alumno`;
+DROP TABLE IF EXISTS `profesor`;
 
-CREATE TABLE `usario_alumno` (
-  `id_usuario` char(9) NOT NULL,
-  `email` char(40) NOT NULL,
-  `nombre` char(15) DEFAULT NULL,
-  `apellidos` varchar(30) DEFAULT NULL,
-  `telefono` varchar(15) DEFAULT NULL,
-  `Fecha_nacimiento` date DEFAULT NULL,
-  `genero` enum('Hombre','Mujer','Indefinido') NOT NULL,
-  PRIMARY KEY (`id_usuario`),
-  CONSTRAINT `FK_alumno_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`dni`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `usario_alumno` */
-
-/*Table structure for table `usario_profesor` */
-
-DROP TABLE IF EXISTS `usario_profesor`;
-
-CREATE TABLE `usario_profesor` (
+CREATE TABLE `profesor` (
   `id_usuario` char(9) NOT NULL,
   `email` char(40) NOT NULL,
   `nombre` char(15) DEFAULT NULL,
@@ -117,7 +138,7 @@ CREATE TABLE `usario_profesor` (
   CONSTRAINT `FK_profesor_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`dni`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `usario_profesor` */
+/*Data for the table `profesor` */
 
 /*Table structure for table `usuario` */
 
@@ -134,28 +155,8 @@ CREATE TABLE `usuario` (
 /*Data for the table `usuario` */
 
 insert  into `usuario`(`dni`,`token`,`Fecha_vencimiento_token`,`contrasenya`) values 
+('12345678A','$2y$11$.Nmtmtp6yYK81PhR4o2wcuBUlLskwC.apcdJJmD6BmINsMkB/NK3u',NULL,'8cb2237d0679ca88db6464eac60da96345513964'),
 ('89765432P',NULL,NULL,'1234');
-
-/*Table structure for table `usuario_admin` */
-
-DROP TABLE IF EXISTS `usuario_admin`;
-
-CREATE TABLE `usuario_admin` (
-  `id_usuario` char(9) NOT NULL,
-  `email` char(40) NOT NULL,
-  `nombre` char(15) DEFAULT NULL,
-  `apellidos` varchar(30) DEFAULT NULL,
-  `telefono` varchar(15) DEFAULT NULL,
-  `Fecha_nacimiento` date DEFAULT NULL,
-  `genero` enum('Hombre','Mujer','Indefinido') NOT NULL,
-  PRIMARY KEY (`id_usuario`),
-  CONSTRAINT `FK_admin_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`dni`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `usuario_admin` */
-
-insert  into `usuario_admin`(`id_usuario`,`email`,`nombre`,`apellidos`,`telefono`,`Fecha_nacimiento`,`genero`) values 
-('89765432P','juan@torreAledua.org','juan',NULL,NULL,NULL,'Hombre');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
