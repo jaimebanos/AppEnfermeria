@@ -4,18 +4,18 @@ class Usuarios
 {
     public $nombre;
     public $dni;
-    public $pass;
+    public $contrasenya;
 
     /**
      * Constructor para generar un usuario
      * @param $dni
-     * @param $pass
+     * @param $contrasenya
      */
 
-    public function __construct($dni,$pass)
+    public function __construct($dni, $contrasenya)
     {
             $this->dni = $dni;
-            $this->pass = $pass;
+            $this->contrasenya = $contrasenya;
     }
 
     /**
@@ -31,15 +31,15 @@ class Usuarios
         $token=null;
         #BUSCA EN LA BASE DE DATOS EL DNI INTRUCIDO Y COMPRUEBA SI LAS PASSWORD COINCIDE
         try {
-            $sql = "select * from usuarios where dni = '$this->dni'";
+            $sql = "select * from usuario where dni = '$this->dni'";
             $sth = $conexion->prepare($sql);
             $sth->execute();
             $registro = $sth->fetch(PDO::FETCH_ASSOC);
             if($registro != false){
-                if($registro['pass']== sha1($this->pass)) {
+                if($registro['contrasenya']== sha1($this->contrasenya)) {
                     $existe = self::token_exist($this->dni);
-                    if($existe == "error"){
-                        $token = $this->crear_token($this->dni,$this->pass);
+                    if(!$existe){
+                        $token = $this->crear_token($this->dni,$this->contrasenya);
                         $datos_devolver = array('token'=>$token);
                         return $datos_devolver;
                     }else{
@@ -57,21 +57,21 @@ class Usuarios
     /**
      * La creación de token a partir de dni, pass,
      * @param $dni
-     * @param $pass
+     * @param $contrasenya
      * @return void
      */
-    private function crear_token($dni,$pass){
+    private function crear_token($dni,$contrasenya){
 
         //CREAER EL TOKEN CON DNI Y PASSWORD DEL USUARIO
         $options = [
             'cost' => 11
         ];
-        $token = password_hash($dni.$pass,PASSWORD_BCRYPT,$options);
+        $token = password_hash($dni.$contrasenya,PASSWORD_BCRYPT,$options);
 
 
         $conexion = ConexionSingle::getInstancia();
         try {
-            $sql = "UPDATE usuarios set token = '$token' where dni = '$dni'";
+            $sql = "UPDATE usuario set token = '$token' where dni = '$dni'";
             $sth = $conexion->prepare($sql);
             $sth->execute();
         }catch (Exception $e){
@@ -88,7 +88,7 @@ class Usuarios
         $conexion = ConexionSingle::getInstancia();
         $token = $var_token['token'];
         try {
-            $sql = "select * from usuarios where token = '$token'";
+            $sql = "select * from usuario where token = '$token'";
             $sth = $conexion->prepare($sql);
             $sth->execute();
             $campo_token = $sth->fetch(PDO::FETCH_ASSOC);
@@ -106,12 +106,12 @@ class Usuarios
     public static function token_exist($dni){
      $conexion = ConexionSingle::getInstancia();
       try {
-         $sql = "select token from usuarios where dni = '$dni'";
+         $sql = "select token from usuario where dni = '$dni'";
          $sth = $conexion->prepare($sql);
          $sth->execute();
          $token = $sth->fetch(PDO::FETCH_ASSOC); 
          if($token['token'] == ""){
-             return "error";
+             return false;
          }else{
              return $token;    
          }

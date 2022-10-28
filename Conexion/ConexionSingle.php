@@ -11,7 +11,7 @@ class ConexionSingle
     {
         $servername = "localhost";
         $username = "root";
-        $database = "enfermeria";
+        $database = "appenfermeria";
         $pass = "";
         try {
             self::$pdo = new PDO("mysql:host=$servername;dbname=$database;charset=utf8", $username, $pass);

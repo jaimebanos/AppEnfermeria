@@ -1,8 +1,7 @@
 <?php
-#Web_controler para usuarios
+
 #ISSETS DE LOS $_POST
 include "Usuarios.php";
-include "Usuario.php";
 $accion = isset($_POST['accion'])?$_POST['accion']:"";
 $login = isset($_POST['datos'])?$_POST['datos']:[];
 
@@ -14,17 +13,6 @@ $succes = true;
 
 try {
     switch ($accion) {
-        case"listUsers":
-
-
-            $data = Usuario::listUsers();
-            if (empty($data)) {
-                $succes = false;
-            }else{
-        $succes = false;
-    }
-
-            break;
         case "login":
             if(!empty($login)) {
 

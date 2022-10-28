@@ -8,9 +8,8 @@ CREATE TABLE IF NOT EXISTS usuario(
 dni CHAR(9) NOT NULL,
 token VARCHAR(100) DEFAULT NULL,
 Fecha_vencimiento_token DATETIME NULL,
-n_usuario VARCHAR(25)  NULL ,
-imagen_url VARCHAR(250)  NULL ,
-contrasenya CHAR(64) NOT NULL,
+n_usuario VARCHAR(25)  NULL , 
+contraseña CHAR(64) NOT NULL,
 
 
 PRIMARY KEY (dni)
@@ -72,7 +71,7 @@ CREATE TABLE IF NOT EXISTS paciente(
 dni CHAR(9) NOT NULL,
 nombre CHAR(15) NOT NULL,
 apellidos VARCHAR(30) NULL,
-telefono VARCHAR(15) NULL,
+telefon VARCHAR(15) NULL,
 id_usuario CHAR(5) NULL,
 patologias VARCHAR(500) NULL,
 Fecha_nacimiento DATE NULL,
@@ -133,10 +132,10 @@ INSERT INTO paciente VALUES
 ("19988756G","Alfonso","Martinez Jimenez","675123456",NULL,NULL, NULL,"Hombre", "torre aledua", NULL),
 ("10274895D","Fran","Ibañez Moreno","675409768",NULL,NULL, NULL,"Hombre", "torre aledua", NULL),
 ("18922163S","Maria","Gomez Muñoz","675406579",NULL,NULL, NULL,"Mujer", "torre aledua", NULL),
-("12345679B","Carmen","Gil Rodrigez","675956381",NULL,NULL, NULL,"Mujer", "valencia", NULL);
+("12345679B","Carmen","Gil Rodrigez","675956381",NULL,NULL, NULL,"Mujer", "valencia", NULL)
 
 #crear uno por uno, primero usuario y luego usuario_admin
 INSERT INTO usuario VALUES 
-("89765432P", NULL, NULL, NULL, NULL, "1234");
+("89765432P", NULL, NULL, NULL,"1234")
 INSERT INTO usuario_admin VALUES
 ("89765432P", "juan@torreAledua.org", "juan" , NULL, NULL, NULL, "Hombre")
