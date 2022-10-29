@@ -26,7 +26,7 @@ var string = ` <div class="col-sm-12">
     <div class="iq-card">
         <div class="iq-card-header d-flex justify-content-between">
             <div class="iq-header-title">
-                <h4 class="card-title">Ptofesores</h4>
+                <h4 class="card-title">Profesores</h4>
             </div>
             <div class="iq-waves-effect d-flex align-items-center">
 

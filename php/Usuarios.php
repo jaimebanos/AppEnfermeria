@@ -121,13 +121,29 @@ class Usuarios
         
    }
 
-   public static function mostrarInfo(){
+   public static function mostrarInfo($token){
     $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "SELECT * FROM ";
+            $sql = "SELECT a.* FROM alumno a, usuario u where  token ='$token' ";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $data = $stmt->fetchAll();
+
+            /**
+             *    if (empty($data)) {
+            $sql = "SELECT * FROM admin a, usuario u where a.id_usario = u.dni and u.token ='$token'   ";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+            if (empty($data)) {
+            $sql = "SELECT * FROM profesor a, usuario u where a.id_usario = u.dni and u.token ='$token'   ";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+
+            }
+            }
+             */
 
             return $data;
 

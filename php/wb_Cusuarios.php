@@ -4,6 +4,8 @@
 include "Usuarios.php";
 $accion = isset($_POST['accion'])?$_POST['accion']:"";
 $login = isset($_POST['datos'])?$_POST['datos']:[];
+$token = isset($_POST['token'])?$_POST['token']:null;
+
 
 #LO QUE CONTENDRÁ EL JSON
 $data = "";
@@ -35,9 +37,11 @@ try {
         case "comprobar_login":
             include "auth_inc.php";
             break;
+
         case "MostrarInfo":
             #Identifica y obtiene los datos necesarios para el perfil
-            $data = Usuarios::mostrarInfo();
+
+            $data = Usuarios::mostrarInfo($token);
             break;
 
     }
