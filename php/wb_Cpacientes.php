@@ -3,7 +3,7 @@
 #ISSETS DE LOS $_POST
 include "Pacientes.php";
 $accion = isset($_POST['accion'])?$_POST['accion']:"";
-$login = isset($_POST['datos'])?$_POST['datos']:[];
+
 
 
 #LO QUE CONTENDRÁ EL JSON
