@@ -86,7 +86,7 @@ class Usuarios
     */
     public static function comprobar_token($var_token){
         $conexion = ConexionSingle::getInstancia();
-        $token = $var_token['token'];
+        $token = $var_token;
         try {
             $sql = "select * from usuario where token = '$token'";
             $sth = $conexion->prepare($sql);

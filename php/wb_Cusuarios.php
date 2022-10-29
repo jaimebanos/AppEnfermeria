@@ -33,17 +33,9 @@ try {
             }
             break;
         case "comprobar_login":
-
-        if($login['token']!=null){
-            $data = Usuarios::comprobar_token($login);
-
-            if (empty($data)) {
-                $succes = false;
-            }
+            include "auth_inc.php";
             break;
-        }else{
-            $succes = false;
-        }
+
     }
     #Todas las excepciones que se ejecuten en Usuarios.php o Conexion single, serán lanzadas a esta clase
 }catch (Exception $e){

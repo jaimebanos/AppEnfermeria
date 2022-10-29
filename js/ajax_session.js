@@ -12,10 +12,7 @@ $(document).ready(function () {
         method: "POST",
         data: {
             "accion": "comprobar_login",
-            "datos": {
-                'token': token,
-            }
-
+            'token': token,
         },
         dataType: "json"
     });
