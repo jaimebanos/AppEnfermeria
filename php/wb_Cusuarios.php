@@ -35,6 +35,10 @@ try {
         case "comprobar_login":
             include "auth_inc.php";
             break;
+        case "MostrarInfo":
+            #Identifica y obtiene los datos necesarios para el perfil
+            $data = Usuarios::mostrarInfo();
+            break;
 
     }
     #Todas las excepciones que se ejecuten en Usuarios.php o Conexion single, serán lanzadas a esta clase

@@ -121,6 +121,20 @@ class Usuarios
         
    }
 
+   public static function mostrarInfo(){
+    $pdo = ConexionSingle::getInstancia();
+        try {
+            $sql = "SELECT * FROM ";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+
+            return $data;
+
+        }catch (Exception $e){
+            Throw $e;
+        }
+    }
 
 
 }
