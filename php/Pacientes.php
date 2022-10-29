@@ -1,26 +1,65 @@
 <?php
-
+include "..\\Conexion\\ConexionSingle.php";
 class Pacientes
 {
     public $nombre;
-    public $apellido;
     public $dni;
-    public $informacion;
+    public $localidad;
+    public $observaciones;
+    public $patologias;
+    public $apellidos;
+    public $telefono;
+    public $Fecha_nacimiento;
+    public $id_usuario;
+    public $genero;
 
     /**
      * @param $nombre
-     * @param $apellido
      * @param $dni
-     * @param $informacion
+     * @param $localidad
+     * @param $observaciones
+     * @param $patologias
+     * @param $email
+     * @param $apellidos
+     * @param $telefono
+     * @param $Fecha_nacimiento
+     * @param $id_usuario
+     * @param $genero
      */
-    public function __construct($nombre, $apellido, $dni, $informacion)
+    public function __construct($nombre, $dni, $localidad, $observaciones, $patologias, $apellidos, $telefono, $Fecha_nacimiento, $id_usuario, $genero)
     {
         $this->nombre = $nombre;
-        $this->apellido = $apellido;
         $this->dni = $dni;
-        $this->informacion = $informacion;
+        $this->localidad = $localidad;
+        $this->observaciones = $observaciones;
+        $this->patologias = $patologias;
+        $this->apellidos = $apellidos;
+        $this->telefono = $telefono;
+        $this->Fecha_nacimiento = $Fecha_nacimiento;
+        $this->id_usuario = $id_usuario;
+        $this->genero = $genero;
     }
 
+
+    /**
+     * Te devuelve los datos de la tabla pacientes para listarlos en la página personal.html
+     */
+    public  static function list_user(){
+
+
+        $pdo = ConexionSingle::getInstancia();
+        try {
+            $sql = "SELECT * FROM paciente";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+
+            return $data;
+        }catch (Exception $e){
+            Throw $e;
+        }
+
+    }
 
 
 

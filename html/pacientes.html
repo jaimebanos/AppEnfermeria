@@ -16,6 +16,10 @@
    <link rel="stylesheet" href="../css/style.css">
    <!-- Responsive CSS -->
    <link rel="stylesheet" href="../css/responsive.css">
+   <!--Scripts creados anteriormente -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <!--Se cambia la ubicación del ajax a la carpeta js-->
+   <script src="../js/ajax_list_pacientes.js"></script>
 </head>
 
 <body>
@@ -257,62 +261,23 @@
                            <table class="table  table-hover table-bordered table-responsive-md table-striped text-center">
                               <thead>
                                  <tr>
+                                    <th>Dni</th>
                                     <th>Nombre</th>
-                                    <th>Age</th>
-                                    <th>Company Name</th>
-                                    <th>Country</th>
-                                    <th>City</th>
+                                    <th>Apellidos</th>
+                                    <th>Patologias</th>
+                                    <th>Fecha Nacimiento</th>
+                                    <th>Localidad</th>
+                                    <th>Teléfono</th>
+                                    <th>Observaciones</th>
                                     <th>Ver</th>
                                     <th>Editar</th>
                                     <th>Eliminar</th>
                                  </tr>
                               </thead>
-                              <tbody>
+                              <tbody id="pacientesListar">
 
                                  
-                                 <tr class="hide">
-                                    <td>Anna Mull</td>
-                                    <td>35</td>
-                                    <td>Portica</td>
-                                    <td>USA</td>
-                                    <td >Oregon</td>
-                                    <td><a href="perfil_pacientes.html"> <button  class="btn-outline-info btn-sm"  ><i class="ion-search "></i></button></a></td>
-                                    <td><a href="editar_pacientes.html"> <button  class="btn-outline-dark btn-sm"  ><i class="ion-edit "></i></button></a></td>
-
-                                    <td>
-
-                                       <button class=" btn-sm btn-outline-danger " href="enfermeros.html"
-                                          data-toggle="modal" data-target="#eliminar"><i
-                                             class=" fa fa-trash"></i></i></button>
-
-                                       <!--Mediante data-target "eliminar " nos sale la siguiente notifcación para eliminar un enefermero--->
-                                       <div class="modal fade" id="eliminar" tabindex="-1" role="dialog"
-                                          aria-labelledby="exampleModalCenterTitle" style="display: none;"
-                                          aria-hidden="true">
-                                          <div class="modal-dialog modal-dialog-centered" role="document">
-                                             <div class="modal-content">
-                                                <div class="modal-header">
-                                                   <h5 class="modal-title" id="exampleModalCenterTitle">Advertencia</h5>
-                                                   <button type="button" class="close" data-dismiss="modal"
-                                                      aria-label="Close">
-                                                      <span aria-hidden="true">×</span>
-                                                   </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                   ¿Desea eliminar a este Paciente?
-                                                </div>
-                                                <div class="modal-footer">
-                                                   <button type="button" class="btn-outline-success"
-                                                      data-dismiss="modal">Cancelar</button>
-                                                   <button type="button" class="btn-outline-danger ">Aceptar</button>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-
-
-                                    </td>
-                                 </tr>
+                                 
                               </tbody>
                            </table>
                         </div>
