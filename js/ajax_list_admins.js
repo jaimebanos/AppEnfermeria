@@ -9,7 +9,11 @@ $(document).ready(function() {
             url: '../php/wb_Cadmins.php',
             method: "POST",
             data: {
+
                 "accion": "listUser"},
+            "datos": {
+                'token': sessionStorage.getItem('token'),
+            }
         });
 
         request.done(function (response) {

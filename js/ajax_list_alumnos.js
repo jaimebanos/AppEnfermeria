@@ -10,6 +10,9 @@ $(document).ready(function() {
             method: "POST",
             data: {
                 "accion": "listUser"},
+            "datos": {
+                'token': sessionStorage.getItem('token'),
+            }
         });
 
         request.done(function (response) {

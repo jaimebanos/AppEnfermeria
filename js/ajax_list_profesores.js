@@ -9,7 +9,10 @@ var request = $.ajax({
 url: '../php/wb_Cprofesores.php',
 method: "POST",
 data: {
-"accion": "listUser"},
+    "accion": "listUser"},
+    "datos": {
+        'token': sessionStorage.getItem('token'),
+    }
 });
 
 request.done(function (response) {
