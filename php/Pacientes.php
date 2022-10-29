@@ -13,6 +13,7 @@ class Pacientes
     public $id_usuario;
     public $genero;
 
+
     /**
      * @param $nombre
      * @param $dni
@@ -42,7 +43,7 @@ class Pacientes
 
 
     /**
-     * Te devuelve los datos de la tabla pacientes para listarlos en la página personal.html
+     * Te devuelve los datos de la tabla pacientes para listarlos en la página pacientes.html
      */
     public  static function list_user(){
 
@@ -52,9 +53,8 @@ class Pacientes
             $sql = "SELECT * FROM paciente";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
-            $data = $stmt->fetchAll();
 
-            return $data;
+            return $stmt->fetchAll();
         }catch (Exception $e){
             Throw $e;
         }

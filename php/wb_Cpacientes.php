@@ -18,7 +18,6 @@ try {
 
             #Obtenemos el array
             $data = Pacientes::list_user();
-
             break;
 
     }
