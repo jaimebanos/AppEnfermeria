@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     var request = $.ajax({
         async: true,
-        url: 'php/wb_Cusuarios.php',
+        url: '../php/wb_Cusuarios.php',
         method: "POST",
         data: {
             "accion": "comprobar_login",

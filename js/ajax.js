@@ -16,7 +16,7 @@ $( document ).ready(function() {
         var $value_check = $("#remember_check")[0].checked;
 
         var request = $.ajax({
-            url: 'php/wb_Cusuarios.php',
+            url: '../php/wb_Cusuarios.php',
             method: "POST",
             data: {
                 "accion": "login",
