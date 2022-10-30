@@ -107,6 +107,12 @@ class Usuarios
 
     }
 
+    /***
+     * Comprueba si el usuario con el dni pasado tiene token o no en la base de datos.
+     * @param $dni
+     * @return false|mixed
+     * @throws Exception
+     */
     public static function token_exist($dni)
     {
         $conexion = ConexionSingle::getInstancia();
@@ -126,26 +132,31 @@ class Usuarios
 
     }
 
-
+    /***
+     * Te devuelve todos los parámetros del usuario, con el token recibido por parámetro
+     * @param $token
+     * @return mixed
+     * @throws Exception
+     */
     public static function mostrarInfo($token)
     {
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),Fecha_nacimiento)/365) AS edad from admin a, usuario u where u.token ='$token' and dni = id_usuario";
+            $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),Fecha_nacimiento)/365) AS edad from admin a, usuario u where u.token ='$token' and u.dni = a.id_usuario";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
-            $data = $stmt->fetchAll();
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if (empty($data)) {
-                $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),Fecha_nacimiento)/365) AS edad from profesor a, usuario u where u.token ='$token' and dni = id_usuario";
+                $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),Fecha_nacimiento)/365) AS edad from profesor a, usuario u where u.token ='$token' and u.dni = a.id_usuario";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
-                $data = $stmt->fetchAll();
+                $data = $stmt->fetch(PDO::FETCH_ASSOC);
                 if (empty($data)) {
-                    $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),Fecha_nacimiento)/365) AS edad from alumno a, usuario u where u.token ='$token' and dni = id_usuario";
+                    $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),Fecha_nacimiento)/365) AS edad from alumno a, usuario u where u.token ='$token' and u.dni = a.id_usuario";
                     $stmt = $pdo->prepare($sql);
                     $stmt->execute();
-                    $data = $stmt->fetchAll();
+                    $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 }
             }
@@ -153,6 +164,25 @@ class Usuarios
 
             return $data;
 
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    /**
+     * deja el token vación del usuario con el token pasa, usado para cerrar Sesion
+     * @param $token
+     * @return bool
+     * @throws Exception
+     */
+    public static function cerrar_sesion($token){
+        $pdo = ConexionSingle::getInstancia();
+        try {
+            $sql = "update usuario set token = '' where token = '$token'";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+
+            return true;
         } catch (Exception $e) {
             throw $e;
         }

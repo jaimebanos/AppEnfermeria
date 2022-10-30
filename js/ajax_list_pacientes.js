@@ -100,6 +100,28 @@ $(document).ready(function() {
             alert("Request failed: " + textStatus);
         });
 
+        //CERRAR SESION
+        $("#cerrar_sesion").click(function () {
+            console.log("hola");
+            var request = $.ajax({
+                url: '../php/wb_Cusuarios.php',
+                method: "POST",
+                data: {
+                    "accion": "cerrar_sesion",
+                    'token': sessionStorage.getItem('token'),
+                },
+                dataType: "json"
+            });
+
+            request.done(function (msg) {
+                // NO HACE NADA, YA QUE EL BOTON TIENE SU HREF, DENTRO DEL HTML, ESTO SIMPLEMENTE EJECUTA LA FUNCION FORRAR
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+
+            });
+        });
+
 
 
 

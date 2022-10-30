@@ -41,7 +41,8 @@ try {
             include "auth_inc.php";
             $data = Usuarios::mostrarInfo($token);
             break;
-
+        case "cerrar_sesion":
+            $msg = Usuarios::cerrar_sesion($token);
 
     }
     #Todas las excepciones que se ejecuten en Usuarios.php o Conexion single, serán lanzadas a esta clase
