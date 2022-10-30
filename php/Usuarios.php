@@ -122,5 +122,35 @@ class Usuarios
    }
 
 
+    public static function mostrarInfo($token){
+        $pdo = ConexionSingle::getInstancia();
+        try {
+            $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),Fecha_nacimiento)/365) AS edad from alumno a, usuario u where u.token ='$token' and dni = id_usuario";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+
+            /**
+             *    if (empty($data)) {
+            $sql = "SELECT * FROM admin a, usuario u where a.id_usario = u.dni and u.token ='$token'   ";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+            if (empty($data)) {
+            $sql = "SELECT * FROM profesor a, usuario u where a.id_usario = u.dni and u.token ='$token'   ";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+
+            }
+            }
+             */
+
+            return $data;
+
+        }catch (Exception $e){
+            Throw $e;
+        }
+    }
 
 }
