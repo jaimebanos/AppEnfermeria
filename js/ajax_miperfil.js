@@ -23,7 +23,12 @@ $(document).ready(function () {
             window.location.href = "login.html";
         }
 
-        var elementos =  JSON.parse(response);
+        //CAMBIA EL NOMBRE DE ARRIBA DERECHA AL USUARIO QUE ES
+        $(".nombre_user").text(response['data'][0]['nombre']);
+        $("#saludo_user").text("Bievenido "+ response['data'][0]['nombre']);
+        
+
+        var elementos = response;
         elementos = elementos.data;
         var string = ``;
 
@@ -54,12 +59,16 @@ $(document).ready(function () {
         $("#MiPerfil").html(string);
 
         });
-    request.fail(function (jqXHR, textStatus) {
-        console.log("Error perfil");
-        alert("Request failed: " + textStatus);
-    });
+        request.fail(function (jqXHR, textStatus) {
+            console.log("Error perfil");
+            alert("Request failed: " + textStatus);
+        });
 
-    //CERRAR SESION
+
+
+
+
+    // BOTON CERRAR SESION
     $("#cerrar_sesion").click(function () {
         console.log("hola");
         var request = $.ajax({

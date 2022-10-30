@@ -16,8 +16,8 @@ $(document).ready(function () {
             window.location.href = "html/login.html";
         }
 
-        $("#name_user").text(msg['data'].nombre);
-        $("#saludo_user").text("Bievenido "+ msg['data'].nombre);
+        $("#name_user").text(msg['data'][0]['nombre']);
+        $("#saludo_user").text("Bievenido "+ msg['data'][0]['nombre']);
     });
 
     request.fail(function (jqXHR, textStatus) {
