@@ -1,7 +1,7 @@
 <?php
 
 #ISSETS DE LOS $_POST
-include "Pacientes.php";
+include_once "Pacientes.php";
 $accion = isset($_POST['accion'])?$_POST['accion']:"";
 
 
@@ -15,7 +15,7 @@ $succes = true;
 try {
     switch ($accion) {
         case "listUser":
-
+            include "auth_inc.php";
             #Obtenemos el array
             $data = Pacientes::list_user();
             break;

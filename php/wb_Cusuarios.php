@@ -1,7 +1,7 @@
 <?php
 
 #ISSETS DE LOS $_POST
-include "Usuarios.php";
+include_once "Usuarios.php";
 $accion = isset($_POST['accion'])?$_POST['accion']:"";
 $login = isset($_POST['datos'])?$_POST['datos']:[];
 $token = isset($_POST['token'])?$_POST['token']:null;
@@ -38,7 +38,7 @@ try {
             break;
         case "MostrarInfo":
             #Identifica y obtiene los datos necesarios para el perfil
-
+            include "auth_inc.php";
             $data = Usuarios::mostrarInfo($token);
             break;
 

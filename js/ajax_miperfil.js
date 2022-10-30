@@ -4,10 +4,6 @@ $(document).ready(function () {
      */
 
 
-
-
-
-
     var request = $.ajax({
         url: '../php/wb_Cusuarios.php',
         method: "POST",
@@ -15,11 +11,17 @@ $(document).ready(function () {
             "accion": "MostrarInfo",
             'token': sessionStorage.getItem('token')},
 
+        dataType:"json"
 
     });
 
 
     request.done(function (response) {
+
+        //COMPRUEBA SI LA RESPUESTA ES UN FALSE, LO CUAL QUIERE DECIR QUE NO TIENE TOKEN, Y LO DEVUELVE AL LOGIN
+        if(response['success']===false){
+            window.location.href = "login.html";
+        }
 
         var elementos =  JSON.parse(response);
         elementos = elementos.data;

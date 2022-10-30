@@ -1,5 +1,5 @@
 <?php
-include "..\\Conexion\\ConexionSingle.php";
+include_once "..\\Conexion\\ConexionSingle.php";
 
 class Usuarios
 {

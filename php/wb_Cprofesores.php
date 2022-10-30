@@ -15,7 +15,7 @@ $succes = true;
 try {
     switch ($accion) {
         case "listUser":
-
+            include "auth_inc.php";
             #Obtenemos el array
             $data = Profesores::list_user();
 

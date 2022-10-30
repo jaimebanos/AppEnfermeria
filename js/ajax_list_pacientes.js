@@ -10,6 +10,8 @@ $(document).ready(function() {
             data: {
                 "accion": "listUser",
                 'token': sessionStorage.getItem('token')},
+
+            dataType:"json"
         });
 
         request.done(function (response) {
@@ -17,7 +19,18 @@ $(document).ready(function() {
              * Para imprimir en pantalla los pacientes disponibles en la base de datos en Pacientes.php
              * @type {array}
              */
-            var fillDiv = JSON.parse(response);
+
+            //COMPRUEBA SI LA RESPUESTA ES UN FALSE, LO CUAL QUIERE DECIR QUE NO TIENE TOKEN, Y LO DEVUELVE AL LOGIN
+            if(response['success']===false){
+                window.location.href = "login.html";
+            }
+
+            console.log(response['success']);
+            if(response['success'] === false){
+                window.location.href = "login.html";
+            }
+
+            var fillDiv = response;
             fillDiv = fillDiv.data;
             var string = ``;
 

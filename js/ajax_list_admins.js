@@ -9,11 +9,10 @@ $(document).ready(function() {
             url: '../php/wb_Cadmins.php',
             method: "POST",
             data: {
-
-                "accion": "listUser"},
-            "datos": {
+                "accion": "listUser",
                 'token': sessionStorage.getItem('token'),
-            }
+            },
+            dataType:"json"
         });
 
         request.done(function (response) {
@@ -21,7 +20,13 @@ $(document).ready(function() {
              * Para imprimir en pantalla las tarjetas de los administradores disponibles en la base de datos en Personal.php
              * @type {array}
              */
-            var fillDiv = JSON.parse(response);
+
+            //COMPRUEBA SI LA RESPUESTA ES UN FALSE, LO CUAL QUIERE DECIR QUE NO TIENE TOKEN, Y LO DEVUELVE AL LOGIN
+            if(response['success']===false){
+                window.location.href = "login.html";
+            }
+
+            var fillDiv = response;
             fillDiv = fillDiv.data;
             var string = ` <div class="col-sm-12">
                   <div class="iq-card">
