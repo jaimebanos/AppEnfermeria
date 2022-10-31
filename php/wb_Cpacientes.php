@@ -3,6 +3,7 @@
 #ISSETS DE LOS $_POST
 include_once "Pacientes.php";
 $accion = isset($_POST['accion'])?$_POST['accion']:"";
+$dni_eliminar = isset($_POST['id_eliminar'])?$_POST['id_eliminar']:"";
 
 
 
@@ -21,6 +22,8 @@ try {
             break;
         case "eliminar_paciente":
             include_once "auth_inc.php";
+            #Obtenemos el array
+            $data = Pacientes::delete_user($dni_eliminar);
 
 
 

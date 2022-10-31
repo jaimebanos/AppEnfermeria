@@ -1,5 +1,6 @@
 <?php
 include_once "..\\Conexion\\ConexionSingle.php";
+
 class Pacientes
 {
     public $nombre;
@@ -45,7 +46,8 @@ class Pacientes
     /**
      * Te devuelve los datos de la tabla pacientes para listarlos en la página pacientes.html
      */
-    public  static function list_user(){
+    public static function list_user()
+    {
 
 
         $pdo = ConexionSingle::getInstancia();
@@ -55,12 +57,28 @@ class Pacientes
             $stmt->execute();
 
             return $stmt->fetchAll();
-        }catch (Exception $e){
-            Throw $e;
+        } catch (Exception $e) {
+            throw $e;
         }
 
     }
 
+    public static function delete_user($dni)
+    {
+
+
+        $pdo = ConexionSingle::getInstancia();
+        try {
+            $sql = "DELETE FROM paciente WHERE dni = '$dni' ";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+
+            return self::list_user();
+        } catch (Exception $e) {
+            throw $e;
+        }
+
+    }
 
 
 }

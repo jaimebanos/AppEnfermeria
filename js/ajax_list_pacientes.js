@@ -32,8 +32,8 @@ $(document).ready(function() {
             fillDiv.forEach((element) => {
                 string += `            
                   
-                                 <tr class="hide" id="${element.id_usuario}" >
-                                    <td>${element.dni}</td>
+                                 <tr class="hide" id-dni="${element.dni}"  >
+                                    <td >${element.dni}</td>
                                     <td>${element.nombre}</td>
                                     <td>${element.apellidos}</td>
                                     <td>${element.patologias}</td>                                    
@@ -46,15 +46,15 @@ $(document).ready(function() {
 
                                     <td>
 
-                                       <button class=" btn-sm btn-outline-danger " href="enfermeros.html"
-                                          data-toggle="modal" data-target="#eliminar"><i
+                                       <button class=" btn-sm btn-outline-danger eliminar_paciente"   data-toggle="modal" data-target="#eliminar"
+                                           ><i
                                              class=" fa fa-trash"></i></i></button>
 
-                                       <!--Mediante data-target "eliminar " nos sale la siguiente notifcación para eliminar un enefermero--->
-                                       <div class="modal fade" id="eliminar" tabindex="-1" role="dialog"
+                                              <!--Mediante data-target "eliminar " nos sale la siguiente notifcación para eliminar un enefermero--->
+                                     <div class="modal fade" id="eliminar" tabindex="-1" role="dialog"
                                           aria-labelledby="exampleModalCenterTitle" style="display: none;"
                                           aria-hidden="true">
-                                          <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
                                              <div class="modal-content">
                                                 <div class="modal-header">
                                                    <h5 class="modal-title" id="exampleModalCenterTitle">Advertencia</h5>
@@ -64,20 +64,21 @@ $(document).ready(function() {
                                                    </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                   ¿Desea eliminar a este Paciente?
+                                                   ¿Desea eliminar a este Paciente ?
                                                 </div>
                                                 <div class="modal-footer">
                                                    <button type="button" class="btn-outline-success"
                                                       data-dismiss="modal">Cancelar</button>
-                                                   <button type="button" id="${element.dni}" class="btn-outline-danger ">Aceptar</button>
+                                                   <button type="button"  data-dismiss="modal" class="btn-outline-danger eliminar_paciente_confirm">Aceptar</button>
                                                 </div>
                                              </div>
+                                               </div>
                                           </div>
-                                       </div>
 
 
                                     </td>
                                  </tr>
+                                 
 `;
             });
 
@@ -119,35 +120,6 @@ $(document).ready(function() {
 
             });
         });
-
-    $(".btn-outline-danger ").click(function () {
-        console.log("hola");
-        var request = $.ajax({
-            url: '../php/wb_Cusuarios.php',
-            method: "POST",
-            data: {
-                "accion": "elimiar_paciente",
-                'token': sessionStorage.getItem('token'),
-                'id_eliminar': $(".btn-outline-danger").prop('id'),
-            },
-            dataType: "json"
-        });
-
-        request.done(function (msg) {
-            // NO HACE NADA, YA QUE EL BOTON TIENE SU HREF, DENTRO DEL HTML, ESTO SIMPLEMENTE EJECUTA LA FUNCION FORRAR
-        });
-
-        request.fail(function (jqXHR, textStatus) {
-
-        });
-    });
-
-
-
-
-
-
-
 
 
 });
