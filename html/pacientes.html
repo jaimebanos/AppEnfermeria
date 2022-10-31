@@ -20,6 +20,7 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
    <!--Se cambia la ubicación del ajax a la carpeta js-->
    <script src="../js/ajax_list_pacientes.js"></script>
+   <script src="../js/ajax_rellenarDatos.js"></script>
 </head>
 
 <body>
@@ -194,9 +195,9 @@
                            <img src="../images/user/1.jpg" class="img-fluid rounded mr-3" alt="user">
                            <div class="caption">
                               <!-- Poner nombre del usuario-->
-                              <h6 class="mb-0 line-height">Name</h6>
+                              <h6 class="nombre_user"></h6>
                               <!-- Poner estado del usuario-->
-                              <span class="font-size-12">Available</span>
+                              <span class="font-size-12">Activo</span>
                            </div>
                         </a>
                         <div class="iq-sub-dropdown iq-user-dropdown">
@@ -204,8 +205,8 @@
                               <div class="iq-card-body p-0 ">
                                  <div class="bg-primary p-3">
                                     <!-- Poner nombre del usuario-->
-                                    <h5 class="mb-0 text-white line-height">Hello Bini Jets</h5>
-                                    <span class="text-white font-size-12">Available</span>
+                                    <h5 class="saludo_user"></h5>
+                                    <span class="text-white font-size-12">Activo</span>
                                  </div>
                                  <a href="perfil_usuario.html" class="iq-sub-card iq-bg-primary-hover">
                                     <div class="media align-items-center">
@@ -230,7 +231,7 @@
                                     </div>
                                  </a>
                                  <div class="d-inline-block w-100 text-center p-3">
-                                    <a class="bg-primary iq-sign-btn" href="../html/login.html" role="button">Cerrar
+                                    <a class="bg-primary iq-sign-btn" id="cerrar_sesion" href="../html/login.html" role="button">Cerrar
                                        Sesión<i class="ri-login-box-line ml-2"></i></a>
                                  </div>
                               </div>

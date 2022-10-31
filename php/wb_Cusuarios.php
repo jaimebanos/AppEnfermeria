@@ -42,7 +42,8 @@ try {
             $data = Usuarios::mostrarInfo($token);
             break;
         case "cerrar_sesion":
-            $msg = Usuarios::cerrar_sesion($token);
+            #Borra el token de la base de datos, del token pasado
+            Usuarios::cerrar_sesion($token);
 
     }
     #Todas las excepciones que se ejecuten en Usuarios.php o Conexion single, serán lanzadas a esta clase

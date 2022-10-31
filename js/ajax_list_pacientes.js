@@ -25,11 +25,6 @@ $(document).ready(function() {
                 window.location.href = "login.html";
             }
 
-            console.log(response['success']);
-            if(response['success'] === false){
-                window.location.href = "login.html";
-            }
-
             var fillDiv = response;
             fillDiv = fillDiv.data;
             var string = ``;
@@ -100,7 +95,10 @@ $(document).ready(function() {
             alert("Request failed: " + textStatus);
         });
 
-        //CERRAR SESION
+    /**
+     * Cerrar sesión, borrará el token de la BD, y te devolverá al login
+     */
+    //CERRAR SESION
         $("#cerrar_sesion").click(function () {
             console.log("hola");
             var request = $.ajax({
@@ -121,6 +119,9 @@ $(document).ready(function() {
 
             });
         });
+
+
+
 
 
 
