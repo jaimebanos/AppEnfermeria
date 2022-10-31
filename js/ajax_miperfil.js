@@ -44,10 +44,9 @@ $(document).ready(function () {
                             <div class="col-4">Position:</div>
                             <div class="col-8"></div>
                             <div class="col-4">Email:</div>
-                            <div class="col-8"><a href="mailto:biniJets24@demo.com"> 
-                                </a></div>
+                            <div class="col-8">${element.email}</div>
                             <div class="col-4">Phone:</div>
-                            <div class="col-8"><a href="tel:001-2351-25612"></a></div>
+                            <div class="col-8">${element.telefono}</div>
                             <div class="col-4">Location:</div>
                             <div class="col-8"></div>
                         </div>
