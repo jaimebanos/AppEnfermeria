@@ -15,10 +15,14 @@ $succes = true;
 try {
     switch ($accion) {
         case "listUser":
-            include "auth_inc.php";
+            include_once "auth_inc.php";
             #Obtenemos el array
             $data = Pacientes::list_user();
             break;
+        case "eliminar_paciente":
+            include_once "auth_inc.php";
+
+
 
     }
     #Todas las excepciones que se ejecuten en Pacientes.php o Conexion single, serán lanzadas a esta clase

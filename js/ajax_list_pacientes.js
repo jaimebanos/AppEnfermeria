@@ -69,7 +69,7 @@ $(document).ready(function() {
                                                 <div class="modal-footer">
                                                    <button type="button" class="btn-outline-success"
                                                       data-dismiss="modal">Cancelar</button>
-                                                   <button type="button" class="btn-outline-danger ">Aceptar</button>
+                                                   <button type="button" id="${element.dni}" class="btn-outline-danger ">Aceptar</button>
                                                 </div>
                                              </div>
                                           </div>
@@ -119,6 +119,29 @@ $(document).ready(function() {
 
             });
         });
+
+    $(".btn-outline-danger ").click(function () {
+        console.log("hola");
+        var request = $.ajax({
+            url: '../php/wb_Cusuarios.php',
+            method: "POST",
+            data: {
+                "accion": "elimiar_paciente",
+                'token': sessionStorage.getItem('token'),
+                'id_eliminar': $(".btn-outline-danger").prop('id'),
+            },
+            dataType: "json"
+        });
+
+        request.done(function (msg) {
+            // NO HACE NADA, YA QUE EL BOTON TIENE SU HREF, DENTRO DEL HTML, ESTO SIMPLEMENTE EJECUTA LA FUNCION FORRAR
+        });
+
+        request.fail(function (jqXHR, textStatus) {
+
+        });
+    });
+
 
 
 
