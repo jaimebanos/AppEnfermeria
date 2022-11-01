@@ -57,24 +57,35 @@ class Usuarios
     }
 
     /**
-     * La creación de token a partir de dni, pass,
+     * La creación de token a partir de dni, pass y fecha actual,
+     * Crea un token con los parametros dichos, y una fecha de vencimiento de 15 dias a partir de la actual
+     * Y te devuelve el token
      * @param $dni
      * @param $contrasenya
-     * @return void
+     * @return false|string|void
      */
     private function crear_token($dni, $contrasenya)
     {
-
+        $conexion = ConexionSingle::getInstancia();
         //CREAER EL TOKEN CON DNI Y PASSWORD DEL USUARIO
         $options = [
             'cost' => 11
         ];
-        $token = password_hash($dni . $contrasenya, PASSWORD_BCRYPT, $options);
 
+        $sql = "select now() as fecha_actual";
+        $sth = $conexion->prepare($sql);
+        $sth->execute();
+        $fecha_actual = $sth->fetch(PDO::FETCH_ASSOC);
+        $token = password_hash($dni.$contrasenya.$fecha_actual['fecha_actual'], PASSWORD_BCRYPT, $options);
 
-        $conexion = ConexionSingle::getInstancia();
         try {
+            //AÑADIR EL TOKEN A LA TABLA DEL USUARIO
             $sql = "UPDATE usuario set token = '$token' where dni = '$dni'";
+            $sth = $conexion->prepare($sql);
+            $sth->execute();
+
+            //AÑADIR LA FECHA DE CADUCIDAD PARA EL TOKEN
+            $sql = "UPDATE usuario set Fecha_vencimiento_token = date_add(now(),INTERVAL 15 day) where dni = '$dni'";
             $sth = $conexion->prepare($sql);
             $sth->execute();
         } catch (Exception $e) {
@@ -85,7 +96,9 @@ class Usuarios
     }
 
     /**
-     * Te devuelve el dni y el nombre del token pasado por parametro, si no tienes token, se te devolverá al login..
+     *Comprueba si el token enviado, existe, si existe, hará otra comprobación y es, si la fecha actual
+     * es menor que la fecha de caducidad que tiene, en el momento que la supere, se borrará el token y la fecha y se creará una nueva
+     * 
      */
     public static function comprobar_token($var_token)
     {
@@ -98,7 +111,19 @@ class Usuarios
             $campo_token = $sth->fetch(PDO::FETCH_ASSOC);
             if ($campo_token != false) {
                 if ($token == $campo_token['token']) {
-                    return true;
+                    //COMPROBAR QUE LA FECHA ES MENOR QUE LA ACTUAL
+                    $sql = "select (now()>Fecha_vencimiento_token) as resultado from usuario where token = '$token'";
+                    $sth = $conexion->prepare($sql);
+                    $sth->execute();
+                    $fecha = $sth->fetch(PDO::FETCH_ASSOC);
+                    if($fecha['resultado'] == 0){
+                        return true;
+                    }else{
+                        $sql = "update usuario set token = '', Fecha_vencimiento_token = null where token = '$token'";
+                        $sth = $conexion->prepare($sql);
+                        $sth->execute();
+                    }
+
                 }
             }
         } catch (Exception $e) {

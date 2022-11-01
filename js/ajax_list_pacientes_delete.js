@@ -2,16 +2,7 @@ $(document).ready(function() {
     $(document).on('click', '.eliminar_paciente', function(){
         let id =$(this).parent().parent().children().first().text();
 
-
-
-
-
-
         $(document).on('click', '.eliminar_paciente_confirm', function(){
-
-        console.log(id);
-
-
 
               var request = $.ajax({
                       url: '../php/wb_Cpacientes.php',
@@ -25,12 +16,7 @@ $(document).ready(function() {
                   });
 
                   request.done(function (response) {
-
-
-location.reload();
-
-
-
+                    location.reload();
                   });
 
                   request.fail(function (jqXHR, textStatus) {
