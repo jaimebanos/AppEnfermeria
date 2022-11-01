@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+
+
     /**
      * Si el usuario no se puede imprimir por pantalla a los administradores se imprime por consola el error
      */
@@ -64,29 +67,5 @@ $(document).ready(function () {
         });
 
 
-
-
-
-    // BOTON CERRAR SESION
-    $("#cerrar_sesion").click(function () {
-        console.log("hola");
-        var request = $.ajax({
-            url: '../php/wb_Cusuarios.php',
-            method: "POST",
-            data: {
-                "accion": "cerrar_sesion",
-                'token': sessionStorage.getItem('token'),
-            },
-            dataType: "json"
-        });
-
-        request.done(function (msg) {
-            // NO HACE NADA, YA QUE EL BOTON TIENE SU HREF, DENTRO DEL HTML, ESTO SIMPLEMENTE EJECUTA LA FUNCION FORRAR
-        });
-
-        request.fail(function (jqXHR, textStatus) {
-
-        });
-    });
 
 });

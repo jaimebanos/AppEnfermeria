@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+    
     /**
      * Si el usuario no se puede imprimir por pantalla a los administradores se imprime por consola el error
      */

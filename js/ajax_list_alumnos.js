@@ -3,6 +3,7 @@ $(document).ready(function() {
      * Si el usuario no se puede imprimir por pantalla a los alumno se imprime por consola el error
      */
 
+
     $("#verAlumnos").click(function () {
 
         var request = $.ajax({

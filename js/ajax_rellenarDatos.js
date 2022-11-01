@@ -5,6 +5,7 @@ $(document).ready(function() {
      */
 
 
+
     var request = $.ajax({
         url: '../php/wb_Cusuarios.php',
         method: "POST",

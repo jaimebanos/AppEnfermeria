@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
    //TE CARGA EL PERFIL INICIAL, CON TU NOMBRE Y LA INFORMACIÓN NECESARIA
     var request = $.ajax({
         url: 'php/wb_Cusuarios.php',

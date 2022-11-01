@@ -1,4 +1,7 @@
 $(document).ready(function() {
+
+
+
     /**
      * Si el paciente no se puede imprimir por pantalla a los alumno se imprime por consola el error
      */
@@ -96,30 +99,6 @@ $(document).ready(function() {
             alert("Request failed: " + textStatus);
         });
 
-    /**
-     * Cerrar sesión, borrará el token de la BD, y te devolverá al login
-     */
-    //CERRAR SESION
-        $("#cerrar_sesion").click(function () {
-            console.log("hola");
-            var request = $.ajax({
-                url: '../php/wb_Cusuarios.php',
-                method: "POST",
-                data: {
-                    "accion": "cerrar_sesion",
-                    'token': sessionStorage.getItem('token'),
-                },
-                dataType: "json"
-            });
-
-            request.done(function (msg) {
-                // NO HACE NADA, YA QUE EL BOTON TIENE SU HREF, DENTRO DEL HTML, ESTO SIMPLEMENTE EJECUTA LA FUNCION FORRAR
-            });
-
-            request.fail(function (jqXHR, textStatus) {
-
-            });
-        });
 
 
 });

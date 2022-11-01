@@ -98,7 +98,7 @@ class Usuarios
     /**
      *Comprueba si el token enviado, existe, si existe, hará otra comprobación y es, si la fecha actual
      * es menor que la fecha de caducidad que tiene, en el momento que la supere, se borrará el token y la fecha y se creará una nueva
-     * 
+     *
      */
     public static function comprobar_token($var_token)
     {

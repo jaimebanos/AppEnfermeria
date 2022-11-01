@@ -1,4 +1,7 @@
 $(document).ready(function() {
+
+
+
     /**
     * Si el usuario no se puede imprimir por pantalla a los profesores se imprime por consola el error
     */

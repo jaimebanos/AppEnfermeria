@@ -1,4 +1,7 @@
 $(document).ready(function() {
+
+
+
     $(document).on('click', '.eliminar_paciente', function(){
         let id =$(this).parent().parent().children().first().text();
 

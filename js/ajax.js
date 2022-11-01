@@ -33,14 +33,14 @@ $( document ).ready(function() {
             if (msg['success']){
                 console.log("Usuario Encontrado");
               if ($value_check) {
-                  localStorage.setItem("token", msg['data'].token)
+                  sessionStorage.setItem("token",msg['data'].token)
 
               }else{
                   sessionStorage.setItem("token",msg['data'].token)
                 }
 
-                window.location.href = "../index.html";
-          }
+              window.location.href = "../index.html";
+            }
         });
 
         request.fail(function (jqXHR, textStatus) {
