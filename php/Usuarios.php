@@ -3,7 +3,6 @@ include_once "..\\Conexion\\ConexionSingle.php";
 
 class Usuarios
 {
-    public $nombre;
     public $dni;
     public $contrasenya;
 
@@ -203,7 +202,7 @@ class Usuarios
     public static function cerrar_sesion($token){
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "update usuario set token = '' where token = '$token'";
+            $sql = "update usuario set token = '', Fecha_vencimiento_token=null where token = '$token'";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
 

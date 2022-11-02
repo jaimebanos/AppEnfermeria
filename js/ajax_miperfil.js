@@ -38,20 +38,16 @@ $(document).ready(function () {
         elementos.forEach((element) => {
             string +=   `<div class="about-info m-0 p-0">
                         <div class="row">
-                            <div class="col-4">First Name:</div>
+                            <div class="col-4">Nombre:</div>
                             <div class="col-8">${element.nombre}</div>
-                            <div class="col-4">Last Name:</div>
+                            <div class="col-4">Apellido:</div>
                             <div class="col-8">${element.apellidos}</div>
-                            <div class="col-4">Age:</div>
+                            <div class="col-4">Edad:</div>
                             <div class="col-8">${element.edad}</div>
-                            <div class="col-4">Position:</div>
-                            <div class="col-8"></div>
                             <div class="col-4">Email:</div>
                             <div class="col-8">${element.email}</div>
-                            <div class="col-4">Phone:</div>
+                            <div class="col-4">Teléfono:</div>
                             <div class="col-8">${element.telefono}</div>
-                            <div class="col-4">Location:</div>
-                            <div class="col-8"></div>
                         </div>
                     </div>`;
         });
