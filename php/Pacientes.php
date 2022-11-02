@@ -81,4 +81,41 @@ class Pacientes
     }
 
 
+    public static function ver_user($dni)
+    {
+
+
+        $pdo = ConexionSingle::getInstancia();
+        try {
+            $sql = "select * , Fecha_nacimiento)/365) AS edad FROM paciente WHERE dni = '$dni' ";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+
+            return self::list_user();
+        } catch (Exception $e) {
+            throw $e;
+        }
+
+    }
+
+
+    public static function edit_user($dni)
+    {
+
+
+        $pdo = ConexionSingle::getInstancia();
+        try {
+            #Hacer un update segun se requiera
+            $sql = "select * , Fecha_nacimiento)/365) AS edad FROM paciente WHERE dni = '$dni' ";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+
+            return self::list_user();
+        } catch (Exception $e) {
+            throw $e;
+        }
+
+    }
+
+
 }

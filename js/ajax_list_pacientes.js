@@ -44,8 +44,8 @@ $(document).ready(function() {
                                     <td>${element.localidad}</td>
                                     <td>${element.telefono}</td>
                                     <td>${element.observaciones}</td>
-                                    <td><a href="perfil_pacientes.html"> <button  class="btn-outline-info btn-sm"  ><i class="ion-search "></i></button></a></td>
-                                    <td><a href="editar_pacientes.html"> <button  class="btn-outline-dark btn-sm"  ><i class="ion-edit "></i></button></a></td>
+                                    <td><button  class="btn-outline-info btn-sm ver_paciente"  ><i class="ion-search "></i></button></td>
+                                    <td><button  class="btn-outline-dark btn-sm editar_paciente"  ><i class="ion-edit "></i></button></td>
 
                                     <td>
 
