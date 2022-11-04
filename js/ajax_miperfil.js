@@ -37,7 +37,7 @@ $(document).ready(function () {
 
         elementos.forEach((element) => {
             string +=   `<div class="about-info m-0 p-0">
-                        <div class="row">
+                        <div class="row  pr-3">
                             <div class="col-4">Nombre:</div>
                             <div class="col-8">${element.nombre}</div>
                             <div class="col-4">Apellido:</div>
@@ -48,7 +48,17 @@ $(document).ready(function () {
                             <div class="col-8">${element.email}</div>
                             <div class="col-4">Teléfono:</div>
                             <div class="col-8">${element.telefono}</div>
+                            
                         </div>
+                        <hr>
+                        <a href="editar_perfil.html">
+                        <button
+                          class="btn-block btn btn-outline-info"
+                          href="editar_perfil.html"
+                        >
+                          <i class="las la-edit"></i>Editar Perfil
+                        </button>
+                      </a>
                     </div>`;
         });
         /**
