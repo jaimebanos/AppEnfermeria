@@ -39,11 +39,8 @@ $(document).ready(function() {
                                     <td >${element.dni}</td>
                                     <td>${element.nombre}</td>
                                     <td>${element.apellidos}</td>
-                                    <td>${element.patologias}</td>                                    
-                                    <td>${element.Fecha_nacimiento}</td>
-                                    <td>${element.localidad}</td>
+                                    <td>${element.edad}</td>
                                     <td>${element.telefono}</td>
-                                    <td>${element.observaciones}</td>
                                     <td><button  class="btn-outline-info btn-sm ver_paciente"  ><i class="ion-search "></i></button></td>
                                     <td><button  class="btn-outline-dark btn-sm editar_paciente"  ><i class="ion-edit "></i></button></td>
 
