@@ -52,7 +52,7 @@ class Pacientes
 
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "SELECT * FROM paciente";
+            $sql = "SELECT * , FLOOR(DATEDIFF(NOW(),Fecha_nacimiento)/365) AS edad FROM paciente";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
 
@@ -87,7 +87,7 @@ class Pacientes
 
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "select * , Fecha_nacimiento)/365) AS edad FROM paciente WHERE dni = '$dni' ";
+            $sql = "select * , FLOOR(DATEDIFF(NOW(),Fecha_nacimiento)/365) AS edad FROM paciente WHERE dni = '$dni' ";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
 
@@ -106,7 +106,7 @@ class Pacientes
         $pdo = ConexionSingle::getInstancia();
         try {
             #Hacer un update segun se requiera
-            $sql = "select * , Fecha_nacimiento)/365) AS edad FROM paciente WHERE dni = '$dni' ";
+            $sql = "select * , FLOOR(DATEDIFF(NOW(),Fecha_nacimiento)/365) AS edad FROM paciente WHERE dni = '$dni' ";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
 
