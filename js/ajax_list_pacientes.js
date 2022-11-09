@@ -96,6 +96,11 @@ $(document).ready(function() {
             alert("Request failed: " + textStatus);
         });
 
-
+        /**
+         * Boton agregar paciente, te envía al formulario para agregar un nuevo paciente
+        */
+        $("#agregar_paciente").click(function (){
+            window.location.href = "../html/crear_pacientes.html";
+        });
 
 });

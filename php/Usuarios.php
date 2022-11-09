@@ -166,25 +166,24 @@ class Usuarios
     {
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),a.Fecha_nacimiento)/365) AS edad from admin a, usuario u where u.token ='$token' and u.dni = a.id_usuario";
+            $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from profesor a, usuario u where u.token ='$token' and u.dni = a.id_usuario";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if (empty($data)) {
-                $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),a.Fecha_nacimiento)/365) AS edad from profesor a, usuario u where u.token ='$token' and u.dni = a.id_usuario";
+                $sql = "SELECT a.*, g.nombre as nombre_grupo ,FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from tecnico a, usuario u, grupo g where g.id = a.id_grupo and u.token ='$token' and u.dni = a.id_usuario";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
                 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                if (empty($data)) {
-                    $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),a.Fecha_nacimiento)/365) AS edad from alumno a, usuario u where u.token ='$token' and u.dni = a.id_usuario";
+                if(empty($data)){
+                    $sql = "SELECT a.* , FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from tecnico a, usuario u where  u.token ='$token' and u.dni = a.id_usuario";
                     $stmt = $pdo->prepare($sql);
                     $stmt->execute();
                     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
                 }
-            }
 
+            }
 
             return $data;
 

@@ -19,6 +19,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/ajax_rellenarDatos.js"></script>
     <script src="../js/ajax_cerrarSesion.js"></script>
+    <script src="../js/ajax_agregarPaciente.js"></script>
 </head>
 <body>
 <!-- Wrapper Start -->
@@ -78,10 +79,10 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto navbar-list">
                             <li class="nav-item iq-full-screen">
-                                <a class="iq-waves-effect" href="editar_pacientes.html#" id="btnFullscreen"></a>
+                                <a class="iq-waves-effect" href="crear_pacientes.html#" id="btnFullscreen"></a>
                             </li>
                             <li class="nav-item">
-                                <a class="search-toggle iq-waves-effect" href="editar_pacientes.html#"></a>
+                                <a class="search-toggle iq-waves-effect" href="crear_pacientes.html#"></a>
                                 <div class="iq-sub-dropdown">
                                     <div class="iq-card shadow-none m-0">
                                         <div class="iq-card-body p-0">
@@ -89,7 +90,7 @@
                                                 <!-- Poner un count de las notificaciones-->
                                                 <h5 class="mb-0 text-white">Notificationes<small class="badge badge-light float-right pt-1">4</small></h5>
                                             </div><!-- Poner notificaciones-->
-                                            <a class="iq-sub-card" href="editar_pacientes.html#"></a> <a class="iq-sub-card" href="editar_pacientes.html#"></a> <a class="iq-sub-card" href="editar_pacientes.html#"></a> <a class="iq-sub-card" href="editar_pacientes.html#">
+                                            <a class="iq-sub-card" href="crear_pacientes.html#"></a> <a class="iq-sub-card" href="crear_pacientes.html#"></a> <a class="iq-sub-card" href="crear_pacientes.html#"></a> <a class="iq-sub-card" href="crear_pacientes.html#">
                                             <div class="media align-items-center">
                                                 <div class=""><img alt="04" class="avatar-40 rounded" src="../images/user/04.jpg"></div>
                                                 <div class="media-body ml-3">
@@ -102,7 +103,7 @@
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="search-toggle iq-waves-effect" href="editar_pacientes.html#"></a>
+                                <a class="search-toggle iq-waves-effect" href="crear_pacientes.html#"></a>
                                 <div class="iq-sub-dropdown">
                                     <div class="iq-card shadow-none m-0">
                                         <div class="iq-card-body p-0">
@@ -110,7 +111,7 @@
                                                 <!-- Poner count de los mensajes-->
                                                 <h5 class="mb-0 text-white">Todos los mensajes<small class="badge badge-light float-right pt-1">5</small></h5>
                                             </div><!-- Poner mensajes-->
-                                            <a class="iq-sub-card" href="editar_pacientes.html#">
+                                            <a class="iq-sub-card" href="crear_pacientes.html#">
                                                 <div class="media align-items-center">
                                                     <div class=""><img alt="02" class="avatar-40 rounded" src="../images/user/02.jpg"></div>
                                                     <div class="media-body ml-3">
@@ -126,7 +127,7 @@
                     <ul class="navbar-list">
                         <li>
                             <!-- JAIME nombre usuario, saludo interfaz index, justo después de login-->
-                            <a class="search-toggle iq-waves-effect d-flex align-items-center" href="editar_pacientes.html#"><img alt="user" class="img-fluid rounded mr-3" src="../images/user/1.jpg">
+                            <a class="search-toggle iq-waves-effect d-flex align-items-center" href="crear_pacientes.html#"><img alt="user" class="img-fluid rounded mr-3" src="../images/user/1.jpg">
                                 <div class="caption">
                                     <!-- Poner nombre del usuario-->
                                     <h6 class="nombre_user"></h6><!-- Poner estado del usuario-->
@@ -192,70 +193,42 @@
                                             </div>
                                             <div class="row align-items-center">
                                                 <div class="form-group col-sm-6">
-                                                    <label for="fname">Nombre</label> <input class="form-control" id="fname" placeholder="Introduzca su nombre" type="text">
+                                                    <label for="nombre_paciente">Nombre</label> <input class="form-control" id="nombre_paciente" placeholder="Introduzca su nombre" type="text">
                                                 </div>
                                                 <div class="form-group col-sm-6">
-                                                    <label for="lname">Apellidos</label> <input class="form-control" id="lname" placeholder="Introduzca sus apellidos" type="text">
+                                                    <label for="apellido_paciente">Apellidos</label> <input class="form-control" id="apellido_paciente" placeholder="Introduzca sus apellidos" type="text">
                                                 </div>
                                                 <div class="form-group col-sm-6">
-                                                    <label for="uname">Nombre de usuario</label> <input class="form-control" id="uname" placeholder="Introduzca su nombre de usuario" type="text">
-                                                </div>
-                                                <div class="form-group col-sm-6">
-                                                    <label for="uname">Correo electronico</label> <input class="form-control" id="uname" placeholder="Introduzca su correo electrónico" type="text">
-                                                </div>
-                                                <div class="form-group col-sm-6">
-                                                    <label for="cname">Ciudad</label> <input class="form-control" id="cname" placeholder="Introduzca su ciudad" type="text">
+                                                    <label for="correo_paciente">Correo electronico</label> <input class="form-control" id="correo_paciente" placeholder="Introduzca su correo electrónico" type="text">
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label class="d-block">Género:</label>
                                                     <div class="custom-control custom-radio custom-control-inline">
-                                                        <input checked class="custom-control-input" id="customRadio6" name="customRadio1" type="radio"> <label class="custom-control-label" for="customRadio6">Hombre</label>
+                                                        <input checked class="custom-control-input" id="es_hombre" name="customRadio1" type="radio"> <label class="custom-control-label" for="es_hombre">Hombre</label>
                                                     </div>
                                                     <div class="custom-control custom-radio custom-control-inline">
-                                                        <input class="custom-control-input" id="customRadio7" name="customRadio1" type="radio"> <label class="custom-control-label" for="customRadio7">Mujer</label>
+                                                        <input class="custom-control-input" id="es_mujer" name="customRadio1" type="radio"> <label class="custom-control-label" for="es_mujer">Mujer</label>
                                                     </div>
+
+                                                </div>
+
+                                                <div class="form-group col-sm-6">
+                                                    <label for="telefono_paciente">Número de Telefono</label> <input class="form-control" id="telefono_paciente" placeholder="Introduce el numero de telefono" type="text">
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="dob">Fecha de Nacimiento</label> <input class="form-control" id="dob" name="dob" type="date">
-                                                </div><!--Cambiar a especiaalidad si no es una enfermera y es un profesor-->
+                                                </div>
+
                                                 <div class="form-group col-sm-6">
-                                                    <label>Curso</label> <select class="form-control" id="exampleFormControlSelect1">
-                                                    <option selected>
-                                                        1º
-                                                    </option>
-                                                </select>
+                                                    <textarea class="form-control"  id="observaciones_paciente" placeholder="Observaciones"></textarea>
                                                 </div>
                                             </div><!-- Cambiar el id del boton para no confundirlo con el siguiente-->
+
                                             <button class="btn btn-primary mr-2" type="submit">Enviar</button> <button class="btn iq-bg-danger" type="reset">Cancelar</button>
-                                        </form>
+                                             </form>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
-                                <div class="iq-card">
-                                    <div class="iq-card-header d-flex justify-content-between">
-                                        <div class="iq-header-title">
-                                            <h4 class="card-title">Cambiar Contraseña</h4>
-                                        </div>
-                                    </div>
-                                    <div class="iq-card-body">
-                                        <form>
-                                            <div class="form-group">
-                                                <label for="cpass">Contraseña actual</label> <!-- Mirar si implementar la función de contraseña olvidada o no-->
-                                                <!-- <a href="javascripe:void();" class="float-right">Forgot Password</a>-->
-                                                <input class="form-control" id="cpass" placeholder="" type="password">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="npass">Nueva Contraseña:</label> <input class="form-control" id="npass" placeholder="" type="password">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="vpass">Verificar Contraseña</label> <input class="form-control" id="vpass" placeholder="" type="password">
-                                            </div><!-- Cambiar el id del boton para no confundirlo con el anterior-->
-                                            <button class="btn btn-primary mr-2" type="submit">Enviar</button> <button class="btn iq-bg-danger" type="reset">Cancelar</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div><!-- Termina la pagina -->
                             <!-- Footer -->
                             <footer class="bg-white iq-footer">
                                 <div class="container-fluid">
