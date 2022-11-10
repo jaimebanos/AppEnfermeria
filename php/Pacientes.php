@@ -114,12 +114,13 @@ class Pacientes
     }
 
     /**
+     * Agrega un nuevo paciente, si devuelve true, es que lo ha agregado con exito
      * @throws Exception
      */
     public function agregar_paciente(){
         $pdo = ConexionSingle::getInstancia();
 
-   
+
         if(!empty($this->telefono)) {
             try {
                 $sql = "insert into paciente (dni,telefono,apellidos,nombre,usuario_asignado,observaciones,fecha_nacimiento,genero) 
