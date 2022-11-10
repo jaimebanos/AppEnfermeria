@@ -1,3 +1,43 @@
 $(document).ready(function () {
 
+
+    $("#btnAgregarCliente").click(function (){
+        let nombre = $("#nombre").val();
+        let apellido = $("#apellido").val();
+        let dni = $("#dni").val();
+        let fecha_nacimiento = $("#fecha_nacimiento").val();
+        let email = $("#email").val();
+        let observaciones = $("#observaciones").val();
+        let usuario_dni = $("#dni_tecnicoAsociado").val();
+        let genero = $("input:radio[name=genero]:checked").val();
+        let telefono = $("#telefono").val();
+
+        var request = $.ajax({
+            url: '../php/wb_Cpacientes.php',
+            method: "POST",
+            data: {
+                "accion": "agregar_paciente",
+                "datos_paciente":{
+                  "nombre":nombre,
+                  "apellido":apellido,
+                  "dni":dni,
+                  "fecha_nacimiento":fecha_nacimiento,
+                  "email":email,
+                  "observaciones":observaciones,
+                  "usuario_dni":usuario_dni,
+                  "genero":genero,
+                  "telefono":telefono,
+                },
+                'token': sessionStorage.getItem('token'),
+            },
+            dataType:"json"
+        });
+        request.done(function (msg) {
+            console.log(msg)
+        });
+
+        request.fail(function (jqXHR, textStatus) {
+
+        });
+    });
 });

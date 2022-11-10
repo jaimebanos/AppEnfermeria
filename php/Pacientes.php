@@ -5,12 +5,10 @@ class Pacientes
 {
     public $nombre;
     public $dni;
-    public $localidad;
     public $observaciones;
-    public $patologias;
     public $apellidos;
     public $telefono;
-    public $Fecha_nacimiento;
+    public $fecha_nacimiento;
     public $id_usuario;
     public $genero;
 
@@ -24,20 +22,18 @@ class Pacientes
      * @param $email
      * @param $apellidos
      * @param $telefono
-     * @param $Fecha_nacimiento
+     * @param $fecha_nacimiento
      * @param $id_usuario
      * @param $genero
      */
-    public function __construct($nombre, $dni, $localidad, $observaciones, $patologias, $apellidos, $telefono, $Fecha_nacimiento, $id_usuario, $genero)
+    public function __construct($nombre, $dni,$observaciones,$apellidos, $telefono, $fecha_nacimiento, $id_usuario, $genero)
     {
         $this->nombre = $nombre;
         $this->dni = $dni;
-        $this->localidad = $localidad;
         $this->observaciones = $observaciones;
-        $this->patologias = $patologias;
         $this->apellidos = $apellidos;
         $this->telefono = $telefono;
-        $this->Fecha_nacimiento = $Fecha_nacimiento;
+        $this->fecha_nacimiento = $fecha_nacimiento;
         $this->id_usuario = $id_usuario;
         $this->genero = $genero;
     }
@@ -114,6 +110,28 @@ class Pacientes
         } catch (Exception $e) {
             throw $e;
         }
+
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function agregar_paciente(){
+        $pdo = ConexionSingle::getInstancia();
+
+   
+        if(!empty($this->telefono)) {
+            try {
+                $sql = "insert into paciente (dni,telefono,apellidos,nombre,usuario_asignado,observaciones,fecha_nacimiento,genero) 
+                values ('$this->dni','$this->telefono','$this->apellidos','$this->nombre','$this->id_usuario','$this->observaciones','$this->fecha_nacimiento','$this->genero')";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute();
+                return true;
+            }catch (Exception $e){
+                    throw $e;
+            }
+        }
+
 
     }
 

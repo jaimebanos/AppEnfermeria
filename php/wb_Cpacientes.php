@@ -2,10 +2,20 @@
 
 #ISSETS DE LOS $_POST
 include_once "Pacientes.php";
+
+#ACCION QUE SE REALIZA
 $accion = isset($_POST['accion'])?$_POST['accion']:"";
+
+#DNI A ELIMINAR
 $dni_eliminar = isset($_POST['id_eliminar'])?$_POST['id_eliminar']:"";
+
+#DNI MOSTRAR
 $dni_ver = isset($_POST['id_ver'])?$_POST['id_ver']:"";
+
+#DNI PARA EDITAR
 $dni_editar = isset($_POST['id_editar'])?$_POST['id_editar']:"";
+
+$datos_paciente = isset($_POST['datos_paciente'])?$_POST['datos_paciente']:[];
 
 
 
@@ -36,6 +46,21 @@ try {
             include_once "auth_inc.php";
             #Obtenemos el array
             $data = Pacientes::edit_user($dni_editar);
+            break;
+        case "agregar_paciente":
+            include_once "auth_inc.php";
+
+            if(!empty($datos_paciente)){
+                $paciente = new Pacientes($datos_paciente['nombre'],$datos_paciente['dni'],$datos_paciente['observaciones'],$datos_paciente['apellido'],
+                $datos_paciente['telefono'],$datos_paciente['fecha_nacimiento'],$datos_paciente['usuario_dni'],$datos_paciente['genero']);
+                $resultado=$paciente->agregar_paciente();
+
+                if($resultado === true){
+                    $msg = "Insertado con exito";
+                }
+            }else{
+                $msg= "No has introducido nada";
+            }
             break;
 
 

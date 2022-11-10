@@ -181,50 +181,53 @@
                                     </div>
                                     <div class="iq-card-body">
                                         <form>
-                                            <div class="form-group row align-items-center">
-                                                <div class="col-md-12">
-                                                    <div class="profile-img-edit">
-                                                        <img alt="profile-pic" class="profile-pic" src="../images/user/11.png">
-                                                        <div class="p-image">
-                                                            <input accept="image/*" class="file-upload" type="file">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <div class="row align-items-center">
                                                 <div class="form-group col-sm-6">
-                                                    <label for="nombre_paciente">Nombre</label> <input class="form-control" id="nombre_paciente" placeholder="Introduzca su nombre" type="text">
+                                                    <label for="nombre">Nombre</label> <input class="form-control" id="nombre" placeholder="Introduzca su nombre" type="text">
                                                 </div>
                                                 <div class="form-group col-sm-6">
-                                                    <label for="apellido_paciente">Apellidos</label> <input class="form-control" id="apellido_paciente" placeholder="Introduzca sus apellidos" type="text">
+                                                    <label for="apellido">Apellidos</label> <input class="form-control" id="apellido" placeholder="Introduzca sus apellidos" type="text">
                                                 </div>
+
                                                 <div class="form-group col-sm-6">
-                                                    <label for="correo_paciente">Correo electronico</label> <input class="form-control" id="correo_paciente" placeholder="Introduzca su correo electrónico" type="text">
+                                                    <label for="dni">Dni del Paciente</label> <input class="form-control" id="dni" name="dob" type="text">
+                                                </div>
+
+                                                <div class="form-group col-sm-6">
+                                                    <label for="email">Correo electronico</label> <input class="form-control" id="email" placeholder="Introduzca su correo electrónico" type="text">
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label class="d-block">Género:</label>
                                                     <div class="custom-control custom-radio custom-control-inline">
-                                                        <input checked class="custom-control-input" id="es_hombre" name="customRadio1" type="radio"> <label class="custom-control-label" for="es_hombre">Hombre</label>
+                                                        <input checked class="custom-control-input" id="es_hombre" name="genero" type="radio" value="Hombre"> <label class="custom-control-label" for="es_hombre">Hombre</label>
                                                     </div>
                                                     <div class="custom-control custom-radio custom-control-inline">
-                                                        <input class="custom-control-input" id="es_mujer" name="customRadio1" type="radio"> <label class="custom-control-label" for="es_mujer">Mujer</label>
+                                                        <input class="custom-control-input" id="es_mujer" name="genero" type="radio" value="Mujer"> <label class="custom-control-label" for="es_mujer">Mujer</label>
                                                     </div>
 
                                                 </div>
 
                                                 <div class="form-group col-sm-6">
-                                                    <label for="telefono_paciente">Número de Telefono</label> <input class="form-control" id="telefono_paciente" placeholder="Introduce el numero de telefono" type="text">
+                                                    <label for="telefono">Número de Telefono</label> <input class="form-control" id="telefono" placeholder="Introduce el numero de telefono" type="text">
                                                 </div>
                                                 <div class="form-group col-sm-6">
-                                                    <label for="dob">Fecha de Nacimiento</label> <input class="form-control" id="dob" name="dob" type="date">
+                                                    <label for="fecha_nacimiento">Fecha de Nacimiento</label> <input class="form-control" id="fecha_nacimiento" name="dob" type="date">
                                                 </div>
 
                                                 <div class="form-group col-sm-6">
-                                                    <textarea class="form-control"  id="observaciones_paciente" placeholder="Observaciones"></textarea>
+                                                    <label for="dni_tecnicoAsociado">Dni del tecnico a cargo</label> <input class="form-control" id="dni_tecnicoAsociado" name="dob" type="text">
                                                 </div>
+
+
+                                                <div class="form-group col-sm-6">
+                                                    <textarea class="form-control"  id="observaciones" placeholder="Observaciones"></textarea>
+                                                </div>
+
+
+
                                             </div><!-- Cambiar el id del boton para no confundirlo con el siguiente-->
 
-                                            <button class="btn btn-primary mr-2" type="submit">Enviar</button> <button class="btn iq-bg-danger" type="reset">Cancelar</button>
+                                            <button class="btn btn-primary mr-2" type="button" id="btnAgregarCliente">Enviar</button> <button class="btn iq-bg-danger" type="button" id="btnCancelar">Cancelar</button>
                                              </form>
                                     </div>
                                 </div>
