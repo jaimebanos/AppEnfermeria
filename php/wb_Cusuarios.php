@@ -44,6 +44,13 @@ try {
         case "cerrar_sesion":
             #Borra el token de la base de datos, del token pasado
             Usuarios::cerrar_sesion($token);
+            break;
+        case "listUser":
+            include "auth_inc.php";
+            #Obtenemos el array
+            $data = Usuarios::list_user();
+
+            break;
 
     }
     #Todas las excepciones que se ejecuten en Usuarios.php o Conexion single, serán lanzadas a esta clase

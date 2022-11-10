@@ -212,4 +212,28 @@ class Usuarios
         }
     }
 
+
+    public  static function list_user(){
+
+
+        $pdo = ConexionSingle::getInstancia();
+        try {
+            $sql = "SELECT t.* ,  ('Tecnico')  as rol, !ifnull(baja_usuario,'No') as activo, u.admnistrador as admin FROM usuario u, tecnico t where  u.email = t.email_usuario";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+            if (empty($data)) {
+                $sql = "SELECT p.*, ('Profesor')  as rol ,!ifnull(baja_usuario,'No') as activo, u.admnistrador as admin from profesor p, usuario u where  u.email = p.email_usuario";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute();
+                $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+
+            return $data;
+        }catch (Exception $e){
+            Throw $e;
+        }
+
+    }
+
 }

@@ -32,25 +32,7 @@ class Profesores
     }
 
 
-    /**
-     * Te devuelve los datos de la tabla profesores para listarlos en la página personal.html
-     */
-    public  static function list_user(){
 
-
-        $pdo = ConexionSingle::getInstancia();
-        try {
-            $sql = "SELECT * FROM profesor";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute();
-            $data = $stmt->fetchAll();
-
-            return $data;
-        }catch (Exception $e){
-            Throw $e;
-        }
-
-    }
 
 
 
