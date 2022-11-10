@@ -33,7 +33,7 @@ class Administradores
 
 
     /**
-     * Te devuelve los datos de la tabla administradores para listarlos en la páhina personal.html
+     * Te devuelve los datos de la tabla administradores para listarlos en la página personal.html
      */
     public  static function list_user(){
 

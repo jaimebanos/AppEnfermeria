@@ -18,7 +18,6 @@ try {
             include "auth_inc.php";
             #Obtenemos el array
             $data = Alumnos::list_user();
-
             break;
 
     }

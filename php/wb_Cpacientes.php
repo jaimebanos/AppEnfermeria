@@ -5,6 +5,7 @@ include_once "Pacientes.php";
 
 #ACCION QUE SE REALIZA
 $accion = isset($_POST['accion'])?$_POST['accion']:"";
+<<<<<<< Updated upstream
 
 #DNI A ELIMINAR
 $dni_eliminar = isset($_POST['id_eliminar'])?$_POST['id_eliminar']:"";
@@ -17,6 +18,9 @@ $dni_editar = isset($_POST['id_editar'])?$_POST['id_editar']:"";
 
 $datos_paciente = isset($_POST['datos_paciente'])?$_POST['datos_paciente']:[];
 
+=======
+$login = isset($_POST['datos'])?$_POST['datos']:[];
+>>>>>>> Stashed changes
 
 
 #LO QUE CONTENDRÁ EL JSON

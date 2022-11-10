@@ -29,7 +29,10 @@ class Usuarios
 
         #CONEXION SINGLE
         $conexion = ConexionSingle::getInstancia();
+<<<<<<< Updated upstream
         $token = null;
+=======
+>>>>>>> Stashed changes
         #BUSCA EN LA BASE DE DATOS EL DNI INTRUCIDO Y COMPRUEBA SI LAS PASSWORD COINCIDE
         try {
             $sql = "select * from usuario where dni = '$this->dni'";
