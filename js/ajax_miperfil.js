@@ -30,17 +30,10 @@ $(document).ready(function () {
         $(".nombre_user").text(response['data'][0]['nombre']);
         $("#saludo_user").text("Bievenido "+ response['data'][0]['nombre']);
 
-        //AGREGAR PACIENTES ASIGNADOS
-
-        $("#pacientes_asignados").text(response['data'][0].pacientes_asignados);
-
 
         var elementos = response;
         elementos = elementos.data;
         var string = ``;
-
-
-
 
         elementos.forEach((element) => {
             string +=   `<div class="about-info m-0 p-0">
@@ -63,6 +56,7 @@ $(document).ready(function () {
                             <div class="col-8">${element.telefono}</div>
                             <div class="col-4">Género:</div>
                             <div class="col-8">${element.genero}</div>
+                            
                         </div>
                         <hr>
                         <a href="editar_perfil.html">
@@ -79,7 +73,6 @@ $(document).ready(function () {
          * Imprimir en el contenedor correspondiente
          */
         $("#MiPerfil").html(string);
-
 
         });
         request.fail(function (jqXHR, textStatus) {
