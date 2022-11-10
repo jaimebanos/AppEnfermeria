@@ -9,7 +9,7 @@ class Pacientes
     public $apellidos;
     public $telefono;
     public $fecha_nacimiento;
-    public $id_usuario;
+    public $usuario_asignado;
     public $genero;
 
 
@@ -23,10 +23,10 @@ class Pacientes
      * @param $apellidos
      * @param $telefono
      * @param $fecha_nacimiento
-     * @param $id_usuario
+     * @param $usuario_asignado
      * @param $genero
      */
-    public function __construct($nombre, $dni,$observaciones,$apellidos, $telefono, $fecha_nacimiento, $id_usuario, $genero)
+    public function __construct($nombre, $dni,$observaciones,$apellidos, $telefono, $fecha_nacimiento, $usuario_asignado, $genero)
     {
         $this->nombre = $nombre;
         $this->dni = $dni;
@@ -34,7 +34,7 @@ class Pacientes
         $this->apellidos = $apellidos;
         $this->telefono = $telefono;
         $this->fecha_nacimiento = $fecha_nacimiento;
-        $this->id_usuario = $id_usuario;
+        $this->usuario_asignado = $usuario_asignado;
         $this->genero = $genero;
     }
 
@@ -48,7 +48,7 @@ class Pacientes
 
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "SELECT * , FLOOR(DATEDIFF(NOW(),Fecha_nacimiento)/365) AS edad FROM paciente";
+            $sql = "SELECT * , FLOOR(DATEDIFF(NOW(),fecha_nacimiento)/365) AS edad FROM paciente";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
 
@@ -83,7 +83,7 @@ class Pacientes
 
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "select * , FLOOR(DATEDIFF(NOW(),Fecha_nacimiento)/365) AS edad FROM paciente WHERE dni = '$dni' ";
+            $sql = "select * , FLOOR(DATEDIFF(NOW(),fecha_nacimiento)/365) AS edad FROM paciente WHERE dni = '$dni' ";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
 
@@ -102,7 +102,7 @@ class Pacientes
         $pdo = ConexionSingle::getInstancia();
         try {
             #Hacer un update segun se requiera
-            $sql = "select * , FLOOR(DATEDIFF(NOW(),Fecha_nacimiento)/365) AS edad FROM paciente WHERE dni = '$dni' ";
+            $sql = "select * , FLOOR(DATEDIFF(NOW(),fecha_nacimiento)/365) AS edad FROM paciente WHERE dni = '$dni' ";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
 
@@ -124,7 +124,7 @@ class Pacientes
         if(!empty($this->telefono)) {
             try {
                 $sql = "insert into paciente (dni,telefono,apellidos,nombre,usuario_asignado,observaciones,fecha_nacimiento,genero) 
-                values ('$this->dni','$this->telefono','$this->apellidos','$this->nombre','$this->id_usuario','$this->observaciones','$this->fecha_nacimiento','$this->genero')";
+                values ('$this->dni','$this->telefono','$this->apellidos','$this->nombre','$this->usuario_asignado','$this->observaciones','$this->fecha_nacimiento','$this->genero')";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
                 return true;

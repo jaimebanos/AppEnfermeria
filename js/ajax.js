@@ -11,17 +11,13 @@ $( document ).ready(function() {
      */
     // BOTON CONECTAR
     $("#enviar").click(function () {
-        /* Capturamos si al concetarnos está el check marcado o no
-        *  WARNING- Devuelve un string en formate true o false!!*/
-        var $value_check = $("#remember_check")[0].checked;
-
         var request = $.ajax({
             url: '../php/wb_Cusuarios.php',
             method: "POST",
             data: {
                 "accion": "login",
                 "datos": {
-                    'dni':$("#dni").val(),
+                    'email':$("#email").val(),
                     'pass':$("#pass").val(),
                 }
 
@@ -31,14 +27,7 @@ $( document ).ready(function() {
         
         request.done(function (msg) {
             if (msg['success']){
-                console.log("Usuario Encontrado");
-              if ($value_check) {
-                  sessionStorage.setItem("token",msg['data'].token)
-
-              }else{
-                  sessionStorage.setItem("token",msg['data'].token)
-                }
-
+              localStorage.setItem("token",msg['data'].token)
               window.location.href = "../index.html";
             }
         });

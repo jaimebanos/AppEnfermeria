@@ -18,7 +18,7 @@ try {
             if(!empty($login)) {
 
                 //Se crea un usuario, para poder llamar luego a login y comprobar su datos
-                $user = new Usuarios($login['dni'], $login['pass']);
+                $user = new Usuarios($login['email'], $login['pass']);
 
                 /*Llama a la funcion Login esta devuelve un array con los datos del usuario
                 Si este existe y la contraseña y dni introducido son correctos*/
@@ -26,7 +26,7 @@ try {
                 $data= $user->login();
 
                 if (empty($data)) {
-                    $msg = "DNI o password incorrecta";
+                    $msg = "correo o password incorrecta";
                     $succes = false;
                 }
             }else{

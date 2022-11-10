@@ -8,7 +8,7 @@ $(document).ready(function () {
         let fecha_nacimiento = $("#fecha_nacimiento").val();
         let email = $("#email").val();
         let observaciones = $("#observaciones").val();
-        let usuario_dni = $("#dni_tecnicoAsociado").val();
+        let usuario_asignado = $("#usuario_asignado").val();
         let genero = $("input:radio[name=genero]:checked").val();
         let telefono = $("#telefono").val();
 
@@ -24,11 +24,11 @@ $(document).ready(function () {
                   "fecha_nacimiento":fecha_nacimiento,
                   "email":email,
                   "observaciones":observaciones,
-                  "usuario_dni":usuario_dni,
+                  "usuario_asignado":usuario_asignado,
                   "genero":genero,
                   "telefono":telefono,
                 },
-                'token': sessionStorage.getItem('token'),
+                'token': localStorage.getItem('token'),
             },
             dataType:"json"
         });

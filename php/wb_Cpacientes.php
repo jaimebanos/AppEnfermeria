@@ -55,7 +55,7 @@ try {
 
             if(!empty($datos_paciente)){
                 $paciente = new Pacientes($datos_paciente['nombre'],$datos_paciente['dni'],$datos_paciente['observaciones'],$datos_paciente['apellido'],
-                $datos_paciente['telefono'],$datos_paciente['fecha_nacimiento'],$datos_paciente['usuario_dni'],$datos_paciente['genero']);
+                $datos_paciente['telefono'],$datos_paciente['fecha_nacimiento'],$datos_paciente['usuario_asignado'],$datos_paciente['genero']);
                 $resultado=$paciente->agregar_paciente();
 
                 if($resultado === true){

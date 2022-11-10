@@ -9,7 +9,7 @@ $(document).ready(function() {
                 method: "POST",
                 data: {
                     "accion": "ver_paciente",
-                    'token': sessionStorage.getItem('token'),
+                    'token': localStorage.getItem('token'),
                     'id_ver': id,
                 },
                 dataType: "json"

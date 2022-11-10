@@ -26,11 +26,11 @@ CREATE TABLE `evento` (
   `id_paciente` char(9) NOT NULL,
   `fecha_evento` datetime NOT NULL,
   `repetir` tinyint(1) DEFAULT '0',
-  `id_usuario` char(9) NOT NULL,
+  `email_usuario` char(75) NOT NULL,
   PRIMARY KEY (`id_paciente`,`fecha_evento`),
-  KEY `FK_evento_usuario` (`id_usuario`),
+  KEY `FK_evento_usuario` (`email_usuario`),
   CONSTRAINT `FK_evento_paciente` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`telefono`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_evento_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`dni`) ON UPDATE CASCADE
+  CONSTRAINT `FK_evento_usuario` FOREIGN KEY (`email_usuario`) REFERENCES `usuario` (`email`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `evento` */
@@ -47,20 +47,17 @@ CREATE TABLE `grupo` (
 
 /*Data for the table `grupo` */
 
-insert  into `grupo`(`id`,`nombre`) values 
-(5,'grupo 5');
-
 /*Table structure for table `grupo_profesor` */
 
 DROP TABLE IF EXISTS `grupo_profesor`;
 
 CREATE TABLE `grupo_profesor` (
-  `id_profesor` char(9) NOT NULL,
+  `email_profesor` char(75) NOT NULL,
   `id_grupo` int(5) NOT NULL,
-  PRIMARY KEY (`id_profesor`,`id_grupo`),
+  PRIMARY KEY (`email_profesor`,`id_grupo`),
   KEY `FK_grupo_grupo` (`id_grupo`),
   CONSTRAINT `FK_grupo_grupo` FOREIGN KEY (`id_grupo`) REFERENCES `grupo` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_grupo_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id_usuario`) ON UPDATE CASCADE
+  CONSTRAINT `FK_grupo_profesor` FOREIGN KEY (`email_profesor`) REFERENCES `profesor` (`email_usuario`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `grupo_profesor` */
@@ -71,14 +68,14 @@ DROP TABLE IF EXISTS `mensaje`;
 
 CREATE TABLE `mensaje` (
   `contenido` varchar(255) NOT NULL,
-  `id_usuario` char(9) NOT NULL,
+  `email_usuario` char(9) NOT NULL,
   `id_grupo` int(11) NOT NULL,
   `visto` tinyint(1) DEFAULT '0',
   `hora_envio` datetime NOT NULL,
-  PRIMARY KEY (`id_usuario`,`hora_envio`),
+  PRIMARY KEY (`email_usuario`,`hora_envio`),
   KEY `FK_mensaje_grupo` (`id_grupo`),
   CONSTRAINT `FK_mensaje_grupo` FOREIGN KEY (`id_grupo`) REFERENCES `grupo` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_mensaje_usario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`dni`) ON UPDATE CASCADE
+  CONSTRAINT `FK_mensaje_usario` FOREIGN KEY (`email_usuario`) REFERENCES `usuario` (`email`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `mensaje` */
@@ -92,7 +89,7 @@ CREATE TABLE `paciente` (
   `telefono` char(15) NOT NULL,
   `nombre` char(15) DEFAULT NULL,
   `apellidos` varchar(30) DEFAULT NULL,
-  `usuario_asignado` char(9) DEFAULT NULL,
+  `usuario_asignado` char(75) DEFAULT NULL,
   `padecimientos` varchar(750) DEFAULT NULL,
   `observaciones` varchar(750) DEFAULT NULL,
   `medicacion` varchar(750) DEFAULT NULL,
@@ -100,28 +97,29 @@ CREATE TABLE `paciente` (
   `fecha_baja` date DEFAULT NULL,
   `genero` enum('Hombre','Mujer','Indefinido') DEFAULT NULL,
   `localidad` char(20) DEFAULT NULL,
-  `id_usuario` char(9) DEFAULT NULL,
   PRIMARY KEY (`telefono`),
-  KEY `FK_paciente_usuario` (`id_usuario`),
-  CONSTRAINT `FK_paciente_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`dni`) ON UPDATE CASCADE
+  KEY `FK_paciente_usuario` (`usuario_asignado`),
+  CONSTRAINT `FK_paciente_usuario` FOREIGN KEY (`usuario_asignado`) REFERENCES `usuario` (`email`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `paciente` */
+
+insert  into `paciente`(`dni`,`telefono`,`nombre`,`apellidos`,`usuario_asignado`,`padecimientos`,`observaciones`,`medicacion`,`fecha_nacimiento`,`fecha_baja`,`genero`,`localidad`) values 
+('1231312A','+34747486442','manolo','pedro','pedrojose@hotmail.com',NULL,'le gusta el futbol',NULL,'2022-12-01',NULL,'Hombre',NULL);
 
 /*Table structure for table `profesor` */
 
 DROP TABLE IF EXISTS `profesor`;
 
 CREATE TABLE `profesor` (
-  `id_usuario` char(9) NOT NULL,
-  `email` char(40) NOT NULL,
+  `email_usuario` char(9) NOT NULL,
   `nombre` char(15) DEFAULT NULL,
   `apellidos` varchar(30) DEFAULT NULL,
   `telefono` varchar(15) DEFAULT NULL,
   `fecha_nacimiento` date DEFAULT NULL,
   `genero` enum('Hombre','Mujer','Indefinido') NOT NULL,
-  PRIMARY KEY (`id_usuario`),
-  CONSTRAINT `FK_profesor_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`dni`) ON UPDATE CASCADE
+  PRIMARY KEY (`email_usuario`),
+  CONSTRAINT `FK_profesor_usuario` FOREIGN KEY (`email_usuario`) REFERENCES `usuario` (`email`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `profesor` */
@@ -131,43 +129,42 @@ CREATE TABLE `profesor` (
 DROP TABLE IF EXISTS `tecnico`;
 
 CREATE TABLE `tecnico` (
-  `id_usuario` char(9) NOT NULL,
-  `email` char(40) NOT NULL,
+  `email_usuario` char(75) NOT NULL,
   `nombre` char(15) DEFAULT NULL,
   `apellidos` varchar(30) DEFAULT NULL,
   `telefono` varchar(15) DEFAULT NULL,
   `fecha_nacimiento` date DEFAULT NULL,
   `genero` enum('Hombre','Mujer','Indefinido') NOT NULL,
   `id_grupo` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_usuario`),
+  PRIMARY KEY (`email_usuario`),
   KEY `FK_tecnico_grupo` (`id_grupo`),
   CONSTRAINT `FK_tecnico_grupo` FOREIGN KEY (`id_grupo`) REFERENCES `grupo` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `FK_tecnico_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`dni`) ON UPDATE CASCADE
+  CONSTRAINT `FK_tecnico_usuario` FOREIGN KEY (`email_usuario`) REFERENCES `usuario` (`email`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `tecnico` */
 
-insert  into `tecnico`(`id_usuario`,`email`,`nombre`,`apellidos`,`telefono`,`fecha_nacimiento`,`genero`,`id_grupo`) values 
-('12345678A','pedro@hotmail.com','pedro','jose','65321231','2000-10-10','Hombre',5);
+insert  into `tecnico`(`email_usuario`,`nombre`,`apellidos`,`telefono`,`fecha_nacimiento`,`genero`,`id_grupo`) values 
+('pedrojose@hotmail.com','pedro','jose','675842210','2000-10-10','Hombre',NULL);
 
 /*Table structure for table `usuario` */
 
 DROP TABLE IF EXISTS `usuario`;
 
 CREATE TABLE `usuario` (
-  `dni` char(9) NOT NULL,
+  `email` char(75) NOT NULL,
   `token` varchar(100) DEFAULT NULL,
   `fecha_vencimiento_token` datetime DEFAULT NULL,
   `baja_usuario` datetime DEFAULT NULL,
   `contrasenya` char(70) NOT NULL,
   `admnistrador` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`dni`)
+  PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `usuario` */
 
-insert  into `usuario`(`dni`,`token`,`fecha_vencimiento_token`,`baja_usuario`,`contrasenya`,`admnistrador`) values 
-('12345678A','$2y$11$xp.wja2mlISK.Fw87Ypfn.qBxLx04w8kQy/g4Jg3Ma49BiSO6a2QC','2022-11-24 16:53:55',NULL,'8cb2237d0679ca88db6464eac60da96345513964',NULL);
+insert  into `usuario`(`email`,`token`,`fecha_vencimiento_token`,`baja_usuario`,`contrasenya`,`admnistrador`) values 
+('pedrojose@hotmail.com','$2y$11$.NibMvCrs.vzNKD4L2b9wO5OUSQQYyxX5TmZUhopHV0QI23Xo1BjK','2022-11-25 17:14:05',NULL,'8cb2237d0679ca88db6464eac60da96345513964',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

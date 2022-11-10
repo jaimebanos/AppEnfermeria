@@ -13,7 +13,7 @@ $(document).ready(function() {
     method: "POST",
     data: {
         "accion": "listUser",
-        'token': sessionStorage.getItem('token')
+        'token': localStorage.getItem('token')
         },
         dataType:"json"
     });

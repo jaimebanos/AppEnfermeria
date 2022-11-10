@@ -7,7 +7,7 @@ $(document).ready(function () {
         method: "POST",
         data: {
             "accion": "MostrarInfo",
-            'token': sessionStorage.getItem('token'),
+            'token': localStorage.getItem('token'),
         },
         dataType: "json"
     });

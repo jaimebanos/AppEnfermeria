@@ -7,7 +7,7 @@ $(document).ready(function() {
             method: "POST",
             data: {
                 "accion": "cerrar_sesion",
-                'token': sessionStorage.getItem('token'),
+                'token': localStorage.getItem('token'),
             },
             dataType:"json"
         });

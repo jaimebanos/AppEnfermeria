@@ -3,23 +3,23 @@ include_once "..\\Conexion\\ConexionSingle.php";
 
 class Usuarios
 {
-    public $dni;
+    public $email;
     public $contrasenya;
 
     /**
      * Constructor para generar un usuario
-     * @param $dni
+     * @param $email
      * @param $contrasenya
      */
 
-    public function __construct($dni, $contrasenya)
+    public function __construct($email, $contrasenya)
     {
-        $this->dni = $dni;
+        $this->email = $email;
         $this->contrasenya = $contrasenya;
     }
 
     /**
-     *Recibe el dni y la password, y comprueba si esta es correcta, y si está
+     *Recibe el email y la password, y comprueba si esta es correcta, y si está
      * en la base de datos, si es así devolverá un array con sus parametros
      * @return mixed|void
      * @throws Exception
@@ -32,17 +32,17 @@ class Usuarios
 
         $token = null;
 
-        #BUSCA EN LA BASE DE DATOS EL DNI INTRUCIDO Y COMPRUEBA SI LAS PASSWORD COINCIDE
+        #BUSCA EN LA BASE DE DATOS EL email INTRUCIDO Y COMPRUEBA SI LAS PASSWORD COINCIDE
         try {
-            $sql = "select * from usuario where dni = '$this->dni'";
+            $sql = "select * from usuario where email = '$this->email'";
             $sth = $conexion->prepare($sql);
             $sth->execute();
             $registro = $sth->fetch(PDO::FETCH_ASSOC);
             if ($registro != false) {
                 if ($registro['contrasenya'] == sha1($this->contrasenya)) {
-                    $existe = self::token_exist($this->dni);
+                    $existe = self::token_exist($this->email);
                     if (!$existe) {
-                        $token = $this->crear_token($this->dni, $this->contrasenya);
+                        $token = $this->crear_token($this->email, $this->contrasenya);
                         $datos_devolver = array('token' => $token);
                         return $datos_devolver;
                     } else {
@@ -58,17 +58,17 @@ class Usuarios
     }
 
     /**
-     * La creación de token a partir de dni, pass y fecha actual,
+     * La creación de token a partir de email, pass y fecha actual,
      * Crea un token con los parametros dichos, y una fecha de vencimiento de 15 dias a partir de la actual
      * Y te devuelve el token
-     * @param $dni
+     * @param $email
      * @param $contrasenya
      * @return false|string|void
      */
-    private function crear_token($dni, $contrasenya)
+    private function crear_token($email, $contrasenya)
     {
         $conexion = ConexionSingle::getInstancia();
-        //CREAER EL TOKEN CON DNI Y PASSWORD DEL USUARIO
+        //CREAER EL TOKEN CON email Y PASSWORD DEL USUARIO
         $options = [
             'cost' => 11
         ];
@@ -77,16 +77,16 @@ class Usuarios
         $sth = $conexion->prepare($sql);
         $sth->execute();
         $fecha_actual = $sth->fetch(PDO::FETCH_ASSOC);
-        $token = password_hash($dni.$contrasenya.$fecha_actual['fecha_actual'], PASSWORD_BCRYPT, $options);
+        $token = password_hash($email.$contrasenya.$fecha_actual['fecha_actual'], PASSWORD_BCRYPT, $options);
 
         try {
             //AÑADIR EL TOKEN A LA TABLA DEL USUARIO
-            $sql = "UPDATE usuario set token = '$token' where dni = '$dni'";
+            $sql = "UPDATE usuario set token = '$token' where email = '$email'";
             $sth = $conexion->prepare($sql);
             $sth->execute();
 
             //AÑADIR LA FECHA DE CADUCIDAD PARA EL TOKEN
-            $sql = "UPDATE usuario set Fecha_vencimiento_token = date_add(now(),INTERVAL 15 day) where dni = '$dni'";
+            $sql = "UPDATE usuario set Fecha_vencimiento_token = date_add(now(),INTERVAL 15 day) where email = '$email'";
             $sth = $conexion->prepare($sql);
             $sth->execute();
         } catch (Exception $e) {
@@ -134,16 +134,16 @@ class Usuarios
     }
 
     /***
-     * Comprueba si el usuario con el dni pasado tiene token o no en la base de datos.
-     * @param $dni
+     * Comprueba si el usuario con el email pasado tiene token o no en la base de datos.
+     * @param $email
      * @return false|mixed
      * @throws Exception
      */
-    public static function token_exist($dni)
+    public static function token_exist($email)
     {
         $conexion = ConexionSingle::getInstancia();
         try {
-            $sql = "select token from usuario where dni = '$dni'";
+            $sql = "select token from usuario where email = '$email'";
             $sth = $conexion->prepare($sql);
             $sth->execute();
             $token = $sth->fetch(PDO::FETCH_ASSOC);
@@ -168,18 +168,18 @@ class Usuarios
     {
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from profesor a, usuario u where u.token ='$token' and u.dni = a.id_usuario";
+            $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from profesor a, usuario u where u.token ='$token' and u.email = a.email_usuario";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if (empty($data)) {
-                $sql = "SELECT a.*, g.nombre as nombre_grupo ,FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from tecnico a, usuario u, grupo g where g.id = a.id_grupo and u.token ='$token' and u.dni = a.id_usuario";
+                $sql = "SELECT a.*, g.nombre as nombre_grupo ,FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from tecnico a, usuario u, grupo g where g.id = a.id_grupo and u.token ='$token' and u.email = a.email_usuario";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
                 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 if(empty($data)){
-                    $sql = "SELECT a.* , FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from tecnico a, usuario u where  u.token ='$token' and u.dni = a.id_usuario";
+                    $sql = "SELECT a.* , FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from tecnico a, usuario u where  u.token ='$token' and u.email = a.email_usuario";
                     $stmt = $pdo->prepare($sql);
                     $stmt->execute();
                     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
