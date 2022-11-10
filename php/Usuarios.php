@@ -86,7 +86,7 @@ class Usuarios
             $sth->execute();
 
             //AÑADIR LA FECHA DE CADUCIDAD PARA EL TOKEN
-            $sql = "UPDATE usuario set Fecha_vencimiento_token = date_add(now(),INTERVAL 15 day) where email = '$email'";
+            $sql = "UPDATE usuario set fecha_vencimiento_token = date_add(now(),INTERVAL 15 day) where email = '$email'";
             $sth = $conexion->prepare($sql);
             $sth->execute();
         } catch (Exception $e) {
@@ -113,14 +113,14 @@ class Usuarios
             if ($campo_token != false) {
                 if ($token == $campo_token['token']) {
                     //COMPROBAR QUE LA FECHA ES MENOR QUE LA ACTUAL
-                    $sql = "select (now()>Fecha_vencimiento_token) as resultado from usuario where token = '$token'";
+                    $sql = "select (now()>fecha_vencimiento_token) as resultado from usuario where token = '$token'";
                     $sth = $conexion->prepare($sql);
                     $sth->execute();
                     $fecha = $sth->fetch(PDO::FETCH_ASSOC);
                     if($fecha['resultado'] == 0){
                         return true;
                     }else{
-                        $sql = "update usuario set token = '', Fecha_vencimiento_token = null where token = '$token'";
+                        $sql = "update usuario set token = '', fecha_vencimiento_token = null where token = '$token'";
                         $sth = $conexion->prepare($sql);
                         $sth->execute();
                     }
@@ -168,23 +168,22 @@ class Usuarios
     {
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from profesor a, usuario u where u.token ='$token' and u.email = a.email_usuario";
+            $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad ifnull((select count(*) from paciente where usuario_asignado = u.email),0) as pacientes_asignados from profesor a, usuario u where u.token ='$token' and u.email = a.email_usuario";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if (empty($data)) {
-                $sql = "SELECT a.*, g.nombre as nombre_grupo ,FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from tecnico a, usuario u, grupo g where g.id = a.id_grupo and u.token ='$token' and u.email = a.email_usuario";
+                $sql = "SELECT a.*, g.nombre as nombre_grupo ,FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad ifnull((select count(*) from paciente where usuario_asignado = u.email),0) as pacientes_asignados from tecnico a, usuario u, grupo g where g.id = a.id_grupo and u.token ='$token' and u.email = a.email_usuario";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
                 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 if(empty($data)){
-                    $sql = "SELECT a.* , FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from tecnico a, usuario u where  u.token ='$token' and u.email = a.email_usuario";
+                    $sql = "SELECT a.* , FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad, ifnull((select count(*) from paciente where usuario_asignado = u.email),0) as pacientes_asignados from tecnico a, usuario u where  u.token ='$token' and u.email = a.email_usuario";
                     $stmt = $pdo->prepare($sql);
                     $stmt->execute();
                     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 }
-
             }
 
             return $data;
