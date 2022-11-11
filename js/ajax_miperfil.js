@@ -29,6 +29,8 @@ $(document).ready(function () {
         //CAMBIA EL NOMBRE DE ARRIBA DERECHA AL USUARIO QUE ES
         $(".nombre_user").text(response['data'][0]['nombre']);
         $("#saludo_user").text("Bievenido "+ response['data'][0]['nombre']);
+        $("#pacientes_asignados").text( response['data'][0]['pacientes_asignados']);
+
 
 
         var elementos = response;
