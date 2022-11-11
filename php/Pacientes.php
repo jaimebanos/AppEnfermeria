@@ -48,7 +48,7 @@ class Pacientes
 
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "SELECT * , FLOOR(DATEDIFF(NOW(),fecha_nacimiento)/365) AS edad FROM paciente";
+            $sql = "SELECT * , FLOOR(DATEDIFF(NOW(),fecha_nacimiento)/365) AS edad , fecha_baja FROM paciente order by fecha_baja";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
 

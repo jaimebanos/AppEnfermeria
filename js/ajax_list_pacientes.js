@@ -33,6 +33,12 @@ $(document).ready(function() {
             var string = ``;
 
             fillDiv.forEach((element) => {
+                let baja;
+                if(element.fecha_baja === null){
+                    baja = "SI";
+                }else{
+                    baja = "NO";
+                }
                 string += `            
                   
                                  <tr class="hide" id-dni="${element.dni}"  >
@@ -41,6 +47,7 @@ $(document).ready(function() {
                                     <td>${element.apellidos}</td>
                                     <td>${element.edad}</td>
                                     <td>${element.telefono}</td>
+                                    <td>${baja}</td>
                                     <td><button  class="btn-outline-info btn-sm ver_paciente"  ><i class="ion-search "></i></button></td>
                                     <td><button  class="btn-outline-dark btn-sm editar_paciente"  ><i class="ion-edit "></i></button></td>
 
