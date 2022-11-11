@@ -19,7 +19,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/ajax_rellenarDatos.js"></script>
     <script src="../js/ajax_cerrarSesion.js"></script>
-    <script src="../js/ajax_agregarPaciente.js"></script>
+
 </head>
 <body>
 <!-- Wrapper Start -->
@@ -176,7 +176,7 @@
                                 <div class="iq-card">
                                     <div class="iq-card-header d-flex justify-content-between">
                                         <div class="iq-header-title">
-                                            <h4 class="card-title">Paciente</h4>
+                                            <h4 class="card-title">Usuario</h4>
                                         </div>
                                     </div>
                                     <div class="iq-card-body">
@@ -190,7 +190,7 @@
                                                 </div>
 
                                                 <div class="form-group col-sm-6">
-                                                    <label for="dni">Dni del Paciente</label> <input class="form-control" id="dni" name="dob" type="text">
+                                                    <label for="dni">Dni</label> <input class="form-control" id="dni" name="dob" type="text">
                                                 </div>
 
                                                 <div class="form-group col-sm-6">
@@ -208,27 +208,66 @@
                                                 </div>
 
                                                 <div class="form-group col-sm-6">
-                                                    <label for="telefono">Número de Telefono</label> <input class="form-control" id="telefono" placeholder="Introduce el numero de telefono" type="text">
+                                                    <label for="telefono">Telefono</label> <input class="form-control" id="telefono" placeholder="Introduce el numero de telefono" type="text">
                                                 </div>
                                                 <div class="form-group col-sm-6">
                                                     <label for="fecha_nacimiento">Fecha de Nacimiento</label> <input class="form-control" id="fecha_nacimiento" name="dob" type="date">
                                                 </div>
 
                                                 <div class="form-group col-sm-6">
-                                                    <label for="usuario_asignado">Email de Tecnico a cargo</label> <input class="form-control" id="usuario_asignado" name="dob" type="text">
+                                                    <label for="usuario_asignado">Contraseña</label> <input class="form-control" id="usuario_asignado" name="dob" type="text">
                                                 </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label>Grupo</label>
+                                                    <select class="form-control mb-3">
+                                                        <option selected="profesor">A</option>
+                                                        <option value="tecnico">B</option>
 
+                                                    </select>
+                                                </div>
 
                                                 <div class="form-group col-sm-6">
-                                                    <textarea class="form-control"  id="observaciones" placeholder="Observaciones"></textarea>
+                                                    <label>Rol</label>
+                                                    <select class="form-control mb-3">
+                                                        <option selected="profesor">Profesor</option>
+                                                        <option value="tecnico">Tecnico</option>
+
+                                                    </select>
                                                 </div>
+                                                <div class="form-group col-sm-6">
+
+
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="admin">
+                                                        <label class="custom-control-label" for="admin">Administrador</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="activo">
+                                                        <label class="custom-control-label" for="activo">Usuario inactivo</label>
+                                                    </div>
+
+
+                                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
                                             </div><!-- Cambiar el id del boton para no confundirlo con el siguiente-->
 
                                             <button class="btn btn-primary mr-2" type="button" id="btnAgregarCliente">Enviar</button> <button class="btn iq-bg-danger" type="button" id="btnCancelar">Cancelar</button>
-                                             </form>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

@@ -5,7 +5,7 @@
    <!-- Required meta tags -->
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <title>EFA Torraledua</title>
+   <title>EFA Torrealedua </title>
    <!-- Favicon -->
    <link rel="shortcut icon" href="../images/favicon.ico" />
    <!-- Bootstrap CSS -->
@@ -19,9 +19,7 @@
    <!--Scripts creados anteriormente -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
    <!--Se cambia la ubicación del ajax a la carpeta js-->
-   <script src="../js/ajax_list_alumnos.js"></script>
-   <script src="../js/ajax_list_profesores.js"></script>
-   <script src="../js/ajax_list_admins.js"></script>
+   <script src="../js/ajax_list_usuarios.js"></script>
    <script src="../js/ajax_rellenarDatos.js"></script>
    <script src="../js/ajax_cerrarSesion.js"></script>
 
@@ -36,7 +34,7 @@
          <div class="iq-sidebar-logo d-flex justify-content-between">
             <a href="../index.html">
                <img src="../images/logo.png" class="img-fluid" alt="">
-               <span>EFA Torraledua</span>
+               <span>EFA Torrealedua </span>
             </a>
             <div class="iq-menu-bt-sidebar">
                <div class="iq-menu-bt align-self-center">
@@ -65,8 +63,8 @@
                            class="ri-user-fill"></i><span>Personal</span></a>
 
                   </li>
-                  <li><a href="../html/calendario.html" class="iq-waves-effect"><i
-                           class="ri-calendar-event-fill"></i><span>Calendario</span></a></li>
+                  <li><a href="tareas.html" class="iq-waves-effect"><i
+                           class="ri-calendar-event-fill"></i><span>Tareas</span></a></li>
 
                   <li><a href="../html/chat.html" class="iq-waves-effect"><i
                            class="ri-message-fill"></i><span>Chat</span></a></li>
@@ -88,7 +86,7 @@
                   <div class="top-logo">
                      <a href="../index.html" class="logo">
                         <img src="../images/logo.png" class="img-fluid" alt="">
-                        <span>Efa Torraledua</span>
+                        <span>Efa Torrealedua </span>
                      </a>
                   </div>
                </div>
@@ -249,77 +247,62 @@
          <!-- TOP Nav Bar END -->
          <!-- Empieza la pagina -->
 
+
          <div class="container-fluid">
-            <div class="row" id="enfermerosVer">
+            <div class="row">
                <div class="col-sm-12">
                   <div class="iq-card">
                      <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
-                           <h4 class="card-title">Enfermer@s</h4>
+                           <h4 class="card-title">Usuarios</h4>
                         </div>
-                        <div class="iq-waves-effect d-flex align-items-center">
-                           
+                     </div>
+                     <div class="iq-card-body">
+
+                        <div id="table" class="">
+                           <span class="table-add float-right mb-3 mr-2">
+                             <button type="button" class="btn btn-outline-success mb-1" id="agregar_usuario"><i class="ri-add-line"></i>Añadir Usuario</button></a>
+
+                           </span>
+                           <table class="table table-hover table-bordered table-responsive-md table-striped text-center">
+                              <thead>
+                              <tr>
+                                 <th>Email</th>
+                                 <th>Dni</th>
+                                 <th>Nombre</th>
+                                 <th>Apellidos</th>
+                                 <th>Administrador</th>
+                                 <th>Rol</th>
+                                 <th>Grupo</th>
+                                 <th>Activo</th>
+                                 <th>Ver</th>
+                                 <th>Editar</th>
+                                 <th>Eliminar</th>
+
+                              </tr>
+                              </thead>
+                              <tbody id="userListar">
 
 
-                             <a>
-                              <button type="button" class="btn btn-outline-success mb-0" id="verAlumnos"><i class="ri-add-line"></i>Visualizar</button>
-                           </a>
-                           </div>
-                       
+
+                              </tbody>
+                           </table>
+                        </div>
                      </div>
                   </div>
                </div>
-
-
-            </div>
-
-
-
-            <div class="row" id="profesoresVer">
-               <div class="col-sm-12">
-                  <div class="iq-card">
-                     <div class="iq-card-header d-flex justify-content-between">
-                        <div class="iq-header-title">
-                           <h4 class="card-title">Profesores</h4>
-                        </div>
-                        <div class="iq-waves-effect d-flex align-items-center">
-                           
-
-
-                             <a>
-                              <button type="button" class="btn btn-outline-success mb-0" id="verProfesor"><i class="ri-add-line"></i>Visualizar</button>
-                           </a>
-                           </div>
-                       
-                     </div>
-                  </div>
-               </div>
-
-
-            </div>
-            <div class="row" id="adminsVer">
-               <div class="col-sm-12">
-                  <div class="iq-card">
-                     <div class="iq-card-header d-flex justify-content-between">
-                        <div class="iq-header-title">
-                           <h4 class="card-title">Administradores</h4>
-                        </div>
-                        <div class="iq-waves-effect d-flex align-items-center">
-                           
-
-
-                             <a>
-                              <button type="button" class="btn btn-outline-success mb-0" id="verAdmin"><i class="ri-add-line"></i>Visualizar</button>
-                           </a>
-                           </div>
-                       
-                     </div>
-                  </div>
-               </div>
-
-
             </div>
          </div>
+
+
+
+
+
+
+
+
+
+
 
          <!-- Termina la pagina -->
 
