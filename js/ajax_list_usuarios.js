@@ -50,7 +50,7 @@ $(document).ready(function () {
                   
                   
                                  <tr class="hide" id-dni="${element.email}"  >
-                                    <td>${element.email_usuario}</td>
+                                    <td>${element.id_usuario}</td>
                                     <td>Por rell</td>
                                     <td>${element.nombre}</td>
                                     <td>${element.apellidos}</td>

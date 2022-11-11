@@ -49,7 +49,7 @@ $(document).ready(function () {
                             <div class="col-4">Fecha de nacimiento:</div>
                             <div class="col-8">${element.fecha_nacimiento}</div>
                             <div class="col-4">Email:</div>
-                            <div class="col-8">${element.email_usuario}</div>
+                            <div class="col-8">${element.id_usuario}</div>
                             <div class="col-4">Grupo:</div>
                             <div class="col-8">${element.nombre_grupo}</div>
                             <div class="col-4">Teléfono:</div>

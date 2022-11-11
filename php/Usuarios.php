@@ -168,18 +168,18 @@ class Usuarios
     {
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from profesor a, usuario u where u.token ='$token' and u.email = a.email_usuario";
+            $sql = "SELECT a.*, FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from profesor a, usuario u where u.token ='$token' and u.email = a.id_usuario";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if (empty($data)) {
-                $sql = "SELECT a.*, g.nombre as nombre_grupo ,FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from tecnico a, usuario u, grupo g where g.id = a.id_grupo and u.token ='$token' and u.email = a.email_usuario";
+                $sql = "SELECT a.*, g.nombre as nombre_grupo ,FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from tecnico a, usuario u, grupo g where g.id = a.id_grupo and u.token ='$token' and u.email = a.id_usuario";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
                 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 if(empty($data)){
-                    $sql = "SELECT a.* , FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from tecnico a, usuario u where  u.token ='$token' and u.email = a.email_usuario";
+                    $sql = "SELECT a.* , FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad from tecnico a, usuario u where  u.token ='$token' and u.email = a.id_usuario";
                     $stmt = $pdo->prepare($sql);
                     $stmt->execute();
                     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -219,12 +219,12 @@ class Usuarios
 
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "SELECT t.* ,  ('Tecnico')  as rol, !ifnull(baja_usuario,'No') as activo, u.admnistrador as admin FROM usuario u, tecnico t where  u.email = t.email_usuario";
+            $sql = "SELECT t.* ,  ('Tecnico')  as rol, !ifnull(baja_usuario,'No') as activo, u.admnistrador as admin FROM usuario u, tecnico t where  u.email = t.id_usuario";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $data = $stmt->fetchAll();
             if (empty($data)) {
-                $sql = "SELECT p.*, ('Profesor')  as rol ,!ifnull(baja_usuario,'No') as activo, u.admnistrador as admin from profesor p, usuario u where  u.email = p.email_usuario";
+                $sql = "SELECT p.*, ('Profesor')  as rol ,!ifnull(baja_usuario,'No') as activo, u.admnistrador as admin from profesor p, usuario u where  u.email = p.id_usuario";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
                 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
