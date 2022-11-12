@@ -214,6 +214,22 @@ class Usuarios
     }
 
 
+
+
+    public static function dar_baja_usuario($id){
+        $pdo = ConexionSingle::getInstancia();
+        try {
+            $sql = "update usuario SET baja_usuario = CONCAT(DATE(NOW()),' ',TIME(NOW()))  where email = '$id'";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+
+            return true;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+
     public  static function list_user(){
 
 

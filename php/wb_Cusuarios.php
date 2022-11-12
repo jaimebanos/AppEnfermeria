@@ -5,6 +5,7 @@ include_once "Usuarios.php";
 $accion = isset($_POST['accion'])?$_POST['accion']:"";
 $login = isset($_POST['datos'])?$_POST['datos']:[];
 $token = isset($_POST['token'])?$_POST['token']:null;
+$id_usuario_eliminar = isset($_POST['id_eliminar'])?$_POST['id_eliminar']:null;
 $crear_usuario = isset($_POST['datos_usuario'])?$_POST['datos_usuario']:[];
 
 #LO QUE CONTENDRÁ EL JSON
@@ -51,6 +52,10 @@ try {
             #Obtenemos el array
             $data = Usuarios::list_user();
 
+            break;
+            case "eliminar_usuario":
+            include "auth_inc.php";
+            Usuarios::dar_baja_usuario($id_usuario_eliminar);
             break;
         case "agregar_usuario":
             if(!empty($crear_usuario)) {

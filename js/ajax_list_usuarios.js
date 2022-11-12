@@ -46,16 +46,13 @@ $(document).ready(function () {
 
                 string += `            
                   
-                     
-                  
-                  
                                  <tr class="hide" id-dni="${element.email}"  >
                                     <td>${element.id_usuario}</td>
                                     <td>${element.nombre}</td>
                                     <td>${element.apellidos}</td>
                                     <td>${admin}</td>
                                     <td>${element.rol}</td>
-                                    <td>${element.activos}</td>
+                                    <td></td>
                                     <td> ${activo}</td>
                                     <td><button  class="btn-outline-info btn-sm ver_usuario"  ><i class="ion-search "></i></button></td>
                                     <td><button  class="btn-outline-dark btn-sm editar_usuario"  ><i class="ion-edit "></i></button></td>
@@ -80,7 +77,7 @@ $(document).ready(function () {
                                                    </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                   ¿Desea eliminar a este Usuario ?
+                                                   ¿Desea dar de baja a  ${element.id_usuario} ?
                                                 </div>
                                                 <div class="modal-footer">
                                                    <button type="button" class="btn-outline-success"

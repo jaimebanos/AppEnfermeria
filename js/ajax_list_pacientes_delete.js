@@ -2,7 +2,7 @@ $(document).ready(function() {
     $(document).on('click', '.eliminar_paciente', function(){
         let id =$(this).parent().parent().children().first().text();
 
-        $(document).on('click', '.eliminar_paciente_confirm', function(){
+        $(document).on('click', '.eliminar_usuario_confirm', function(){
 
               var request = $.ajax({
                       url: '../php/wb_Cpacientes.php',
