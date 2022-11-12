@@ -7,7 +7,7 @@ $(document).ready(function () {
         let apellido = $("#apellidos_usuario").val();
         let fecha_nacimiento = $("#fecha_nacimiento_usuario").val();
         let email = $("#email_usuario").val();
-        let genero = $("input:radio[name=genero_usuario]:checked").val();
+        let genero = $("input:radio[name=genero]:checked").val();
         let telefono = $("#telefono_usuario").val();
         let contrasenya = $("#contrasenya_usuario").val();
         let grupo = null;
@@ -43,7 +43,7 @@ $(document).ready(function () {
                 "datos_usuario":{
                     "nombre":nombre,
                     "apellido":apellido,
-                    "fecha_nacimiento":fecha_nacimiento,
+                    "fecha_nacimiento":$fecha_nacimiento,
                     "email":email,
                     "genero":genero,
                     "telefono":telefono,

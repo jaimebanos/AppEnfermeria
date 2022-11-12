@@ -56,11 +56,11 @@ try {
             if(!empty($crear_usuario)) {
 
                 $user = new Usuarios($crear_usuario['email'], $crear_usuario['contrasenya']);
-                $data = new Usuarios($crear_usuario['email'], $crear_usuario['contrasenya']);
 
-                $resultado = $user->crerUsuario($crear_usuario['nombre'], $crear_usuario['apellido'],
-                    $crear_usuario['genero'], $crear_usuario['telefono'], $crear_usuario['contrasenya'],
-                    $crear_usuario['grupo'], $crear_usuario['rol'], $crear_usuario['admin'], $crear_usuario['activo']);
+                $resultado = $user->crerUsuario($crear_usuario['nombre'], $crear_usuario['apellido'], $crear_usuario['fecha_nacimiento'],
+                    $crear_usuario['genero'], $crear_usuario['telefono'], $crear_usuario['grupo'], $crear_usuario['rol'], $crear_usuario['admin'], $crear_usuario['activo']);
+
+
 
                 $data = $resultado;
 

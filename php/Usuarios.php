@@ -244,7 +244,7 @@ class Usuarios
         try {
 
 
-            $sql = "INSERT INTO usuario(email,contrasenya, baja_usuario) VALUES('$this->email', sha1('$this->contrasenya'),  '$activo')";
+            $sql = "INSERT INTO usuario(email,contrasenya, baja_usuario, admnistrador) VALUES('$this->email', sha1('$this->contrasenya'),  '$activo' , '$admin')";
             $stmt = $conexion->prepare($sql);
             $stmt->execute();
 
