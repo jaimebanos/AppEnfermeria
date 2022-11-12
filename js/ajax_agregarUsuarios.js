@@ -10,7 +10,7 @@ $(document).ready(function () {
         let genero = $("input:radio[name=genero_usuario]:checked").val();
         let telefono = $("#telefono_usuario").val();
         let contrasenya = $("#contrasenya_usuario").val();
-        let grupo = $("#").val();
+        let grupo = null;
         let rol = $("#rol").val();
 
         const admin = document.querySelector('#admin_usuario').checked;
@@ -23,12 +23,12 @@ $(document).ready(function () {
         }
         if (activo){
            var  $fecha =  new Date();
-           $activo = "".concat($fecha.getFullYear() , "-",$fecha.getMonth(),"-",$fecha.getDay(), " ", $fecha.toLocaleTimeString());
+            var $fecha2 = "".concat($fecha.getFullYear() , "-",$fecha.getMonth(),"-",$fecha.getDay());
+           $activo = $fecha2.concat( " ", $fecha.toLocaleTimeString());
         }else{
             $activo = null;
         }
 
-        console.log($activo);
 
 
 
@@ -40,7 +40,7 @@ $(document).ready(function () {
             method: "POST",
             data: {
                 "accion": "agregar_usuario",
-                "datos_paciente":{
+                "datos_usuario":{
                     "nombre":nombre,
                     "apellido":apellido,
                     "fecha_nacimiento":fecha_nacimiento,
@@ -48,8 +48,8 @@ $(document).ready(function () {
                     "genero":genero,
                     "telefono":telefono,
                     "contrasenya":contrasenya,
-                    "admin":admin,
-                    "activo":activo,
+                    "admin":$admin,
+                    "activo":$activo,
                     "rol":rol,
                     "grupo":grupo,
 

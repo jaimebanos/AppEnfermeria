@@ -54,18 +54,28 @@ try {
             break;
         case "agregar_usuario":
             if(!empty($crear_usuario)) {
-                $user = new Usuarios($crear_usuario['email'],$crear_usuario['contrasenya']);
 
-                $user->crerUsuario($crear_usuario['nombre'],$crear_usuario['apellido'],
-                $crear_usuario['genero'],$crear_usuario['telefono'],$crear_usuario['contrasenya'],
-                $crear_usuario['grupo'],$crear_usuario['rol'],$crear_usuario['admin'],$crear_usuario['activo']);
+                $user = new Usuarios($crear_usuario['email'], $crear_usuario['contrasenya']);
+                $data = new Usuarios($crear_usuario['email'], $crear_usuario['contrasenya']);
 
+                $resultado = $user->crerUsuario($crear_usuario['nombre'], $crear_usuario['apellido'],
+                    $crear_usuario['genero'], $crear_usuario['telefono'], $crear_usuario['contrasenya'],
+                    $crear_usuario['grupo'], $crear_usuario['rol'], $crear_usuario['admin'], $crear_usuario['activo']);
 
+                $data = $resultado;
+
+                if ($resultado === true) {
+                    $msg = "Insertado con exito";
+                } else {
+                    $msg = "No se ha introducido nada";
+                }
+                break;
 
             }
-            break;
+
 
     }
+
     #Todas las excepciones que se ejecuten en Usuarios.php o Conexion single, serán lanzadas a esta clase
 }catch (Exception $e){
     $succes = false;
