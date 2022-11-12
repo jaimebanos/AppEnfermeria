@@ -119,21 +119,22 @@ class Pacientes
      */
     public function agregar_paciente(){
         $pdo = ConexionSingle::getInstancia();
-
-
         if(!empty($this->telefono)) {
             try {
-                $sql = "insert into paciente (dni,telefono,apellidos,nombre,usuario_asignado,observaciones,fecha_nacimiento,genero) 
-                values ('$this->dni','$this->telefono','$this->apellidos','$this->nombre','$this->usuario_asignado','$this->observaciones','$this->fecha_nacimiento','$this->genero')";
+                if (empty($this->usuario_asignado)) {
+                    $sql = "insert into paciente (dni,telefono,nombre,apellidos,usuario_asignado,observaciones,fecha_nacimiento,genero)
+                    values ('$this->dni','$this->telefono','$this->nombre','$this->apellidos',null,'$this->observaciones','$this->fecha_nacimiento','$this->genero')";
+                } else {
+                    $sql = "insert into paciente (dni,telefono,nombre,apellidos,usuario_asignado,observaciones,fecha_nacimiento,genero)
+                    values ('$this->dni','$this->telefono','$this->nombre','$this->apellidos','$this->usuario_asignado','$this->observaciones','$this->fecha_nacimiento','$this->genero')";
+                }
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
                 return true;
             }catch (Exception $e){
-                    throw $e;
+                throw $e;
             }
         }
-
-
     }
 
 
