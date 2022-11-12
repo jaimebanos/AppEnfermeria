@@ -2,11 +2,11 @@
 
 #ISSETS DE LOS $_POST
 include_once "Usuarios.php";
-$accion = isset($_POST['accion'])?$_POST['accion']:"";
-$login = isset($_POST['datos'])?$_POST['datos']:[];
-$token = isset($_POST['token'])?$_POST['token']:null;
-$id_usuario_eliminar = isset($_POST['id_eliminar'])?$_POST['id_eliminar']:null;
-$crear_usuario = isset($_POST['datos_usuario'])?$_POST['datos_usuario']:[];
+$accion = isset($_POST['accion']) ? $_POST['accion'] : "";
+$login = isset($_POST['datos']) ? $_POST['datos'] : [];
+$token = isset($_POST['token']) ? $_POST['token'] : null;
+$id_usuario_eliminar = isset($_POST['id_eliminar']) ? $_POST['id_eliminar'] : null;
+$crear_usuario = isset($_POST['datos_usuario']) ? $_POST['datos_usuario'] : [];
 
 #LO QUE CONTENDRÁ EL JSON
 $data = "";
@@ -17,7 +17,7 @@ $succes = true;
 try {
     switch ($accion) {
         case "login":
-            if(!empty($login)) {
+            if (!empty($login)) {
 
                 //Se crea un usuario, para poder llamar luego a login y comprobar su datos
                 $user = new Usuarios($login['email'], $login['pass']);
@@ -25,13 +25,13 @@ try {
                 /*Llama a la funcion Login esta devuelve un array con los datos del usuario
                 Si este existe y la contraseña y dni introducido son correctos*/
 
-                $data= $user->login();
+                $data = $user->login();
 
                 if (empty($data)) {
                     $msg = "correo o password incorrecta";
                     $succes = false;
                 }
-            }else{
+            } else {
                 $succes = false;
             }
             break;
@@ -51,20 +51,23 @@ try {
             include "auth_inc.php";
             #Obtenemos el array
             $data = Usuarios::list_user();
-
             break;
-            case "eliminar_usuario":
+        case "eliminar_usuario":
             include "auth_inc.php";
             Usuarios::dar_baja_usuario($id_usuario_eliminar);
             break;
+        case "obtener_grupo_select":
+            include "auth_inc.php";
+            $data = Usuarios::obtener_grupo();
+            break;
+
         case "agregar_usuario":
-            if(!empty($crear_usuario)) {
+            if (!empty($crear_usuario)) {
 
                 $user = new Usuarios($crear_usuario['email'], $crear_usuario['contrasenya']);
 
-                $resultado = $user->crerUsuario($crear_usuario['nombre'], $crear_usuario['apellido'], $crear_usuario['fecha_nacimiento'],
-                    $crear_usuario['genero'], $crear_usuario['telefono'], $crear_usuario['grupo'], $crear_usuario['rol'], $crear_usuario['admin'], $crear_usuario['activo']);
-
+                    $resultado = $user->crerUsuario($crear_usuario['nombre'], $crear_usuario['apellido'], $crear_usuario['fecha_nacimiento'],
+                    $crear_usuario['genero'], $crear_usuario['telefono'], $crear_usuario['grupo'], $crear_usuario['rol'], $crear_usuario['admin']);
 
 
                 $data = $resultado;
@@ -82,7 +85,7 @@ try {
     }
 
     #Todas las excepciones que se ejecuten en Usuarios.php o Conexion single, serán lanzadas a esta clase
-}catch (Exception $e){
+} catch (Exception $e) {
     $succes = false;
     $msg = $e;
     $data = null;

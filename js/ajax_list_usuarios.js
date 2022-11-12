@@ -38,6 +38,11 @@ $(document).ready(function () {
                     activo ="Si";
                 }else{ activo ="No";}
 
+                var grupo;
+                if(element.grupo === null ){
+                    grupo ="Sin grupo";
+                }else{ grupo = element.grupo;}
+
                 var admin;
                 if(element.admin ===null ||  element.admin ==0){
                     admin ="No";
@@ -52,7 +57,7 @@ $(document).ready(function () {
                                     <td>${element.apellidos}</td>
                                     <td>${admin}</td>
                                     <td>${element.rol}</td>
-                                    <td></td>
+                                    <td>${grupo}</td>
                                     <td> ${activo}</td>
                                     <td><button  class="btn-outline-info btn-sm ver_usuario"  ><i class="ion-search "></i></button></td>
                                     <td><button  class="btn-outline-dark btn-sm editar_usuario"  ><i class="ion-edit "></i></button></td>

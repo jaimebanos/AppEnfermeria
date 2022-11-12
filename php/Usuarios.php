@@ -133,6 +133,24 @@ class Usuarios
 
     }
 
+
+    public static function obtener_grupo()
+    {
+        $conexion = ConexionSingle::getInstancia();
+        try {
+            $sql = "select * from grupo" ;
+            $sth = $conexion->prepare($sql);
+            $sth->execute();
+            $data = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+            return $data;
+        } catch (Exception $e) {
+            return false;
+            throw $e;
+        }
+
+    }
+
     /***
      * Comprueba si el usuario con el email pasado tiene token o no en la base de datos.
      * @param $email
@@ -235,32 +253,37 @@ class Usuarios
 
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "SELECT t.* ,  ('Tecnico')  as rol, u.baja_usuario as inactivo, u.admnistrador as admin FROM usuario u, tecnico t where  u.email = t.id_usuario";
+            $sql = "SELECT t.* ,  ('Tecnico')  as rol, u.baja_usuario as inactivo, u.admnistrador as admin, g.nombre as grupo FROM usuario u, tecnico t, grupo g where  u.email = t.id_usuario and  g.id = t.id_grupo";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $data = $stmt->fetchAll();
 
-                $sql = "SELECT p.*, ('Profesor')  as rol , u.baja_usuario as inactivo, u.admnistrador as admin from profesor p, usuario u where  u.email = p.id_usuario";
+                $sql = "SELECT p.*, ('Profesor')  as rol , u.baja_usuario as inactivo, u.admnistrador as admin, ('Varios') as grupo from profesor p, usuario u where  u.email = p.id_usuario";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
                 $data2 = $stmt->fetchAll(PDO::FETCH_ASSOC) ;
 
+            $sql = "SELECT t.* ,  ('Tecnico')  as rol, u.baja_usuario as inactivo, u.admnistrador as admin, null as grupo FROM usuario u, tecnico t where  u.email = t.id_usuario ";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $data3 = $stmt->fetchAll();
 
-            return $data + $data2;
+
+            return $data + $data2 + $data3;
         }catch (Exception $e){
             Throw $e;
         }
 
     }
 
-    function crerUsuario($nombre,$apellido,$fecha_nacimiento,$genero,$telefono,$grupo,$rol,$admin,$activo){
+    function crerUsuario($nombre,$apellido,$fecha_nacimiento,$genero,$telefono,$grupo,$rol,$admin){
 
         $conexion = ConexionSingle::getInstancia();
 
         try {
 
 
-            $sql = "INSERT INTO usuario(email,contrasenya, baja_usuario, admnistrador) VALUES('$this->email', sha1('$this->contrasenya'),  '$activo' , '$admin')";
+            $sql = "INSERT INTO usuario(email,contrasenya,  admnistrador) VALUES('$this->email', sha1('$this->contrasenya') , '$admin')";
             $stmt = $conexion->prepare($sql);
             $stmt->execute();
 
@@ -269,8 +292,8 @@ class Usuarios
                 $sql = "INSERT INTO profesor(id_usuario,nombre,apellidos,telefono,fecha_nacimiento,genero)
                         VALUES('$this->email','$nombre','$apellido','$telefono','$fecha_nacimiento','$genero')";
             }else{
-                $sql = "INSERT INTO tecnico(id_usuario,nombre,apellidos,telefono,fecha_nacimiento,genero)
-                        VALUES('$this->email','$nombre','$apellido','$telefono','$fecha_nacimiento','$genero');";
+                $sql = "INSERT INTO tecnico(id_usuario,nombre,apellidos,telefono,fecha_nacimiento,genero, id_grupo)
+                        VALUES('$this->email','$nombre','$apellido','$telefono','$fecha_nacimiento','$genero', '$grupo');";
             }
             $stmt = $conexion->prepare($sql);
             $stmt->execute();
