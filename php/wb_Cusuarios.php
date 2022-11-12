@@ -5,6 +5,7 @@ include_once "Usuarios.php";
 $accion = isset($_POST['accion'])?$_POST['accion']:"";
 $login = isset($_POST['datos'])?$_POST['datos']:[];
 $token = isset($_POST['token'])?$_POST['token']:null;
+$crear_usuario = isset($_POST['datos_usuario'])?$_POST['datos_usuario']:[];
 
 #LO QUE CONTENDRÁ EL JSON
 $data = "";
@@ -51,8 +52,30 @@ try {
             $data = Usuarios::list_user();
 
             break;
+        case "agregar_usuario":
+            if(!empty($crear_usuario)) {
+
+                $user = new Usuarios($crear_usuario['email'], $crear_usuario['contrasenya']);
+
+                $resultado = $user->crerUsuario($crear_usuario['nombre'], $crear_usuario['apellido'], $crear_usuario['fecha_nacimiento'],
+                    $crear_usuario['genero'], $crear_usuario['telefono'], $crear_usuario['grupo'], $crear_usuario['rol'], $crear_usuario['admin'], $crear_usuario['activo']);
+
+
+
+                $data = $resultado;
+
+                if ($resultado === true) {
+                    $msg = "Insertado con exito";
+                } else {
+                    $msg = "No se ha introducido nada";
+                }
+                break;
+
+            }
+
 
     }
+
     #Todas las excepciones que se ejecuten en Usuarios.php o Conexion single, serán lanzadas a esta clase
 }catch (Exception $e){
     $succes = false;

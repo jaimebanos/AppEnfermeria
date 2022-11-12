@@ -219,22 +219,56 @@ class Usuarios
 
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "SELECT t.* ,  ('Tecnico')  as rol, !ifnull(baja_usuario,'No') as activo, u.admnistrador as admin FROM usuario u, tecnico t where  u.email = t.id_usuario";
+            $sql = "SELECT t.* ,  ('Tecnico')  as rol, u.baja_usuario as inactivo, u.admnistrador as admin FROM usuario u, tecnico t where  u.email = t.id_usuario";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $data = $stmt->fetchAll();
-            if (empty($data)) {
-                $sql = "SELECT p.*, ('Profesor')  as rol ,!ifnull(baja_usuario,'No') as activo, u.admnistrador as admin from profesor p, usuario u where  u.email = p.id_usuario";
+
+                $sql = "SELECT p.*, ('Profesor')  as rol , u.baja_usuario as inactivo, u.admnistrador as admin from profesor p, usuario u where  u.email = p.id_usuario";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
-                $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            }
+                $data2 = $stmt->fetchAll(PDO::FETCH_ASSOC) ;
 
-            return $data;
+
+            return $data + $data2;
         }catch (Exception $e){
             Throw $e;
         }
 
+    }
+
+    function crerUsuario($nombre,$apellido,$fecha_nacimiento,$genero,$telefono,$grupo,$rol,$admin,$activo){
+
+        $conexion = ConexionSingle::getInstancia();
+
+        try {
+
+
+            $sql = "INSERT INTO usuario(email,contrasenya, baja_usuario, admnistrador) VALUES('$this->email', sha1('$this->contrasenya'),  '$activo' , '$admin')";
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute();
+
+            //SELECCIONAR CON OTRA CONSULTA EL ID DEL GRUPO PASADO POR PARAMETROS
+            if($rol == "profesor"){
+                $sql = "INSERT INTO profesor(id_usuario,nombre,apellidos,telefono,fecha_nacimiento,genero)
+                        VALUES('$this->email','$nombre','$apellido','$telefono','$fecha_nacimiento','$genero')";
+            }else{
+                $sql = "INSERT INTO tecnico(id_usuario,nombre,apellidos,telefono,fecha_nacimiento,genero)
+                        VALUES('$this->email','$nombre','$apellido','$telefono','$fecha_nacimiento','$genero');";
+            }
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute();
+
+
+
+
+            return true;
+
+        }catch (Exception $E){
+            $sql = "ROLLBACK";
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute();
+        }
     }
 
 }

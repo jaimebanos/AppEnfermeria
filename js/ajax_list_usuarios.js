@@ -34,12 +34,12 @@ $(document).ready(function () {
             console.log(response['data'].telefono);
             fillDiv.forEach((element) => {
                 var activo;
-                if(element.activo ==1){
+                if(element.inactivo === null ){
                     activo ="Si";
                 }else{ activo ="No";}
 
                 var admin;
-                if(element.admin ==null ||  element.admin ==0){
+                if(element.admin ===null ||  element.admin ==0){
                     admin ="No";
                 }else{ admin ="Si";}
 
@@ -51,12 +51,11 @@ $(document).ready(function () {
                   
                                  <tr class="hide" id-dni="${element.email}"  >
                                     <td>${element.id_usuario}</td>
-                                    <td>Por rell</td>
                                     <td>${element.nombre}</td>
                                     <td>${element.apellidos}</td>
                                     <td>${admin}</td>
                                     <td>${element.rol}</td>
-                                    <td>Grupo</td>
+                                    <td>${element.activos}</td>
                                     <td> ${activo}</td>
                                     <td><button  class="btn-outline-info btn-sm ver_usuario"  ><i class="ion-search "></i></button></td>
                                     <td><button  class="btn-outline-dark btn-sm editar_usuario"  ><i class="ion-edit "></i></button></td>

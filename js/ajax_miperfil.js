@@ -40,8 +40,6 @@ $(document).ready(function () {
         elementos.forEach((element) => {
             string +=   `<div class="about-info m-0 p-0">
                         <div class="row  pr-3">
-                        <div class="col-4">Dni:</div>
-                            <div class="col-8">Por crear</div>
                             <div class="col-4">Nombre:</div>
                             <div class="col-8">${element.nombre}</div>
                             <div class="col-4">Apellido:</div>
