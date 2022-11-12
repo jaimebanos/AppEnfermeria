@@ -51,7 +51,6 @@ $(document).ready(function () {
                   
                                  <tr class="hide" id-dni="${element.email}"  >
                                     <td>${element.id_usuario}</td>
-                                    <td>Por rell</td>
                                     <td>${element.nombre}</td>
                                     <td>${element.apellidos}</td>
                                     <td>${admin}</td>

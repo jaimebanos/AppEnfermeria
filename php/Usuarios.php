@@ -237,4 +237,42 @@ class Usuarios
 
     }
 
+    function crerUsuario($nombre,$apellido,$fecha_nacimiento,$genero,$telefono,$grupo,$rol,$admin,$actvo){
+
+        $conexion = ConexionSingle::getInstancia();
+
+        try {
+            $sql = "START TRANSACTION";
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute();
+
+            $sql = "INSERT INTO usuario(email,contrasenya) VALUES('$this->email','$this->contrasenya')";
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute();
+
+            //SELECCIONAR CON OTRA CONSULTA EL ID DEL GRUPO PASADO POR PARAMETROS
+            if($rol == "profesor"){
+                $sql = "INSERT INTO profesor(id_usuario,nombre,apellido,telefono,fecha_nacimiento,genero)
+                        VALUES('$this->email','$nombre','$apellido','$telefono','$fecha_nacimiento','$genero')";
+            }else{
+                $sql = "INSERT INTO tecnico(id_usuario,nombre,apellido,telefono,fecha_nacimiento,genero,id_grupo)
+                        VALUES('$this->email','$nombre','$apellido','$telefono','$fecha_nacimiento','$genero','$grupo');";
+            }
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute();
+
+            //SI HA FUNCIONADO SE LANZA EL COMMIT
+            $sql = "COMMIT";
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute();
+
+
+
+        }catch (Exception $E){
+            $sql = "ROLLBACK";
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute();
+        }
+    }
+
 }

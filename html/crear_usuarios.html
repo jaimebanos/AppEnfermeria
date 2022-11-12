@@ -192,9 +192,7 @@
                                                     <label for="apellidos_usuario">Apellidos</label> <input class="form-control" id="apellidos_usuario" placeholder="Introduzca sus apellidos" type="text">
                                                 </div>
 
-                                                <div class="form-group col-sm-6">
-                                                    <label for="dni_usuario">Dni</label> <input class="form-control" id="dni_usuario" name="dob" type="text">
-                                                </div>
+
 
                                                 <div class="form-group col-sm-6">
                                                     <label for="email_usuario">Correo electronico</label> <input class="form-control" id="email_usuario" placeholder="Introduzca su correo electrónico" type="text">
@@ -224,15 +222,15 @@
                                                     <label>Grupo</label>
                                                     <select class="form-control mb-3">
                                                         <option selected="profesor">A</option>
-                                                        <option value="tecnico">B</option>
+                                                        <option value="b">B</option>
 
                                                     </select>
                                                 </div>
 
-                                                <div class="form-group col-sm-6">
+                                                <div class="form-group col-sm-6" >
                                                     <label>Rol</label>
-                                                    <select class="form-control mb-3">
-                                                        <option selected="profesor">Profesor</option>
+                                                    <select class="form-control mb-3" id="rol">
+                                                        <option value="profesor">Profesor</option>
                                                         <option value="tecnico">Tecnico</option>
 
                                                     </select>
@@ -241,12 +239,12 @@
 
 
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="admin_usuario">
+                                                        <input type="checkbox" class="custom-control-input" id="admin_usuario" >
                                                         <label class="custom-control-label" for="admin_usuario">Administrador</label>
                                                     </div>
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="activo_usuario">
-                                                        <label class="custom-control-label" for="activo_usuario">Usuario inactivo</label>
+                                                        <input type="checkbox" class="custom-control-input" value="inactivo" id="activo_usuario">
+                                                        <label class="custom-control-label" for="activo_usuario" value="inactivo">Usuario inactivo</label>
                                                     </div>
 
 
@@ -269,7 +267,7 @@
 
                                             </div><!-- Cambiar el id del boton para no confundirlo con el siguiente-->
 
-                                            <button class="btn btn-primary mr-2" type="button" id="btnAgregarCliente">Enviar</button> <button class="btn iq-bg-danger" type="button" id="btnCancelar">Cancelar</button>
+                                            <button class="btn btn-primary mr-2" type="button" id="btnAgregarUsuario">Enviar</button> <button class="btn iq-bg-danger" type="button" id="btnCancelar">Cancelar</button>
                                         </form>
                                     </div>
                                 </div>
