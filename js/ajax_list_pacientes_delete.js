@@ -1,16 +1,18 @@
 $(document).ready(function() {
     $(document).on('click', '.eliminar_paciente', function(){
-        let id =$(this).parent().parent().children().first().text();
+        let telefono =$(this).parent().parent().children().first().text();
+        console.log("hola");
 
-        $(document).on('click', '.eliminar_usuario_confirm', function(){
+        $(document).on('click', '.eliminar_paciente_confirm', function(){
+            console.log("dar de baja");
 
               var request = $.ajax({
                       url: '../php/wb_Cpacientes.php',
                       method: "POST",
                       data: {
-                          "accion": "eliminar_paciente",
+                          "accion": "dar_baja",
                           'token': localStorage.getItem('token'),
-                          'id_eliminar': id,
+                          'telefono_baja': telefono,
                       },
                       dataType: "json"
                   });
