@@ -1,8 +1,27 @@
 $(document).ready(function () {
 
+    $(document).on('click', '#rol', function() {
+        const s1=document.getElementById("rol");
+        const s2=document.getElementById("grupo");
+
+        s1.addEventListener("click", function() {
+            if (this.value == "profesor") {
+                s2.value="null";
+                s2.disabled = true;
+            }else {
+                s2.disabled = false;
+
+
+            }
+    })
+});
+
+
+
+
+
 
     $("#btnAgregarUsuario").click(function (){
-        console.log("aquiii");
         let nombre = $("#nombre_usuario").val();
         let apellido = $("#apellidos_usuario").val();
         let fecha_nacimiento = $("#fecha_nacimiento_usuario").val();
