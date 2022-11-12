@@ -42,11 +42,11 @@ $(document).ready(function() {
                 string += `            
                   
                                  <tr class="hide" id-dni="${element.dni}"  >
-                                    <td >${element.dni}</td>
+                                    <td >${element.telefono}</td>
                                     <td>${element.nombre}</td>
                                     <td>${element.apellidos}</td>
                                     <td>${element.edad}</td>
-                                    <td>${element.telefono}</td>
+                                    <td>${element.dni}</td>
                                     <td>${baja}</td>
                                     <td><button  class="btn-outline-info btn-sm ver_paciente"  ><i class="ion-search "></i></button></td>
                                     <td><button  class="btn-outline-dark btn-sm editar_paciente"  ><i class="ion-edit "></i></button></td>

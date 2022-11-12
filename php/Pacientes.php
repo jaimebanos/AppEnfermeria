@@ -59,13 +59,12 @@ class Pacientes
 
     }
 
-    public static function delete_user($dni)
+    public static function delete_user($telefono)
     {
-
 
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "DELETE FROM paciente WHERE dni = '$dni' ";
+            $sql = "UPDATE paciente set fecha_baja = now() where telefono = '$telefono'";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
 

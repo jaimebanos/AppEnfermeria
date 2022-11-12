@@ -8,7 +8,7 @@ $accion = isset($_POST['accion'])?$_POST['accion']:"";
 $login = isset($_POST['datos'])?$_POST['datos']:[];
 
 #DNI A ELIMINAR
-$dni_eliminar = isset($_POST['id_eliminar'])?$_POST['id_eliminar']:"";
+$telefono_baja = isset($_POST['telefono_baja'])?$_POST['telefono_baja']:"";
 
 #DNI MOSTRAR
 $dni_ver = isset($_POST['id_ver'])?$_POST['id_ver']:"";
@@ -35,10 +35,10 @@ try {
             #Obtenemos el array
             $data = Pacientes::list_user();
             break;
-        case "eliminar_paciente":
+        case "dar_baja":
             include_once "auth_inc.php";
             #Obtenemos el array
-            $data = Pacientes::delete_user($dni_eliminar);
+            $data = Pacientes::delete_user($telefono_baja);
             break;
         case "ver_paciente":
             include_once "auth_inc.php";
