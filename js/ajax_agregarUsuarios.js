@@ -42,7 +42,11 @@ $(document).ready(function () {
             },
             dataType:"json"
         });
-        request.done(function (msg) {
+        request.done(function (response) {
+
+            if(response['success']===true){
+                window.location.href = "../html/personal.html";
+            }
             console.log(msg)
         });
 

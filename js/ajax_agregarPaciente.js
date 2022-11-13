@@ -32,10 +32,12 @@ $(document).ready(function () {
             },
             dataType:"json"
         });
-        request.done(function (msg) {
-            console.log(msg)
+        request.done(function (response) {
+            if(response['success']===true){
+                window.location.href = "../html/pacientes.html";
+            }
         });
-
+        
         request.fail(function (jqXHR, textStatus) {
 
         });
