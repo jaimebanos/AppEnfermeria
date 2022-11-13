@@ -39,7 +39,7 @@ class Usuarios
             $sth->execute();
             $registro = $sth->fetch(PDO::FETCH_ASSOC);
             if ($registro != false) {
-                if ($registro['contrasenya'] == sha1($this->contrasenya)) {
+                if (password_verify($this->contrasenya, $registro['contrasenya'])) {
                     $existe = self::token_exist($this->email);
                     if (!$existe) {
                         $token = $this->crear_token($this->email, $this->contrasenya);
@@ -165,7 +165,7 @@ class Usuarios
     {
         $conexion = ConexionSingle::getInstancia();
         try {
-            $sql = "select email from usuario where email is not null" ;
+            $sql = "select email from usuario where baja_usuario is null" ;
             $sth = $conexion->prepare($sql);
             $sth->execute();
             $data = $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -259,8 +259,12 @@ class Usuarios
     }
 
 
-
-
+    /**
+     *Recibe el correo del usuario por parámetro y le da de baja, actualizando su fecha de baja y poniendole la acual
+     * @param $id
+     * @return bool
+     * @throws Exception
+     */
     public static function dar_baja_usuario($id){
         $pdo = ConexionSingle::getInstancia();
         try {
@@ -275,6 +279,11 @@ class Usuarios
     }
 
 
+    /**
+     * Devuelve un array con todos los datos del usuario
+     * @return array
+     * @throws Exception
+     */
     public  static function list_user(){
 
 
@@ -303,14 +312,23 @@ class Usuarios
 
     }
 
-    function crerUsuario($nombre,$apellido,$fecha_nacimiento,$genero,$telefono,$grupo,$rol,$admin){
+    /**CREARÁ UN USUARIO CON LOS PARAMETROS PASADOS, Y TENDRÁ QUE INSERTARLO EN DOS TABLAS
+     * USUARIO Y TECNICO-PROFESOR
+     * PARA ELLO LANZAREMOS UN START TRANSACTION Y UN COMMIT AL FINALIZAR, SI FALLA SE HARÁ UN ROLLBACK
+     * @throws Exception
+     */
+    function crerUsuario($nombre, $apellido, $fecha_nacimiento, $genero, $telefono, $grupo, $rol, $admin){
 
         $conexion = ConexionSingle::getInstancia();
 
         try {
+            //LANZAR EL START TRANSACTION
+            $sql = "START TRANSACTION";
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute();
+            $password = password_hash($this->contrasenya,PASSWORD_BCRYPT);
 
-
-            $sql = "INSERT INTO usuario(email,contrasenya,  admnistrador) VALUES('$this->email', sha1('$this->contrasenya') , '$admin')";
+            $sql = "INSERT INTO usuario(email,contrasenya,  admnistrador) VALUES('$this->email', ('$password') , '$admin')";
             $stmt = $conexion->prepare($sql);
             $stmt->execute();
 
@@ -325,15 +343,21 @@ class Usuarios
             $stmt = $conexion->prepare($sql);
             $stmt->execute();
 
+            //SI LAS DOS CONSULTAS SE HAN LANZADO CORRECTAMENTE, SE LANZARÁ EL COMMIT
+            $sql = "COMMIT";
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute();
 
 
 
             return true;
 
         }catch (Exception $E){
+
             $sql = "ROLLBACK";
             $stmt = $conexion->prepare($sql);
             $stmt->execute();
+            throw $E;
         }
     }
 
