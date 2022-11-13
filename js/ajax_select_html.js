@@ -30,7 +30,7 @@ $(document).ready(function () {
         console.log(response.data);
         var fillDiv = response;
         fillDiv = fillDiv.data;
-        var string = ` <option value="null">Sin grupo asignado</option>`;
+        var string = ``;
 
         fillDiv.forEach((element) => {
 
