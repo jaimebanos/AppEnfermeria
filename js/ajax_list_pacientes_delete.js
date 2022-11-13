@@ -12,7 +12,7 @@ $(document).ready(function() {
                       data: {
                           "accion": "dar_baja",
                           'token': localStorage.getItem('token'),
-                          'telefono_baja': telefono,
+                          'telefono': telefono,
                       },
                       dataType: "json"
                   });

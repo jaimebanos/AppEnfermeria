@@ -49,7 +49,7 @@ $(document).ready(function() {
                                     <td>${element.dni}</td>
                                     <td>${baja}</td>
                                     <td><button  class="btn-outline-info btn-sm ver_paciente"  ><i class="ion-search "></i></button></td>
-                                    <td><button  class="btn-outline-dark btn-sm editar_paciente"  ><i class="ion-edit "></i></button></td>
+                                    <td><button  class="btn-outline-dark btn-sm editar_paciente"><i class="ion-edit "></i></button></td>
 
                                     <td>
 

@@ -76,17 +76,23 @@ class Pacientes
     }
 
 
-    public static function ver_user($dni)
+    /**
+     * Devuelve los datos de un paciente, con el numero parasado por parámetro
+     * @param $telefono
+     * @return mixed
+     * @throws Exception
+     */
+    public static function ver_paciente($telefono)
     {
 
 
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "select * , FLOOR(DATEDIFF(NOW(),fecha_nacimiento)/365) AS edad FROM paciente WHERE dni = '$dni' ";
+            $sql = "select * from paciente where telefono = '$telefono'";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
-
-            return self::list_user();
+            $paciente = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $paciente;
         } catch (Exception $e) {
             throw $e;
         }
@@ -94,18 +100,25 @@ class Pacientes
     }
 
 
-    public static function edit_user($dni)
+    /**
+     * Cambia los valores de un usuario, por los nuevos valores asignados
+     * @return bool
+     * @throws Exception
+     */
+    public function edit_paciente()
     {
 
 
         $pdo = ConexionSingle::getInstancia();
         try {
             #Hacer un update segun se requiera
-            $sql = "select * , FLOOR(DATEDIFF(NOW(),fecha_nacimiento)/365) AS edad FROM paciente WHERE dni = '$dni' ";
+            $sql = "UPDATE paciente set dni ='$this->dni',telefono='$this->telefono',nombre='$this->nombre',
+                    apellidos='$this->apellidos',usuario_asignado='$this->usuario_asignado',observaciones = '$this->observaciones',
+                    fecha_nacimiento='$this->fecha_nacimiento',genero='$this->genero' where telefono = '$this->telefono'";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
 
-            return self::list_user();
+            return true;
         } catch (Exception $e) {
             throw $e;
         }

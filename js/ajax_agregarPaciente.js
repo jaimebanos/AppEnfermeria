@@ -6,7 +6,6 @@ $(document).ready(function () {
         let apellido = $("#apellido").val();
         let dni = $("#dni").val();
         let fecha_nacimiento = $("#fecha_nacimiento").val();
-        let email = $("#email").val();
         let observaciones = $("#observaciones").val();
         let usuario_asignado = $("#usuario_asignado_rellenar").val();
         let genero = $("input:radio[name=genero]:checked").val();
@@ -22,7 +21,6 @@ $(document).ready(function () {
                   "apellido":apellido,
                   "dni":dni,
                   "fecha_nacimiento":fecha_nacimiento,
-                  "email":email,
                   "observaciones":observaciones,
                   "usuario_asignado":usuario_asignado,
                   "genero":genero,
