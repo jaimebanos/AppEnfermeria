@@ -222,6 +222,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
+                    <div id="alerta_usuario">
+
+                    </div>
                     <div class="iq-edit-list-data">
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
@@ -312,7 +315,22 @@
 
                                             </div><!-- Cambiar el id del boton para no confundirlo con el siguiente-->
 
-                                            <button class="btn btn-primary mr-2" type="button" id="btnAgregarUsuario">Enviar</button> <button class="btn iq-bg-danger" type="button" id="btnCancelar">Cancelar</button>
+
+
+                                            <button class="btn btn-primary mr-2" id="btnAgregarUsuario" data-target=".bd-example-modal-sm" type="button" data-toggle="modal">
+                                                Enviar
+                                            </button>
+                                            <a href="personal.html">
+                                                <button class="btn iq-bg-danger" id="btnCancelarUsuarioCrear"
+                                                        type="button">Cancelar
+                                                </button>
+                                            </a>
+
+
+
+                                            <div id="rellenar_modal_usuarios">
+                                            </div>
+
                                         </form>
                                     </div>
                                 </div>
@@ -353,7 +371,8 @@
                         <script src="../js/owl.carousel.min.js"></script> <!-- Magnific Popup JavaScript -->
                         <script src="../js/owl.carousel.min.js"></script> <!-- Magnific Popup JavaScript -->
 
-                        <script src="../js/jquery.magnific-popup.min.js"></script> <!-- Smooth S../crollbar JavaScript -->
+                        <script src="../js/jquery.magnific-popup.min.js"></script>
+                        <!-- Smooth S../crollbar JavaScript -->
 
                         <script src="../js/smooth-scrollbar.js"></script> <!-- lottie JavaScript -->
 

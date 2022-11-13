@@ -1,9 +1,5 @@
 $(document).ready(function () {
-
-
     $("#btnAgregarCliente").click(function (){
-
-
         let nombre = $("#nombre").val();
         let apellido = $("#apellido").val();
         let dni = $("#dni").val();
