@@ -60,6 +60,10 @@ try {
             include "auth_inc.php";
             $data = Usuarios::obtener_grupo();
             break;
+            case "obtener_usuario_asignado_select":
+            include "auth_inc.php";
+            $data = Usuarios::obtener_usuario_asignado();
+            break;
 
         case "agregar_usuario":
             if (!empty($crear_usuario)) {

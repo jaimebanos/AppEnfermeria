@@ -134,11 +134,38 @@ class Usuarios
     }
 
 
+    /**
+     * Obtiene un select de grupos existentes generado desde la base de datos para poder crear usuarios
+     * @return array|false
+     * @throws Exception
+     */
     public static function obtener_grupo()
     {
         $conexion = ConexionSingle::getInstancia();
         try {
             $sql = "select * from grupo" ;
+            $sth = $conexion->prepare($sql);
+            $sth->execute();
+            $data = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+            return $data;
+        } catch (Exception $e) {
+            return false;
+            throw $e;
+        }
+
+    }
+
+    /**
+     * Obtiene un select de usuarios generado desde la base de datos para poder crear pacientes
+     * @return array|false
+     * @throws Exception
+     */
+    public static function obtener_usuario_asignado()
+    {
+        $conexion = ConexionSingle::getInstancia();
+        try {
+            $sql = "select email from usuario where email is not null" ;
             $sth = $conexion->prepare($sql);
             $sth->execute();
             $data = $sth->fetchAll(PDO::FETCH_ASSOC);

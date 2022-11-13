@@ -50,4 +50,40 @@ $(document).ready(function () {
     });
 
 
+
+
+    var request = $.ajax({
+        url: '../php/wb_Cusuarios.php',
+        method: "POST",
+        data: {
+            "accion": "obtener_usuario_asignado_select",
+            'token': localStorage.getItem('token'),
+        },
+        dataType:"json"
+    });
+    request.done(function (response) {
+
+        var fillDiv = response;
+        fillDiv = fillDiv.data;
+        var string = ``;
+
+        fillDiv.forEach((element) => {
+
+            string += ` <option value="${element.email}">${element.email}</option>`;
+        });
+
+
+
+        /**
+         * Imprimir en el contenedor correspondiente
+         */
+
+
+        $("#usuario_asignado_rellenar").html(string);
+
+
+    });
+
+
+
 });

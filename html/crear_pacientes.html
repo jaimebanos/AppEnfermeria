@@ -18,6 +18,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/ajax_rellenarDatos.js"></script>
+    <script src="../js/ajax_select_html.js"></script>
+
     <script src="../js/ajax_cerrarSesion.js"></script>
     <script src="../js/ajax_agregarPaciente.js"></script>
 </head>
@@ -193,6 +195,9 @@
                                                     <label for="dni">Dni del Paciente</label> <input class="form-control" id="dni" name="dob" type="text">
                                                 </div>
 
+
+
+
                                                 <div class="form-group col-sm-6">
                                                     <label for="email">Correo electronico</label> <input class="form-control" id="email" placeholder="Introduzca su correo electrónico" type="text">
                                                 </div>
@@ -214,10 +219,15 @@
                                                     <label for="fecha_nacimiento">Fecha de Nacimiento</label> <input class="form-control" id="fecha_nacimiento" name="dob" type="date">
                                                 </div>
 
-                                                <div class="form-group col-sm-6">
-                                                    <label for="usuario_asignado">Email de Tecnico a cargo</label> <input class="form-control" id="usuario_asignado" name="dob" type="text">
-                                                </div>
 
+
+                                                <div class="form-group col-sm-6">
+                                                    <label>Email de Tecnico a cargo</label>
+                                                    <select class="form-control mb-3" id="usuario_asignado_rellenar" name="Usuario"   >
+
+
+                                                    </select>
+                                                </div>
 
                                                 <div class="form-group col-sm-6">
                                                     <textarea class="form-control"  id="observaciones" placeholder="Observaciones"></textarea>

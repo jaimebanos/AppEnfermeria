@@ -8,7 +8,7 @@ $(document).ready(function () {
         let fecha_nacimiento = $("#fecha_nacimiento").val();
         let email = $("#email").val();
         let observaciones = $("#observaciones").val();
-        let usuario_asignado = $("#usuario_asignado").val();
+        let usuario_asignado = $("#usuario_asignado_rellenar").val();
         let genero = $("input:radio[name=genero]:checked").val();
         let telefono = $("#telefono").val();
 
