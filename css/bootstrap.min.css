@@ -115,6 +115,10 @@ address {
 	line-height: inherit
 }
 
+textarea {
+	overflow: scroll;
+max-height: 150px;
+min-height: 100px;}
 dl,
 ol,
 ul {
