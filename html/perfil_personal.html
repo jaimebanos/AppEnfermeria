@@ -19,7 +19,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!--Se cambia la ubicación del ajax a la carpeta js-->
-    <script src="../js/ajax_editarPaciente.js"></script>
+    <script src="../js/ajax_editarUsuario.js"></script>
     <script src="../js/ajax_rellenarDatos.js"></script>
     <script src="../js/ajax_list_usuario_delete.js"></script>
     <script src="../js/ajax_cerrarSesion.js"></script>
@@ -260,13 +260,13 @@
                 <div class="col-lg-12">
                     <div class="iq-card">
                         <div class="iq-card-header d-flex justify-content-between">
-                            <div class="iq-header-title">
-                                <h4 class="card-title">Perfil usuario</h4>
+                            <div class="iq-header-title" >
+                                <h4 class="card-title" id="cabecera_nombre"></h4>
                             </div>
                         </div>
                     </div>
                     <!-- Si no se puede introducir el paciente sale una alerta -->
-                    <div id="alerta_paciente">
+                    <div id="alerta_usuario">
 
                     </div>
                 </div>
@@ -280,21 +280,16 @@
 
                                     </div>
                                     <div class="text-center mt-3 ">
-                                        <h3 class="nombre"></h3>
-                                        <h5 class="text-primary">Usuario asignado</h5>
-                                        <p class="usuario_asignado"></p>
+                                        <h3 class="nombre_usuario"></h3>
+                                        <h5 class="text-primary">Email</h5>
+                                        <p class="email"></p>
                                     </div>
-                                    <ul
-                                            class="doctoe-sedual d-flex align-items-center justify-content-between p-0 mt-4 mb-0">
+                                    <ul class="doctoe-sedual d-flex align-items-center justify-content-between p-0 mt-4 mb-0" id="rellenar_grupo">
+
+
 
                                         <li class="text-center">
-                                            <h4 class="text-primary">Grupo</h4>
-                                            <h6 class="grupo"></h6>
-                                        </li>
-
-                                        <li class="text-center">
-                                            <h4 class="text-primary">Edad</h4>
-                                            <h6 class="edad"></h6>
+                                            <h4 class="text-primary">Profesor</h4>
                                         </li>
 
                                     </ul>
@@ -453,16 +448,12 @@
                                             <tbody>
                                             <tr>
                                                 <td><b>Nombre</b></td>
-                                                <td class="nombre"></td>
+                                                <td class="nombre_usuario"></td>
                                             </tr>
 
                                             <tr>
                                                 <td><b>Apellidos</b></td>
                                                 <td id="apellido"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Dni</b></td>
-                                                <td id="dni"></td>
                                             </tr>
                                             <tr>
                                                 <td><b>Teléfono</b></td>
@@ -481,13 +472,10 @@
                                                 <td class="grupo"></td>
                                             </tr>
                                             <tr>
-                                                <td><b>Usuario asignado</b></td>
-                                                <td class="usuario_asignado"></td>
+                                                <td><b>Email</b></td>
+                                                <td class="email"></td>
                                             </tr>
-                                            <tr>
-                                                <td><b>Observaciones</b></td>
-                                                <td id="observaciones"></td>
-                                            </tr>
+
                                             </tbody>
                                         </table>
                                     </div>

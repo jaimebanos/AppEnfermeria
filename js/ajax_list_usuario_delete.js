@@ -11,7 +11,7 @@ $(document).ready(function() {
                 data: {
                     "accion": "eliminar_usuario",
                     'token': localStorage.getItem('token'),
-                    'id_eliminar': id,
+                    'email': id,
                 },
                 dataType: "json"
             });

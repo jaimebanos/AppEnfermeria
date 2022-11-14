@@ -18,6 +18,10 @@ class Usuarios
         $this->contrasenya = $contrasenya;
     }
 
+
+
+
+
     /**
      *Recibe el email y la password, y comprueba si esta es correcta, y si está
      * en la base de datos, si es así devolverá un array con sus parametros
@@ -239,6 +243,51 @@ class Usuarios
         }
     }
 
+
+
+
+
+
+    /***
+     * Te devuelve el usuario que pulasa para poder ver
+     * @param email
+     * @return mixed
+     * @throws Exception
+     */
+    public static function ver_usuario($email)
+    {
+        $pdo = ConexionSingle::getInstancia();
+        try {
+            $sql = "SELECT a.*, u.admnistrador as admin,  FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad , ifnull((select count(*) from paciente where usuario_asignado=u.email and fecha_baja is null),0) AS pacientes_asignados, ('profesor') as rol from profesor a, usuario u where u.email ='$email' and u.email = a.id_usuario";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if (empty($data)) {
+                $sql = "SELECT a.*, u.admnistrador as admin,  g.nombre as nombre_grupo ,FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS  edad , ifnull((select count(*) from paciente where usuario_asignado=u.email and fecha_baja is null),0) AS pacientes_asignados, ('tecnico') as rol  from tecnico a, usuario u, grupo g where g.id = a.id_grupo and u.email ='$email' and u.email = a.id_usuario";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute();
+                $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if(empty($data)){
+                    $sql = "SELECT a.* ,u. admnistrador as admin,  FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad , ifnull((select count(*) from paciente where usuario_asignado=u.email and fecha_baja is null),0) AS pacientes_asignados,  ('tecnico') as rol  from tecnico a, usuario u where  u.email ='$email' and u.email = a.id_usuario";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute();
+                    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                }
+
+            }
+
+            return $data;
+
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+
+
+
+
     /**
      * deja el token vación del usuario con el token pasa, usado para cerrar Sesion
      * @param $token
@@ -299,20 +348,27 @@ class Usuarios
                 $stmt->execute();
                 $data2 = $stmt->fetchAll(PDO::FETCH_ASSOC) ;
 
-            $sql = "SELECT t.* ,  ('Tecnico')  as rol, u.baja_usuario as inactivo, u.admnistrador as admin, null as grupo FROM usuario u, tecnico t where  u.email = t.id_usuario ";
+
+            $sql = "SELECT t.* ,  ('Tecnico')  as rol, u.baja_usuario as inactivo, u.admnistrador as admin, null as grupo FROM usuario u, tecnico t where  u.email = t.id_usuario  and t.id_grupo is null ";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $data3 = $stmt->fetchAll();
 
 
-            return $data + $data2 + $data3;
+
+            return array_merge($data, $data2, $data3);
         }catch (Exception $e){
             Throw $e;
         }
 
     }
 
-    /**CREARÁ UN USUARIO CON LOS PARAMETROS PASADOS, Y TENDRÁ QUE INSERTARLO EN DOS TABLAS
+
+
+
+
+
+    /** Hará UN update al USUARIO CON LOS PARAMETROS PASADOS, Y TENDRÁ QUE actualizarlo EN DOS TABLAS
      * USUARIO Y TECNICO-PROFESOR
      * PARA ELLO LANZAREMOS UN START TRANSACTION Y UN COMMIT AL FINALIZAR, SI FALLA SE HARÁ UN ROLLBACK
      * @throws Exception
@@ -339,6 +395,56 @@ class Usuarios
             }else{
                 $sql = "INSERT INTO tecnico(id_usuario,nombre,apellidos,telefono,fecha_nacimiento,genero, id_grupo)
                         VALUES('$this->email','$nombre','$apellido','$telefono','$fecha_nacimiento','$genero', '$grupo');";
+            }
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute();
+
+            //SI LAS DOS CONSULTAS SE HAN LANZADO CORRECTAMENTE, SE LANZARÁ EL COMMIT
+            $sql = "COMMIT";
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute();
+
+
+
+            return true;
+
+        }catch (Exception $E){
+
+            $sql = "ROLLBACK";
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute();
+            throw $E;
+        }
+    }
+
+
+    /**CREARÁ UN USUARIO CON LOS PARAMETROS PASADOS, Y TENDRÁ QUE INSERTARLO EN DOS TABLAS
+     * USUARIO Y TECNICO-PROFESOR
+     * PARA ELLO LANZAREMOS UN START TRANSACTION Y UN COMMIT AL FINALIZAR, SI FALLA SE HARÁ UN ROLLBACK
+     * @throws Exception
+     */
+    function editar_usuario( $email_anterior, $nombre, $apellido, $fecha_nacimiento, $genero, $telefono, $grupo, $rol, $admin){
+
+        $conexion = ConexionSingle::getInstancia();
+
+        try {
+            //LANZAR EL START TRANSACTION
+            $sql = "START TRANSACTION";
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute();
+            $password = password_hash($this->contrasenya,PASSWORD_BCRYPT);
+
+            $sql = "update  usuario set email = '$this->email',contrasenya = '$password' ,  admnistrador='$admin'   WHERE  email = '$email_anterior'";
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute();
+
+            //SELECCIONAR CON OTRA CONSULTA EL ID DEL GRUPO PASADO POR PARAMETROS
+            if($rol == "profesor"){
+                $sql = "UPDATE  profesor SET id_usuario = '$this->email',nombre =  '$nombre' ,apellidos = '$apellido' ,telefono='$telefono' ,fecha_nacimiento ='$fecha_nacimiento',genero = '$genero' 
+                 WHERE  id_usuario = '$this->email'";
+            }else{
+                $sql = "UPDATE  tecnico SET  id_usuario = '$this->email',nombre =  '$nombre' ,apellidos = '$apellido' ,telefono='$telefono' ,fecha_nacimiento ='$fecha_nacimiento',genero = '$genero', id_grupo = '$grupo'
+                       WHERE  id_usuario = '$this->email'";
             }
             $stmt = $conexion->prepare($sql);
             $stmt->execute();

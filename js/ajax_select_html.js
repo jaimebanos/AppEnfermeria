@@ -1,19 +1,15 @@
 $(document).ready(function () {
 
     $(document).on('click', '#rol', function() {
-        const s1=document.getElementById("rol");
-        const s2=document.getElementById("grupo_tecnicos_rellenar");
 
-        s1.addEventListener("click", function() {
+
             if (this.value == "profesor") {
                 s2.value="null";
                 s2.disabled = true;
             }else {
-                s2.disabled = false;
 
 
             }
-        })
     });
 
     var request = $.ajax({

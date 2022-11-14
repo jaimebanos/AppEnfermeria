@@ -5,8 +5,8 @@ include_once "Usuarios.php";
 $accion = isset($_POST['accion']) ? $_POST['accion'] : "";
 $login = isset($_POST['datos']) ? $_POST['datos'] : [];
 $token = isset($_POST['token']) ? $_POST['token'] : null;
-$id_usuario_eliminar = isset($_POST['id_eliminar']) ? $_POST['id_eliminar'] : null;
-$crear_usuario = isset($_POST['datos_usuario']) ? $_POST['datos_usuario'] : [];
+$email = isset($_POST['email']) ? $_POST['email'] : null;
+$datos_usuario = isset($_POST['datos_usuario']) ? $_POST['datos_usuario'] : [];
 
 #LO QUE CONTENDRÁ EL JSON
 $data = "";
@@ -54,7 +54,7 @@ try {
             break;
         case "eliminar_usuario":
             include "auth_inc.php";
-            Usuarios::dar_baja_usuario($id_usuario_eliminar);
+            Usuarios::dar_baja_usuario($email);
             break;
         case "obtener_grupo_select":
             include "auth_inc.php";
@@ -65,13 +65,38 @@ try {
             $data = Usuarios::obtener_usuario_asignado();
             break;
 
+        case "ver_usuario":
+            include "auth_inc.php";
+            $data = Usuarios::ver_usuario($email);
+            break;
+
+
+        case "editar_usuario":
+            include "auth_inc.php";
+
+            $user = new Usuarios($datos_usuario['email'], $datos_usuario['contrasenya']);
+
+            $resultado = $user->editar_usuario($email, $datos_usuario['nombre'], $datos_usuario['apellido'], $datos_usuario['fecha_nacimiento'],
+                $datos_usuario['genero'], $datos_usuario['telefono'], $datos_usuario['grupo'], $datos_usuario['rol'], $datos_usuario['admin']);
+
+
+            $data = $resultado;
+
+            if ($resultado === true) {
+                $msg = "Actualizado con exito";
+            } else {
+                $msg = "No se ha introducido nada";
+            }
+
+            break;
+
         case "agregar_usuario":
-            if (!empty($crear_usuario)) {
+            if (!empty($datos_usuario)) {
 
-                $user = new Usuarios($crear_usuario['email'], $crear_usuario['contrasenya']);
+                $user = new Usuarios($datos_usuario['email'], $datos_usuario['contrasenya']);
 
-                    $resultado = $user->crerUsuario($crear_usuario['nombre'], $crear_usuario['apellido'], $crear_usuario['fecha_nacimiento'],
-                    $crear_usuario['genero'], $crear_usuario['telefono'], $crear_usuario['grupo'], $crear_usuario['rol'], $crear_usuario['admin']);
+                $resultado = $user->crerUsuario($datos_usuario['nombre'], $datos_usuario['apellido'], $datos_usuario['fecha_nacimiento'],
+                    $datos_usuario['genero'], $datos_usuario['telefono'], $datos_usuario['grupo'], $datos_usuario['rol'], $datos_usuario['admin']);
 
 
                 $data = $resultado;
