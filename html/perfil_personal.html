@@ -4,501 +4,547 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <title>EFA Torrealedua </title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../images/favicon.ico" />
+    <link href="../images/favicon.ico" rel="shortcut icon"/>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Typography CSS -->
-    <link rel="stylesheet" href="../css/typography.css">
+    <link href="../css/typography.css" rel="stylesheet">
     <!-- Style CSS -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link href="../css/style.css" rel="stylesheet">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="../css/responsive.css" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--Se cambia la ubicación del ajax a la carpeta js-->
+    <script src="../js/ajax_editarPaciente.js"></script>
+    <script src="../js/ajax_rellenarDatos.js"></script>
+    <script src="../js/ajax_list_usuario_delete.js"></script>
     <script src="../js/ajax_cerrarSesion.js"></script>
+
 </head>
 
 <body>
 
-    <!-- Wrapper Start -->
-    <div class="wrapper">
-        <!-- Sidebar  -->
-        <div class="iq-sidebar">
-            <div class="iq-sidebar-logo d-flex justify-content-between">
-                <a href="../index.html">
-                    <img src="../images/logo.png" class="img-fluid" alt="">
-                    <span>EFA Torrealedua </span>
-                </a>
-                <div class="iq-menu-bt-sidebar">
+<!-- Wrapper Start -->
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <div class="iq-sidebar">
+        <div class="iq-sidebar-logo d-flex justify-content-between">
+            <a href="../index.html">
+                <img alt="" class="img-fluid" src="../images/logo.png">
+                <span>EFA Torrealedua </span>
+            </a>
+            <div class="iq-menu-bt-sidebar">
+                <div class="iq-menu-bt align-self-center">
+                    <div class="wrapper-menu">
+                        <div class="main-circle"><i class="ri-more-fill"></i></div>
+                        <div class="hover-circle"><i class="ri-more-2-fill"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="sidebar-scrollbar">
+            <nav class="iq-sidebar-menu">
+                <ul class="iq-menu" id="iq-sidebar-toggle">
+                    <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>Tablero</span></li>
+                    <li>
+                        <a class="iq-waves-effect" href="perfil_usuario.html"><i
+                                class="ri-hospital-fill"></i><span>Mi Perfil</span></a>
+                    </li>
+
+                    <li>
+                        <a class="iq-waves-effect" href="../html/pacientes.html"><i
+                                class="ri-group-fill"></i><span>Pacientes</span></a>
+                    </li>
+                    <li>
+                        <a class="iq-waves-effect" href="personal.html"><i
+                                class="ri-user-fill"></i><span>Personal</span></a>
+
+                    </li>
+                    <li><a class="iq-waves-effect" href="tareas.html"><i
+                            class="ri-calendar-event-fill"></i><span>Tareas</span></a></li>
+
+                    <li><a class="iq-waves-effect" href="../html/chat.html"><i
+                            class="ri-message-fill"></i><span>Chat</span></a></li>
+
+
+                </ul>
+            </nav>
+            <div class="p-3"></div>
+        </div>
+    </div>
+    <!-- Page Content  -->
+    <div class="content-page" id="content-page">
+        <!-- TOP Nav Bar -->
+        <div class="iq-top-navbar">
+            <div class="iq-navbar-custom">
+                <div class="iq-sidebar-logo">
+                    <div class="top-logo">
+                        <a class="logo" href="../index.html">
+                            <img alt="" class="img-fluid" src="../images/logo.png">
+                            <span>Efa Torrealedua </span>
+                        </a>
+                    </div>
+                </div>
+                <nav class="navbar navbar-expand-lg navbar-light p-0">
+                    <div class="iq-search-bar">
+                        <form action="perfil_pacientes.html#" class="searchbox">
+                            <input class="text search-input" placeholder="Pulsa aqui para buscar." type="text">
+                            <a class="search-link" href="perfil_pacientes.html#"><i class="ri-search-line"></i></a>
+                        </form>
+                    </div>
+                    <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                            class="navbar-toggler" data-target="#navbarSupportedContent"
+                            data-toggle="collapse" type="button">
+                        <i class="ri-menu-3-line"></i>
+                    </button>
                     <div class="iq-menu-bt align-self-center">
                         <div class="wrapper-menu">
                             <div class="main-circle"><i class="ri-more-fill"></i></div>
                             <div class="hover-circle"><i class="ri-more-2-fill"></i></div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div id="sidebar-scrollbar">
-                <nav class="iq-sidebar-menu">
-                    <ul id="iq-sidebar-toggle" class="iq-menu">
-                        <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>Tablero</span></li>
-                        <li>
-                            <a href="perfil_usuario.html" class="iq-waves-effect"><i
-                                    class="ri-hospital-fill"></i><span>Mi Perfil</span></a>
-                        </li>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto navbar-list">
 
-                        <li>
-                            <a href="../html/pacientes.html" class="iq-waves-effect"><i
-                                    class="ri-group-fill"></i><span>Pacientes</span></a>
-                        </li>
-                        <li>
-                            <a href="personal.html" class="iq-waves-effect"><i
-                                    class="ri-user-fill"></i><span>Personal</span></a>
-
-                        </li>
-                        <li><a href="tareas.html" class="iq-waves-effect"><i
-                                    class="ri-calendar-event-fill"></i><span>Tareas</span></a></li>
-
-                        <li><a href="../html/chat.html" class="iq-waves-effect"><i
-                                    class="ri-message-fill"></i><span>Chat</span></a></li>
-
-
-
-
-
-                </ul>
-                </nav>
-                <div class="p-3"></div>
-            </div>
-        </div>
-        <!-- Page Content  -->
-        <div id="content-page" class="content-page">
-            <!-- TOP Nav Bar -->
-            <div class="iq-top-navbar">
-                <div class="iq-navbar-custom">
-                    <div class="iq-sidebar-logo">
-                        <div class="top-logo">
-                            <a href="../index.html" class="logo">
-                                <img src="../images/logo.png" class="img-fluid" alt="">
-                                <span>Efa Torrealedua </span>
-                            </a>
-                        </div>
-                    </div>
-                    <nav class="navbar navbar-expand-lg navbar-light p-0">
-                        <div class="iq-search-bar">
-                            <form action="perfil_personal.html#" class="searchbox">
-                                <input type="text" class="text search-input" placeholder="Pulsa aqui para buscar.">
-                                <a class="search-link" href="perfil_personal.html#"><i class="ri-search-line"></i></a>
-                            </form>
-                        </div>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="ri-menu-3-line"></i>
-                        </button>
-                        <div class="iq-menu-bt align-self-center">
-                            <div class="wrapper-menu">
-                                <div class="main-circle"><i class="ri-more-fill"></i></div>
-                                <div class="hover-circle"><i class="ri-more-2-fill"></i></div>
-                            </div>
-                        </div>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav ml-auto navbar-list">
-
-                                <li class="nav-item iq-full-screen">
-                                    <a href="perfil_personal.html#" class="iq-waves-effect" id="btnFullscreen"><i
-                                            class="ri-fullscreen-line"></i></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="perfil_personal.html#" class="search-toggle iq-waves-effect">
-                                        <i class="ri-notification-4-line"></i>
-                                        <span class="bg-danger dots"></span>
-                                    </a>
-                                    <div class="iq-sub-dropdown">
-                                        <div class="iq-card shadow-none m-0">
-                                            <div class="iq-card-body p-0 ">
-                                                <div class="bg-primary p-3">
-
-                                                    <!-- Poner un count de las notificaciones-->
-
-                                                    <h5 class="mb-0 text-white">Notificationes<small
-                                                            class="badge  badge-light float-right pt-1">4</small></h5>
-                                                </div>
-                                                <!-- Poner notificaciones-->
-
-                                                <a href="perfil_personal.html#" class="iq-sub-card">
-
-                                                </a>
-                                                <a href="perfil_personal.html#" class="iq-sub-card">
-
-                                                </a>
-                                                <a href="perfil_personal.html#" class="iq-sub-card">
-
-                                                </a>
-                                                <a href="perfil_personal.html#" class="iq-sub-card">
-                                                    <div class="media align-items-center">
-                                                        <div class="">
-                                                            <img class="avatar-40 rounded" src="../images/user/04.jpg"
-                                                                alt="">
-                                                        </div>
-                                                        <div class="media-body ml-3">
-                                                            <h6 class="mb-0 ">New Mail from Fenny</h6>
-                                                            <small class="float-right font-size-12">3 days ago</small>
-                                                            <p class="mb-0">Jond Bini</p>
-                                                        </div>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a href="perfil_personal.html#" class="search-toggle iq-waves-effect">
-                                        <i class="ri-mail-open-line"></i>
-                                        <span class="bg-primary count-mail"></span>
-                                    </a>
-                                    <div class="iq-sub-dropdown">
-                                        <div class="iq-card shadow-none m-0">
-                                            <div class="iq-card-body p-0 ">
-                                                <div class="bg-primary p-3">
-                                                    <!-- Poner count de los mensajes-->
-                                                    <h5 class="mb-0 text-white">Todos los mensajes<small
-                                                            class="badge  badge-light float-right pt-1">5</small></h5>
-                                                </div>
-                                                <!-- Poner mensajes-->
-
-                                                <a href="perfil_personal.html#" class="iq-sub-card">
-                                                    <div class="media align-items-center">
-                                                        <div class="">
-                                                            <img class="avatar-40 rounded" src="../images/user/02.jpg"
-                                                                alt="">
-                                                        </div>
-                                                        <div class="media-body ml-3">
-                                                            <h6 class="mb-0 ">Lorem Ipsum Watson</h6>
-                                                            <small class="float-left font-size-12">20 Apr</small>
-                                                        </div>
-                                                    </div>
-                                                </a>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <ul class="navbar-list">
-                            <li>
-                                <a href="perfil_personal.html#" class="search-toggle iq-waves-effect d-flex align-items-center">
-                                    <img src="../images/user/1.jpg" class="img-fluid rounded mr-3" alt="user">
-                                    <div class="caption">
-                                        <!-- Poner nombre del usuario-->
-                                        <h6 class="nombre_user">Name</h6>
-                                        <!-- Poner estado del usuario-->
-                                        <span class="saludo_user">Available</span>
-                                    </div>
+                            <li class="nav-item iq-full-screen">
+                                <a class="iq-waves-effect" href="perfil_pacientes.html#" id="btnFullscreen"><i
+                                        class="ri-fullscreen-line"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="search-toggle iq-waves-effect" href="perfil_pacientes.html#">
+                                    <i class="ri-notification-4-line"></i>
+                                    <span class="bg-danger dots"></span>
                                 </a>
-                                <div class="iq-sub-dropdown iq-user-dropdown">
+                                <div class="iq-sub-dropdown">
                                     <div class="iq-card shadow-none m-0">
                                         <div class="iq-card-body p-0 ">
                                             <div class="bg-primary p-3">
-                                                <!-- Poner nombre del usuario-->
-                                                <h5 class="mb-0 text-white line-height">Hello Bini Jets</h5>
-                                                <span class="text-white font-size-12">Available</span>
+
+                                                <!-- Poner un count de las notificaciones-->
+
+                                                <h5 class="mb-0 text-white">Notificationes<small
+                                                        class="badge  badge-light float-right pt-1">4</small></h5>
                                             </div>
-                                            <a href="perfil_usuario.html" class="iq-sub-card iq-bg-primary-hover">
+                                            <!-- Poner notificaciones-->
+
+                                            <a class="iq-sub-card" href="perfil_pacientes.html#">
+
+                                            </a>
+                                            <a class="iq-sub-card" href="perfil_pacientes.html#">
+
+                                            </a>
+                                            <a class="iq-sub-card" href="perfil_pacientes.html#">
+
+                                            </a>
+                                            <a class="iq-sub-card" href="perfil_pacientes.html#">
                                                 <div class="media align-items-center">
-                                                    <div class="rounded iq-card-icon iq-bg-primary">
-                                                        <i class="ri-file-user-line"></i>
+                                                    <div class="">
+                                                        <img alt="" class="avatar-40 rounded"
+                                                             src="../images/user/04.jpg">
                                                     </div>
                                                     <div class="media-body ml-3">
-                                                        <h6 class="mb-0 ">Mi perfil</h6>
-                                                        <p class="mb-0 font-size-12">Ver detalles personales de mi
-                                                            perfil.</p>
+                                                        <h6 class="mb-0 ">New Mail from Fenny</h6>
+                                                        <small class="float-right font-size-12">3 days ago</small>
+                                                        <p class="mb-0">Jond Bini</p>
+                                                    </div>
+                                                </div>
+
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="search-toggle iq-waves-effect" href="perfil_pacientes.html#">
+                                    <i class="ri-mail-open-line"></i>
+                                    <span class="bg-primary count-mail"></span>
+                                </a>
+                                <div class="iq-sub-dropdown">
+                                    <div class="iq-card shadow-none m-0">
+                                        <div class="iq-card-body p-0 ">
+                                            <div class="bg-primary p-3">
+                                                <!-- Poner count de los mensajes-->
+                                                <h5 class="mb-0 text-white">Todos los mensajes<small
+                                                        class="badge  badge-light float-right pt-1">5</small></h5>
+                                            </div>
+                                            <!-- Poner mensajes-->
+
+                                            <a class="iq-sub-card" href="perfil_pacientes.html#">
+                                                <div class="media align-items-center">
+                                                    <div class="">
+                                                        <img alt="" class="avatar-40 rounded"
+                                                             src="../images/user/02.jpg">
+                                                    </div>
+                                                    <div class="media-body ml-3">
+                                                        <h6 class="mb-0 ">Lorem Ipsum Watson</h6>
+                                                        <small class="float-left font-size-12">20 Apr</small>
                                                     </div>
                                                 </div>
                                             </a>
-                                            <a href="../html/editar_perfil.html"
-                                                class="iq-sub-card iq-bg-primary-hover">
-                                                <div class="media align-items-center">
-                                                    <div class="rounded iq-card-icon iq-bg-primary">
-                                                        <i class="ri-profile-line"></i>
-                                                    </div>
-                                                    <div class="media-body ml-3">
-                                                        <h6 class="mb-0 ">Editar Perfil</h6>
-                                                        <p class="mb-0 font-size-12">Modificar mis detalles personales.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <div class="d-inline-block w-100 text-center p-3">
-                                                <a class="bg-primary iq-sign-btn" href="../html/login.html"
-                                                    role="button">Cerrar Sesión<i
-                                                        class="ri-login-box-line ml-2"></i></a>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
                             </li>
                         </ul>
-                    </nav>
-                </div>
+                    </div>
+                    <ul class="navbar-list">
+                        <li>
+                            <a class="search-toggle iq-waves-effect d-flex align-items-center"
+                               href="perfil_pacientes.html#">
+                                <img alt="user" class="img-fluid rounded mr-3" src="../images/user/1.jpg">
+                                <div class="caption">
+                                    <!-- Poner nombre del usuario-->
+                                    <h6 class="nombre_user"></h6>
+                                    <!-- Poner estado del usuario-->
+                                    <span class="font-size-12">Activo</span>
+                                </div>
+                            </a>
+                            <div class="iq-sub-dropdown iq-user-dropdown">
+                                <div class="iq-card shadow-none m-0">
+                                    <div class="iq-card-body p-0 ">
+                                        <div class="bg-primary p-3">
+                                            <!-- Poner nombre del usuario-->
+                                            <h5 class="saludo_user"></h5>
+                                            <span class="text-white font-size-12">Activo</span>
+                                        </div>
+                                        <a class="iq-sub-card iq-bg-primary-hover" href="perfil_usuario.html">
+                                            <div class="media align-items-center">
+                                                <div class="rounded iq-card-icon iq-bg-primary">
+                                                    <i class="ri-file-user-line"></i>
+                                                </div>
+                                                <div class="media-body ml-3">
+                                                    <h6 class="mb-0 ">Mi perfil</h6>
+                                                    <p class="mb-0 font-size-12">Ver detalles personales de mi
+                                                        perfil.</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="iq-sub-card iq-bg-primary-hover"
+                                           href="../html/editar_perfil.html">
+                                            <div class="media align-items-center">
+                                                <div class="rounded iq-card-icon iq-bg-primary">
+                                                    <i class="ri-profile-line"></i>
+                                                </div>
+                                                <div class="media-body ml-3">
+                                                    <h6 class="mb-0 ">Editar Perfil</h6>
+                                                    <p class="mb-0 font-size-12">Modificar mis detalles personales.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="d-inline-block w-100 text-center p-3">
+                                            <a class="bg-primary iq-sign-btn" href="../html/login.html"
+                                               id="cerrar_sesion"
+                                               role="button">Cerrar Sesión<i
+                                                    class="ri-login-box-line ml-2"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-            <!-- TOP Nav Bar END -->
-            <!-- Empieza la pagina -->
-            <div class="container-fluid">
-                <div class="row">
+        </div>
+        <!-- TOP Nav Bar END -->
+        <!-- Empieza la pagina -->
 
 
-                    
-                    <div class="col-lg-4">
-                        <div class="iq-card">
-                            <div class="iq-card-body pl-0 pr-0 pt-0">
-                                <div class="doctor-details-block">
-                                    <div class="doc-profile-bg bg-primary" style="height:150px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 row m-0 p-0">
+                    <div class="col-sm-12">
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-user-profile-block"
+                             style="height: 75%;">
+                            <div class="iq-card-body">
+                                <div class="user-details-block">
+                                    <div class="user-profile text-center" id="rellenargenero">
+
                                     </div>
-                                    <div class="doctor-profile text-center">
-                                        <img src="../images/user/11.png" alt="profile-img" class="avatar-130 img-fluid">
+                                    <div class="text-center mt-3 ">
+                                        <h3 class="nombre"></h3>
+                                        <h5 class="text-primary">Usuario asignado</h5>
+                                        <p class="usuario_asignado"></p>
                                     </div>
+                                    <ul
+                                            class="doctoe-sedual d-flex align-items-center justify-content-between p-0 mt-4 mb-0">
+
+                                        <li class="text-center">
+                                            <h4 class="text-primary">Grupo</h4>
+                                            <h6 class="grupo"></h6>
+                                        </li>
+
+                                        <li class="text-center">
+                                            <h4 class="text-primary">Edad</h4>
+                                            <h6 class="edad"></h6>
+                                        </li>
+
+                                    </ul>
                                     <div class="text-center mt-3 pl-3 pr-3">
-                                        <h4><b>Bini Jets</b></h4>
-                                        <p>Enfermera</p>
-                                        <a  href="editar_personal.html">                                        <button class=" btn-block btn btn-outline-info" href="editar_perfil.html">
-                                            <i class="las la-edit"></i>Editar Perfil         
-                                          </button>
-                                      </a>
+                                        <a href="crear_pacientes.html">
+                                            <button class=" btn-block btn btn-outline-info" href="editar_perfil.html">
+                                                <i class="las la-edit"></i>Editar Perfil
+                                            </button>
+                                        </a>
                                     </div>
-                                    <hr>
-                                    <ul class="doctoe-sedual d-flex align-items-center justify-content-between p-0 m-0">
-                                        <li class="text-center">
-                                            <h3 class="counter">4500</h3>
-                                            <span>Tareas finalizadas </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                            <div class="iq-card-body">
+                                <div class="patient-steps">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="col-md-6">
+                                            <div class="data-block">
+                                                <p class="mb-0">Walked</p>
+                                                <h5>4532 steps</h5>
+                                            </div>
+                                            <div class="data-block mt-3">
+                                                <p class="mb-0">My Goal</p>
+                                                <h5>6500 steps</h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="progress-round patient-progress mx-auto" data-value="80">
+                                                    <span class="progress-left">
+                                                        <span class="progress-bar border-secondary"></span>
+                                                    </span>
+                                                <span class="progress-right">
+                                                        <span class="progress-bar border-secondary"></span>
+                                                    </span>
+                                                <div
+                                                        class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center text-center">
+                                                    <div class="h4 mb-0">4532<br> <span
+                                                            class="font-size-14">left</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="patient-role list-inline d-flex align-items-center p-0 mt-4 mb-0">
+                                        <li class="text-left">
+                                            <h6 class="text-primary">Carbs</h6>
+                                            <div class="iq-progress-bar-linear d-inline-block w-100">
+                                                <div class="iq-progress-bar">
+                                                    <span class="bg-primary" data-percent="85"></span>
+                                                </div>
+                                            </div>
                                         </li>
-                                        <li class="text-center">
-                                            <h3 class="counter">100</h3>
-                                            <span>Tareas por finalizar</span>
+                                        <li class="text-left">
+                                            <h6 class="text-primary">Protein</h6>
+                                            <div class="iq-progress-bar-linear d-inline-block w-100">
+                                                <div class="iq-progress-bar">
+                                                    <span class="bg-danger" data-percent="65"></span>
+                                                </div>
+                                            </div>
                                         </li>
-                                        <li class="text-center">
-                                            <h3 class="counter">10000</h3>
-                                            <span>Pacientes</span>
+                                        <li class="text-left">
+                                            <h6 class="text-primary">Fat</h6>
+                                            <div class="iq-progress-bar-linear d-inline-block w-100">
+                                                <div class="iq-progress-bar">
+                                                    <span class="bg-info" data-percent="70"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <hr>
+                                <div class="patient-steps2">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="col-md-6">
+                                            <div class="data-block">
+                                                <p class="mb-0">Burned</p>
+                                                <h5>325 kcal</h5>
+                                            </div>
+                                            <div class="data-block mt-3">
+                                                <p class="mb-0">My Goal</p>
+                                                <h5>800 kcal</h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="progress-round patient-progress mx-auto" data-value="60">
+                                                    <span class="progress-left">
+                                                        <span class="progress-bar border-secondary"></span>
+                                                    </span>
+                                                <span class="progress-right">
+                                                        <span class="progress-bar border-secondary"></span>
+                                                    </span>
+                                                <div
+                                                        class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center text-center">
+                                                    <div class="h4 mb-0 text-warning">325<br> <span
+                                                            class="font-size-14 text-secondary">left</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="patient-role list-inline d-flex align-items-center p-0 mt-4 mb-0">
+                                        <li class="text-left">
+                                            <h6 class="text-primary">Carbs</h6>
+                                            <div class="iq-progress-bar-linear d-inline-block w-100">
+                                                <div class="iq-progress-bar">
+                                                    <span class="bg-primary" data-percent="50"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="text-left">
+                                            <h6 class="text-primary">Protein</h6>
+                                            <div class="iq-progress-bar-linear d-inline-block w-100">
+                                                <div class="iq-progress-bar">
+                                                    <span class="bg-danger" data-percent="60"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="text-left">
+                                            <h6 class="text-primary">Fat</h6>
+                                            <div class="iq-progress-bar-linear d-inline-block w-100">
+                                                <div class="iq-progress-bar">
+                                                    <span class="bg-info" data-percent="70"></span>
+                                                </div>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="iq-card">
-                            <div class="iq-card-header d-flex justify-content-between">
-                                <div class="iq-header-title">
-                                    <h4 class="card-title">Personal Information</h4>
-                                </div>
-                            </div>
-                            <div class="iq-card-body">
-                                <div class="about-info m-0 p-0">
-                                    <div class="row">
-                                        <div class="col-4">First Name:</div>
-                                        <div class="col-8">Bini</div>
-                                        <div class="col-4">Last Name:</div>
-                                        <div class="col-8">Jets</div>
-                                        <div class="col-4">Age:</div>
-                                        <div class="col-8">27</div>
-                                        <div class="col-4">Position:</div>
-                                        <div class="col-8">Senior doctor</div>
-                                        <div class="col-4">Email:</div>
-                                        <div class="col-8"><a href="mailto:biniJets24@demo.com"> biniJets24@demo.com
-                                            </a></div>
-                                        <div class="col-4">Phone:</div>
-                                        <div class="col-8"><a href="tel:001-2351-25612">001 2351 256 12</a></div>
-                                        <div class="col-4">Location:</div>
-                                        <div class="col-8">USA</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                    <div class="col-lg-8">
-                        <div class="row">
+                </div>
+                <div class="col-lg-8">
+                    <div class="iq-card iq-card-block iq-card-stretch ">
+                        <div class="iq-card-body pb-0">
 
-                            <div class="col-md-6">
-                                <div class="iq-card">
-                                    <div class="iq-card-header d-flex justify-content-between">
-                                        <div class="iq-header-title">
-                                            <h4 class="card-title">Notifications</h4>
-                                        </div>
-                                    </div>
-                                    <div class="iq-card-body">
-                                        <ul class="iq-timeline">
-                                            <li>
-                                                <div class="timeline-dots border-success"></div>
-                                                <h6 class="">Dr. Joy Send you Photo</h6>
-                                                <small class="mt-1">23 November 2019</small>
-                                            </li>
-                                            <li>
-                                                <div class="timeline-dots border-danger"></div>
-                                                <h6 class="">Reminder : Opertion Time!</h6>
-                                                <small class="mt-1">20 November 2019</small>
-                                            </li>
-                                            <li>
-                                                <div class="timeline-dots border-primary"></div>
-                                                <h6 class="mb-1">Patient Call</h6>
-                                                <small class="mt-1">19 November 2019</small>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                           
-                            <div class="col-md-6">
-                                <div class="iq-card">
-                                    <div class="iq-card-header d-flex justify-content-between">
-                                        <div class="iq-header-title">
-                                            <h4 class="card-title">Patients Notes</h4>
-                                        </div>
-                                    </div>
-                                    <div class="iq-card-body">
-                                        <ul class="list-inline m-0 p-0">
-                                            <li class="d-flex align-items-center justify-content-between mb-3">
-                                                <div>
-                                                    <h6>Treatment was good!</h6>
-                                                    <p class="mb-0">Eye Test </p>
-                                                </div>
-                                                <div><a href="profile.html#" class="btn iq-bg-primary">Open</a></div>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-3">
-                                                <div>
-                                                    <h6>My Helth in better Now</h6>
-                                                    <p class="mb-0">Fever Test</p>
-                                                </div>
-                                                <div><a href="profile.html#" class="btn iq-bg-primary">Open</a></div>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-3">
-                                                <div>
-                                                    <h6>No Effacted</h6>
-                                                    <p class="mb-0">Thyroid Test</p>
-                                                </div>
-                                                <div><a href="profile.html#" class="btn iq-bg-danger">Close</a></div>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-3">
-                                                <div>
-                                                    <h6>Operation Successfull</h6>
-                                                    <p class="mb-0">Orthopaedic</p>
-                                                </div>
-                                                <div><a href="profile.html#" class="btn iq-bg-primary">Open</a></div>
-                                            </li>
-                                            
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="iq-card">
-                                    <div class="iq-card-header d-flex justify-content-between">
-                                        <div class="iq-header-title">
-                                            <h4 class="card-title">Schedule</h4>
-                                        </div>
-                                    </div>
-                                    <div class="iq-card-body">
-                                        <ul class="list-inline m-0 p-0">
-                                            <li>
-                                                <h6 class="float-left mb-1">Ruby saul (Blood Check)</h6>
-                                                <small class="float-right mt-1">Today</small>
-                                                <div class="d-inline-block w-100">
-                                                    <p class="badge badge-primary">09:00 AM </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <h6 class="float-left mb-1"> Anna Mull (Fever)</h6>
-                                                <small class="float-right mt-1">Today</small>
-                                                <div class="d-inline-block w-100">
-                                                    <p class="badge badge-danger">09:15 AM </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <h6 class="float-left mb-1">Petey Cruiser (X-ray)</h6>
-                                                <small class="float-right mt-1">Today</small>
-                                                <div class="d-inline-block w-100">
-                                                    <p class="badge badge-warning">10:00 AM </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <h6 class="float-left mb-1">Anna Sthesia (Full body Check up)</h6>
-                                                <small class="float-right mt-1">Today</small>
-                                                <div class="d-inline-block w-100">
-                                                    <p class="badge badge-info">01:00 PM </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <h6 class="float-left mb-1">Paul Molive (Operation)</h6>
-                                                <small class="float-right mt-1">Tomorrow</small>
-                                                <div class="d-inline-block w-100">
-                                                    <p class="badge badge-success">09:00 AM </p>
-                                                </div>
-                                            </li>
 
-                                        </ul>
+                            <div class="col-lg-6">
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="iq-card mb-0">
+                                    <div class="iq-card-header d-flex justify-content-between p-0 bg-white">
+                                        <div class="iq-header-title">
+                                            <h4 class="card-title text-primary">Información personal</h4>
+                                        </div>
+
+                                    </div>
+                                    <div class="iq-card-body p-0">
+                                        <table class="table mb-0 table table-box-shadow" >
+                                            <thead>
+                                            <tr>
+                                                <th scope="col"><b>Información</b></th>
+                                                <th scope="col"><b>Datos</b></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td><b>Nombre</b></td>
+                                                <td class="nombre"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Apellidos</b></td>
+                                                <td id="apellido"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Dni</b></td>
+                                                <td id="dni"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Teléfono</b></td>
+                                                <td id="telefono"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Género</b></td>
+                                                <td id="genero"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Fecha de nacimiento</b></td>
+                                                <td id="fecha_nacimiento"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Grupo asignado</b></td>
+                                                <td class="grupo"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Usuario asignado</b></td>
+                                                <td class="usuario_asignado"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Observaciones</b></td>
+                                                <td id="observaciones"></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
+
+                            <br>
 
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Termina la pagina -->
 
-            <!-- Footer -->
-            <footer class="bg-white iq-footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item"></li>
-                                <li class="list-inline-item"></li>
-                            </ul>
-                        </div>
+        <!-- Termina la pagina -->
+
+        <!-- Footer -->
+        <footer class="bg-white iq-footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item"></li>
+                            <li class="list-inline-item"></li>
+                        </ul>
                     </div>
                 </div>
-            </footer>
-        </div>
-        <!-- Wrapper END -->
-        <!-- Footer END -->
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="../js/jquery.min.js"></script>
-        <script src="../js/popper.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <!-- Appear JavaScript -->
-        <script src="../js/jquery.appear.js"></script>
-        <!-- Countdown JavaScript -->
-        <script src="../js/countdown.min.js"></script>
-        <!-- Counterup JavaScript -->
-        <script src="../js/waypoints.min.js"></script>
-        <script src="../js/jquery.counterup.min.js"></script>
-        <!-- Wow JavaScript -->
-        <script src="../js/wow.min.js"></script>
-        <!-- Apexcharts JavaScript -->
-        <script src="../js/apexcharts.js"></script>
-        <!-- Slick JavaScript -->
-        <script src="../js/slick.min.js"></script>
-        <!-- Select2 JavaScript -->
-        <script src="../js/select2.min.js"></script>
-        <!-- Owl Carousel JavaScript -->
-        <script src="../js/owl.carousel.min.js"></script>
-        <!-- Magnific Popup JavaScript -->
-        <script src="../js/jquery.magnific-popup.min.js"></script>
-        <!-- Smooth S../crollbar JavaScript -->
-        <script src="../js/smooth-scrollbar.js"></script>
-        <!-- lottie JavaScript -->
-        <script src="../js/lottie.js"></script>
-        <!-- Chart Custom JavaScript -->
-        <script src="../js/chart-custom.js"></script>
-        <!-- Custom JavaScript -->
-        <script src="../js/custom.js"></script>
+            </div>
+        </footer>
     </div>
+    <!-- Wrapper END -->
+    <!-- Footer END -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- Appear JavaScript -->
+    <script src="../js/jquery.appear.js"></script>
+    <!-- Countdown JavaScript -->
+    <script src="../js/countdown.min.js"></script>
+    <!-- Counterup JavaScript -->
+    <script src="../js/waypoints.min.js"></script>
+    <script src="../js/jquery.counterup.min.js"></script>
+    <!-- Wow JavaScript -->
+    <script src="../js/wow.min.js"></script>
+    <!-- Apexcharts JavaScript -->
+    <script src="../js/apexcharts.js"></script>
+    <!-- Slick JavaScript -->
+    <script src="../js/slick.min.js"></script>
+    <!-- Select2 JavaScript -->
+    <script src="../js/select2.min.js"></script>
+    <!-- Owl Carousel JavaScript -->
+    <script src="../js/owl.carousel.min.js"></script>
+    <!-- Magnific Popup JavaScript -->
+    <script src="../js/jquery.magnific-popup.min.js"></script>
+    <!-- Smooth S../crollbar JavaScript -->
+    <script src="../js/smooth-scrollbar.js"></script>
+    <!-- lottie JavaScript -->
+    <script src="../js/lottie.js"></script>
+    <!-- Chart Custom JavaScript -->
+    <script src="../js/chart-custom.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="../js/custom.js"></script>
+</div>
 </body>
+
+
+
+
 
 </html>
