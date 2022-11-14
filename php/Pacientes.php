@@ -125,12 +125,17 @@ class Pacientes
 
         $pdo = ConexionSingle::getInstancia();
         try {
-            #Hacer un update segun se requiera
-            $sql = "UPDATE paciente set dni ='$this->dni',telefono='$this->telefono',nombre='$this->nombre',
-                    apellidos='$this->apellidos',usuario_asignado='$this->usuario_asignado',observaciones = '$this->observaciones',
-                    fecha_nacimiento='$this->fecha_nacimiento',genero='$this->genero' where telefono = '$this->telefono'";
+            $sql = "select telefono from paciente where telefono = '$this->telefono'";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
+            if(empty($stmt)) {
+                #Hacer un update segun se requiera
+                $sql = "UPDATE paciente set dni ='$this->dni',telefono='$this->telefono',nombre='$this->nombre',
+                        apellidos='$this->apellidos',usuario_asignado='$this->usuario_asignado',observaciones = '$this->observaciones',
+                        fecha_nacimiento='$this->fecha_nacimiento',genero='$this->genero' where telefono = '$this->telefono'";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute();
+            }
 
             return true;
         } catch (Exception $e) {
