@@ -7,7 +7,7 @@ include_once "Pacientes.php";
 $accion = isset($_POST['accion'])?$_POST['accion']:"";
 $login = isset($_POST['datos'])?$_POST['datos']:[];
 
-#DNI A ELIMINAR
+#TELEFONO
 $telefono = isset($_POST['telefono'])?$_POST['telefono']:"";
 
 #Datos para agregar el paciente
@@ -47,10 +47,10 @@ try {
 
             #Llamaremos al metodo editar paciente, y le cambiará los datos de ese paciente, a los que le pasaremos
             #Si devuelve true, ha ido bien
-            $resultado=$paciente->edit_paciente();
+            $resultado=$paciente->edit_paciente($telefono);
 
             if($resultado===true){
-                $msg = "Updateado con exito";
+                $msg = "Actualizado con exito";
             }else{
                 $msg = "Fallo al actualizar el usuario";
                 $succes = false;

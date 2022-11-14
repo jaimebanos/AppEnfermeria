@@ -109,13 +109,15 @@ $(document).ready(function() {
                     "telefono":telefono,
                 },
                 'token': localStorage.getItem('token'),
+                'telefono':sessionStorage.getItem('telefono'),
             },
             dataType:"json"
         });
         request.done(function (response) {
-            if(response['msg']=='login'){
+            console.log(response);
+            if(response['msg']==='login'){
                 window.location.href = "login.html";
-            }else if (response['success'] === true){
+            }else if (response['msg'] === "Actualizado con exito"){
                 window.location.href = "pacientes.html";
             }
 

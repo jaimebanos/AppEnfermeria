@@ -82,8 +82,6 @@ class Pacientes
      */
     public static function ver_paciente($telefono)
     {
-
-
         $pdo = ConexionSingle::getInstancia();
         try {
             $sql = "select p.*, g.nombre as grupo, FLOOR(DATEDIFF(NOW(),p.fecha_nacimiento)/365) AS edad from paciente p, grupo g, tecnico t where p.telefono = '$telefono' and p.usuario_asignado = t.id_usuario and t.id_grupo = g.id  ";
@@ -119,25 +117,21 @@ class Pacientes
      * @return bool
      * @throws Exception
      */
-    public function edit_paciente()
+    public function edit_paciente($telefono)
     {
-
-
         $pdo = ConexionSingle::getInstancia();
+
+
         try {
-            $sql = "select telefono from paciente where telefono = '$this->telefono'";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute();
-            if(empty($stmt)) {
-                #Hacer un update segun se requiera
-                $sql = "UPDATE paciente set dni ='$this->dni',telefono='$this->telefono',nombre='$this->nombre',
+            $sqlUpdate = "UPDATE paciente set dni ='$this->dni',telefono='$this->telefono',nombre='$this->nombre',
                         apellidos='$this->apellidos',usuario_asignado='$this->usuario_asignado',observaciones = '$this->observaciones',
-                        fecha_nacimiento='$this->fecha_nacimiento',genero='$this->genero' where telefono = '$this->telefono'";
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute();
-            }
+                        fecha_nacimiento='$this->fecha_nacimiento',genero='$this->genero' where telefono = '$telefono' ";
+            $stmt = $pdo->prepare($sqlUpdate);
+            $stmt->execute();
+
 
             return true;
+
         } catch (Exception $e) {
             throw $e;
         }
