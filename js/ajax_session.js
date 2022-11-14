@@ -29,13 +29,12 @@ $(document).ready(function () {
 
     //BOTON DE CERRAR SESION
     $("#cerrar_sesion").click(function () {
-        console.log("hola");
         var request = $.ajax({
             url: 'php/wb_Cusuarios.php',
             method: "POST",
             data: {
                 "accion": "cerrar_sesion",
-                'token': sessionStorage.getItem('token'),
+                'token': localStorage.getItem('token'),
             },
             dataType: "json"
         });

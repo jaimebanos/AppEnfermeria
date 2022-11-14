@@ -248,7 +248,7 @@ class Usuarios
     public static function cerrar_sesion($token){
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "update usuario set token = '', Fecha_vencimiento_token=null where token = '$token'";
+            $sql = "update usuario set token = '', fecha_vencimiento_token=null where token = '$token'";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
 
