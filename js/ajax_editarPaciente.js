@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+
+
     /**
      * Rellena los datos del paciente existentes.
      * @type {{getAllResponseHeaders: function(): *|null, abort: function(*): this, setRequestHeader: function(*, *): this, readyState: number, getResponseHeader: function(*): null|*, overrideMimeType: function(*): this, statusCode: function(*): this}|jQuery}
@@ -19,6 +21,44 @@ $(document).ready(function() {
             window.location.href = "../html/login.html";
         }
         console.log("hola");
+
+        var datosPciente = response;
+        datosPciente = datosPciente.data;
+        var string = response['data'].nombre;
+        console.log(string);
+
+        $(".nombre").html(response['data'].nombre);
+        $("#apellido").html(response['data'].apellidos);
+        $("#dni").html(response['data'].dni);
+        $("#telefono").html(response['data'].telefono);
+        $(".usuario_asignado").html(response['data'].usuario_asignado);
+        $("#fecha_nacimiento").html(response['data'].fecha_nacimiento);
+        $("#genero").html(response['data'].genero);
+        $(".edad").html(response['data'].edad);
+        $(".grupo").html(response['data'].grupo);
+
+        if(response['data'].observaciones==="") {
+            $("#observaciones").html("Sin observación");
+
+
+        }else{
+            $("#observaciones").html(response['data'].observaciones);
+
+        }
+
+        if(response['data'].genero==='Hombre') {
+            string = `<img src="../images/user/15.png" alt="profile-img"
+                                                class="avatar-130 img-fluid">`;
+            $("#rellenargenero").html(string);
+        }else{
+
+            string = `<img src="../images/user/11.png" alt="profile-img"
+                                                class="avatar-130 img-fluid">`;
+
+            $("#rellenargenero").html(string);
+        }
+
+
         $("#nombre").val(response['data'].nombre);
         $("#apellido").val(response['data'].apellidos);
         $("#dni").val(response['data'].dni);
