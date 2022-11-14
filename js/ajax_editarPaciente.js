@@ -115,8 +115,16 @@ $(document).ready(function() {
         request.done(function (response) {
             if(response['msg']=='login'){
                 window.location.href = "login.html";
-            }else if (response['success'] === true){
-                window.location.href = "pacientes.html";
+            }
+
+            if (response['success'] === true) {
+                window.location.href = "../html/pacientes.html";
+            }else {
+                var string = `  
+                    <div class="alert alert-danger" role="alert">
+                        No se ha podido introducir el paciente en la base de datos
+                    </div>`
+                $("#alerta_paciente").html(string);
             }
 
         });
