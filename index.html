@@ -21,6 +21,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!--Se cambia la ubicación del ajax a la carpeta js-->
     <script src="js/ajax_session.js"></script>
+    <script src="js/ajax_pacientes_asignados.js"></script>
+    <script src="js/ajax_list_pacientes_ver.js"></script>
 
 </head>
    <body>
@@ -236,7 +238,7 @@
             <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                <div class="iq-card-header d-flex justify-content-between">
                   <div class="iq-header-title">
-                     <h4 class="card-title">New Appointments </h4>
+                     <h4 class="card-title">Mis pacientes</h4>
                   </div>
                   <div class="iq-card-header-toolbar d-flex align-items-center">
                      <div class="dropdown">
@@ -258,64 +260,16 @@
                      <table class="table mb-0 table-borderless">
                         <thead>
                            <tr>
-                              <th scope="col">Patient</th>
-                              <th scope="col">Doctor</th>
-                              <th scope="col">Date</th>
-                              <th scope="col">Timing</th>
-                              <th scope="col">Contact</th>
-
+                              <th scope="col">Telefono</th>
+                              <th scope="col">Nombre</th>
+                              <th scope="col">Apellidos</th>
+                              <th scope="col">Edad</th>
+                              <th scope="col">Dni</th>
+                              <th scope="col">Ver</th>
                            </tr>
                         </thead>
-                        <tbody>
-                           <tr>
-                              <td>Petey Cruiser</td>
-                              <td>Dr.Monty Carlo</td>
-                              <td>20/02/2020</td>
-                              <td>8:00 AM</td>
-                              <td>+1-202-555-0146</td>
-                           </tr>
-                           <tr>
-                              <td>Anna Sthesia</td>
-                              <td>Dr.Pete Sariya</td>
-                              <td>25/02/2020</td>
-                              <td>8:30 AM</td>
-                              <td>+1-202-555-0164</td>
-                           </tr>
-                           <tr>
-                              <td>Paul Molive</td>
-                              <td>Dr.Brock Lee</td>
-                              <td>25/02/2020</td>
-                              <td>9:45 AM</td>
-                              <td>+1-202-555-0153</td>
-                           </tr>
-                           <tr>
-                              <td>Anna Mull</td>
-                              <td>Dr.Barb Ackue</td>
-                              <td>27/02/2020</td>
-                              <td>11:30 AM</td>
-                              <td>+1-202-555-0154</td>
-                           </tr>
-                           <tr>
-                              <td>Paige Turner</td>
-                              <td>Dr.Walter Melon</td>
-                              <td>28/02/2020</td>
-                              <td>3:30 PM</td>
-                              <td>+1-202-555-0101</td>
-                           </tr>
-                           <tr>
-                              <td>Don Stairs</td>
-                              <td>Dr.Arty Ficial</td>
-                              <td>28/02/2020</td>
-                              <td>4:30 PM</td>
-                              <td>+1-202-555-0176</td>
-                           </tr>
-                           <tr>
-                              <td>Pat Agonia</td>
-                              <td>Dr.Barb Ackue</td>
-                              <td>29/02/2020</td>
-                              <td>5:00 PM</td>
-                              <td>+1-202-555-0194</td>
-                           </tr>
+                        <tbody id="pacientes_asignados">
+
                         </tbody>
                      </table>
                   </div>
@@ -371,7 +325,7 @@
             <div class="iq-card">
                 <div class="iq-card-header d-flex justify-content-between">
                     <div class="iq-header-title">
-                        <h4 class="card-title">Schedule</h4>
+                        <h4 class="card-title">Tareas</h4>
                     </div>
                 </div>
                 <div class="iq-card-body">

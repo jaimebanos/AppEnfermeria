@@ -7,6 +7,9 @@ include_once "Pacientes.php";
 $accion = isset($_POST['accion'])?$_POST['accion']:"";
 $login = isset($_POST['datos'])?$_POST['datos']:[];
 
+#TOKEN
+$token = isset($_POST['token'])?$_POST['token']:"";
+
 #TELEFONO
 $telefono = isset($_POST['telefono'])?$_POST['telefono']:"";
 
@@ -28,6 +31,10 @@ try {
             include_once "auth_inc.php";
             #Obtenemos el array
             $data = Pacientes::list_user();
+            break;
+        case "list_pacientes_asignados":
+            include_once "auth_inc.php";
+            $data = Pacientes::pacientes_asignados($token);
             break;
         case "dar_baja":
             include_once "auth_inc.php";
@@ -55,11 +62,9 @@ try {
                 $msg = "Fallo al actualizar el usuario";
                 $succes = false;
             }
-
             break;
         case "agregar_paciente":
             include_once "auth_inc.php";
-
             #COMPROBAREMOS SI LE HEMOS PASADO ALGÚN DATO PARA CREAR PACIENTES
             if(!empty($datos_paciente)){
 

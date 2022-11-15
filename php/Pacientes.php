@@ -74,8 +74,36 @@ class Pacientes
 
     }
 
+
     /**
-     * Devuelve los datos de un paciente, con el numero parasado por parámetro
+     * Te devuelve los pacientes, de un usuario en concreto
+     */
+    public static function pacientes_asignados($token)
+    {
+
+
+        $pdo = ConexionSingle::getInstancia();
+        try {
+            $sql = "select email from usuario where token = '$token'";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $email_asignado = $data['email'];
+
+            $sql = "SELECT * , FLOOR(DATEDIFF(NOW(),fecha_nacimiento)/365) AS edad , fecha_baja FROM paciente where usuario_asignado = '$email_asignado' order by fecha_baja";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            throw $e;
+        }
+
+    }
+
+    /**
+     * Devuelve los datos de un paciente, con el numero pasado por parámetro
      * @param $telefono
      * @return mixed
      * @throws Exception
