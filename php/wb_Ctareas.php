@@ -22,7 +22,7 @@ try {
         case "ver_tipo_evento":
             include_once "auth_inc.php";
             #Obtenemos el array
-            $data = Pacientes::list_user();
+            $data = Tareas::ver_evento();
             break;
 
 

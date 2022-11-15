@@ -77,6 +77,8 @@ $(document).ready(function () {
 
     });
 
+
+    //Listar usuarios para el select en crear_tareas.html
     var request = $.ajax({
         url: '../php/wb_Cusuarios.php',
         method: "POST",
@@ -109,6 +111,7 @@ $(document).ready(function () {
 
     });
 
+    //Listar los pacientes en un select en crear_tareas.html
     var request = $.ajax({
         url: '../php/wb_Cpacientes.php',
         method: "POST",
