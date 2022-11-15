@@ -38,36 +38,52 @@ $(document).ready(function () {
         var string = ``;
 
         elementos.forEach((element) => {
-            string +=   `<div class="about-info m-0 p-0">
-                        <div class="row  pr-3">
-                            <div class="col-4">Nombre:</div>
-                            <div class="col-8">${element.nombre}</div>
-                            <div class="col-4">Apellido:</div>
-                            <div class="col-8">${element.apellidos}</div>
-                            <div class="col-4">Edad:</div>
-                            <div class="col-8">${element.edad}</div>
-                            <div class="col-4">Fecha de nacimiento:</div>
-                            <div class="col-8">${element.fecha_nacimiento}</div>
-                            <div class="col-4">Email:</div>
-                            <div class="col-8">${element.id_usuario}</div>
-                            <div class="col-4">Grupo:</div>
-                            <div class="col-8">${element.nombre_grupo}</div>
-                            <div class="col-4">Teléfono:</div>
-                            <div class="col-8">${element.telefono}</div>
-                            <div class="col-4">Género:</div>
-                            <div class="col-8">${element.genero}</div>
-                            
-                        </div>
-                        <hr>
-                        <a href="editar_perfil.html">
-                        <button
-                          class="btn-block btn btn-outline-info"
-                          href="editar_perfil.html"
-                        >
-                          <i class="las la-edit"></i>Editar Perfil
-                        </button>
-                      </a>
-                    </div>`;
+            string +=   `
+
+<table class="table mb-0 table table-box-shadow">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col"><b>Información</b></th>
+                                                <th scope="col"><b></b></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td><b>Nombre</b></td>
+                                                <td >${element.nombre}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><b>Apellidos</b></td>
+                                                <td >${element.apellidos}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Edad</b></td>
+                                                <td >${element.edad}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Fecha de nacimiento</b></td>
+                                                <td >${element.fecha_nacimiento}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Género</b></td>
+                                                <td>${element.genero}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Teléfono</b></td>
+                                                <td>${element.telefono}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Email</b></td>
+                                                <td >${element.id_usuario}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Grupo</b></td>
+                                                <td >${element.nombre_grupo}</td>
+                                            </tr>                                         
+                                            </tbody>
+                                        </table>
+`;
         });
         /**
          * Imprimir en el contenedor correspondiente
