@@ -19,9 +19,6 @@ class Usuarios
     }
 
 
-
-
-
     /**
      *Recibe el email y la password, y comprueba si esta es correcta, y si está
      * en la base de datos, si es así devolverá un array con sus parametros
@@ -244,10 +241,6 @@ class Usuarios
     }
 
 
-
-
-
-
     /***
      * Te devuelve el usuario que pulasa para poder ver
      * @param email
@@ -364,10 +357,6 @@ class Usuarios
     }
 
 
-
-
-
-
     /** Hará UN update al USUARIO CON LOS PARAMETROS PASADOS, Y TENDRÁ QUE actualizarlo EN DOS TABLAS
      * USUARIO Y TECNICO-PROFESOR
      * PARA ELLO LANZAREMOS UN START TRANSACTION Y UN COMMIT AL FINALIZAR, SI FALLA SE HARÁ UN ROLLBACK
@@ -434,26 +423,34 @@ class Usuarios
             $stmt->execute();
             $password = password_hash($this->contrasenya,PASSWORD_BCRYPT);
 
-            $sql = "update  usuario set email = '$this->email',contrasenya = '$password' ,  administrador='$admin'   WHERE  email = '$email_anterior'";
+            $sql = "select * from usuario where email = '$this->email'";
             $stmt = $conexion->prepare($sql);
-            $stmt->execute();
+            $data = $stmt->execute();
 
-            //SELECCIONAR CON OTRA CONSULTA EL ID DEL GRUPO PASADO POR PARAMETROS
-            if($rol == "profesor"){
-                $sql = "UPDATE  profesor SET id_usuario = '$this->email',nombre =  '$nombre' ,apellidos = '$apellido' ,telefono='$telefono' ,fecha_nacimiento ='$fecha_nacimiento',genero = '$genero' 
-                 WHERE  id_usuario = '$this->email'";
-            }else{
-                $sql = "UPDATE  tecnico SET  id_usuario = '$this->email',nombre =  '$nombre' ,apellidos = '$apellido' ,telefono='$telefono' ,fecha_nacimiento ='$fecha_nacimiento',genero = '$genero', id_grupo = '$grupo'
-                       WHERE  id_usuario = '$this->email'";
+            //COMPRUEBA ANTES DE ENVIAR EL UPDATE, SI EL EMAIL PUESTO ES EL MISMO, O SI NO EXISTE EN LA BD
+            if($this->email == $email_anterior or empty($data)) {
+
+                $sql = "update  usuario set email = '$this->email',contrasenya = '$password' ,  administrador='$admin'   WHERE  email = '$email_anterior'";
+                $stmt = $conexion->prepare($sql);
+                $stmt->execute();
+
+                //SELECCIONAR CON OTRA CONSULTA EL ID DEL GRUPO PASADO POR PARAMETROS
+                if ($rol == "profesor") {
+                    $sql = "UPDATE  profesor SET nombre =  '$nombre' ,apellidos = '$apellido' ,telefono='$telefono' ,fecha_nacimiento ='$fecha_nacimiento',genero = '$genero' 
+                     WHERE  id_usuario = '$this->email'";
+                } else {
+                    $sql = "UPDATE  tecnico SET  nombre =  '$nombre' ,apellidos = '$apellido' ,telefono='$telefono' ,fecha_nacimiento ='$fecha_nacimiento',genero = '$genero', id_grupo = '$grupo'
+                           WHERE  id_usuario = '$this->email'";
+                }
+
+                $stmt = $conexion->prepare($sql);
+                $stmt->execute();
+
+                //SI LAS DOS CONSULTAS SE HAN LANZADO CORRECTAMENTE, SE LANZARÁ EL COMMIT
+                $sql = "COMMIT";
+                $stmt = $conexion->prepare($sql);
+                $stmt->execute();
             }
-            $stmt = $conexion->prepare($sql);
-            $stmt = $conexion->prepare($sql);
-            $stmt->execute();
-
-            //SI LAS DOS CONSULTAS SE HAN LANZADO CORRECTAMENTE, SE LANZARÁ EL COMMIT
-            $sql = "COMMIT";
-            $stmt = $conexion->prepare($sql);
-            $stmt->execute();
 
 
 
