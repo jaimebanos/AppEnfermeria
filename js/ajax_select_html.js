@@ -127,9 +127,23 @@ $(document).ready(function () {
         fillDiv = fillDiv.data;
         var string = ``;
 
+        var apellido;
+        var nombre;
         fillDiv.forEach((element) => {
+            if(element.apellido==null){
+                apellido = '';
+            }else {
+                apellido = element.apellido;
+            }
 
-            string += ` <option value="${element.telefono}">${element.telefono}</option>`;
+            if(element.nombre==null){
+                nombre = '';
+            }else {
+                nombre = element.nombre;
+            }
+
+
+            string += ` <option value="${element.telefono}">${element.telefono}   -> ${nombre}  ${apellido}</option>`;
         });
 
 
