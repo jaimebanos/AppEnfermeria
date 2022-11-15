@@ -19,9 +19,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!--Se cambia la ubicación del ajax a la carpeta js-->
-    <script src="../js/ajax_editarPaciente.js"></script>
     <script src="../js/ajax_rellenarDatos.js"></script>
-    <script src="../js/ajax_list_pacientes_delete.js"></script>
     <script src="../js/ajax_cerrarSesion.js"></script>
 
 </head>
@@ -261,7 +259,7 @@
                     <div class="iq-card">
                         <div class="iq-card-header d-flex justify-content-between">
                             <div class="iq-header-title">
-                                <h4 class="card-title">Perfil Paciente</h4>
+                                <h4 class="card-title">Crear Tarea</h4>
                             </div>
                         </div>
                     </div>
@@ -272,160 +270,11 @@
                 </div>
                 <div class="col-lg-4 row m-0 p-0">
                     <div class="col-sm-12">
-                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height iq-user-profile-block"
-                             style="height: 75%;">
-                            <div class="iq-card-body">
-                                <div class="user-details-block">
-                                    <div class="user-profile text-center" id="rellenargenero">
 
-                                    </div>
-                                    <div class="text-center mt-3 ">
-                                        <h3 class="nombre"></h3>
-                                        <h5 class="text-primary">Usuario asignado</h5>
-                                        <p class="usuario_asignado"></p>
-                                    </div>
-                                    <ul
-                                            class="doctoe-sedual d-flex align-items-center justify-content-between p-0 mt-4 mb-0">
-
-                                        <li class="text-center">
-                                            <h4 class="text-primary">Grupo</h4>
-                                            <h6 class="grupo"></h6>
-                                        </li>
-
-                                        <li class="text-center">
-                                            <h4 class="text-primary">Edad</h4>
-                                            <h6 class="edad"></h6>
-                                        </li>
-
-                                    </ul>
-                                    <div class="text-center mt-3 pl-3 pr-3">
-                                        <button class=" btn-block btn btn-outline-info">
-                                            <i class="las la-phone"></i>Llamar
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <div class="col-sm-12">
-                        <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-                            <div class="iq-card-body">
-                                <div class="patient-steps">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="col-md-6">
-                                            <div class="data-block">
-                                                <p class="mb-0">Walked</p>
-                                                <h5>4532 steps</h5>
-                                            </div>
-                                            <div class="data-block mt-3">
-                                                <p class="mb-0">My Goal</p>
-                                                <h5>6500 steps</h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="progress-round patient-progress mx-auto" data-value="80">
-                                                    <span class="progress-left">
-                                                        <span class="progress-bar border-secondary"></span>
-                                                    </span>
-                                                <span class="progress-right">
-                                                        <span class="progress-bar border-secondary"></span>
-                                                    </span>
-                                                <div
-                                                        class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center text-center">
-                                                    <div class="h4 mb-0">4532<br> <span
-                                                            class="font-size-14">left</span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ul class="patient-role list-inline d-flex align-items-center p-0 mt-4 mb-0">
-                                        <li class="text-left">
-                                            <h6 class="text-primary">Carbs</h6>
-                                            <div class="iq-progress-bar-linear d-inline-block w-100">
-                                                <div class="iq-progress-bar">
-                                                    <span class="bg-primary" data-percent="85"></span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="text-left">
-                                            <h6 class="text-primary">Protein</h6>
-                                            <div class="iq-progress-bar-linear d-inline-block w-100">
-                                                <div class="iq-progress-bar">
-                                                    <span class="bg-danger" data-percent="65"></span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="text-left">
-                                            <h6 class="text-primary">Fat</h6>
-                                            <div class="iq-progress-bar-linear d-inline-block w-100">
-                                                <div class="iq-progress-bar">
-                                                    <span class="bg-info" data-percent="70"></span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <hr>
-                                <div class="patient-steps2">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="col-md-6">
-                                            <div class="data-block">
-                                                <p class="mb-0">Burned</p>
-                                                <h5>325 kcal</h5>
-                                            </div>
-                                            <div class="data-block mt-3">
-                                                <p class="mb-0">My Goal</p>
-                                                <h5>800 kcal</h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="progress-round patient-progress mx-auto" data-value="60">
-                                                    <span class="progress-left">
-                                                        <span class="progress-bar border-secondary"></span>
-                                                    </span>
-                                                <span class="progress-right">
-                                                        <span class="progress-bar border-secondary"></span>
-                                                    </span>
-                                                <div
-                                                        class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center text-center">
-                                                    <div class="h4 mb-0 text-warning">325<br> <span
-                                                            class="font-size-14 text-secondary">left</span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ul class="patient-role list-inline d-flex align-items-center p-0 mt-4 mb-0">
-                                        <li class="text-left">
-                                            <h6 class="text-primary">Carbs</h6>
-                                            <div class="iq-progress-bar-linear d-inline-block w-100">
-                                                <div class="iq-progress-bar">
-                                                    <span class="bg-primary" data-percent="50"></span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="text-left">
-                                            <h6 class="text-primary">Protein</h6>
-                                            <div class="iq-progress-bar-linear d-inline-block w-100">
-                                                <div class="iq-progress-bar">
-                                                    <span class="bg-danger" data-percent="60"></span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="text-left">
-                                            <h6 class="text-primary">Fat</h6>
-                                            <div class="iq-progress-bar-linear d-inline-block w-100">
-                                                <div class="iq-progress-bar">
-                                                    <span class="bg-info" data-percent="70"></span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="iq-card iq-card-block iq-card-stretch ">
                         <div class="iq-card-body pb-0">
 
@@ -436,7 +285,7 @@
                                 <div class="iq-card mb-0">
                                     <div class="iq-card-header d-flex justify-content-between p-0 bg-white">
                                         <div class="iq-header-title">
-                                            <h4 class="card-title text-primary">Información personal</h4>
+                                            <h4 class="card-title text-primary">Datos sobre la tarea</h4>
                                         </div>
 
                                     </div>
@@ -445,49 +294,70 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col"><b>Información</b></th>
-                                                <th scope="col"><b>Datos</b></th>
+                                                <th scope="col"><b></b></th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <tr>
-                                                <td><b>Nombre</b></td>
-                                                <td class="nombre"></td>
+                                                <td><b>Tipo de evento</b></td>
+                                                <td>      <div class="form-group col-sm-12">
+                                                    <select class="form-control mb-3" id="" name="Usuario">
+                                                    </select>
+                                                </div></td>
                                             </tr>
 
                                             <tr>
-                                                <td><b>Apellidos</b></td>
-                                                <td id="apellido"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Dni</b></td>
-                                                <td id="dni"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Teléfono</b></td>
-                                                <td id="telefono"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Género</b></td>
-                                                <td id="genero"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Fecha de nacimiento</b></td>
-                                                <td id="fecha_nacimiento"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Grupo asignado</b></td>
-                                                <td class="grupo"></td>
+                                                <td><b>Paciente</b></td>
+                                                <td>      <div class="form-group col-sm-12">
+                                                    <select class="form-control mb-3"  name="Usuario">
+                                                    </select>
+                                                </div></td>
                                             </tr>
                                             <tr>
                                                 <td><b>Usuario asignado</b></td>
-                                                <td class="usuario_asignado"></td>
+                                                <td>
+                                                    <div class="form-group col-sm-12">
+                                                        <select class="form-control mb-3" name="Usuario">
+                                                        </select>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Fecha de evento</b></td>
+                                                <td>  <div class="form-group col-sm-12">
+                                                    <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                                                    <input
+                                                            class="form-control" id="fecha_nacimiento"
+                                                            name="dob"
+                                                            type="datetime-local">
+                                                </div></td>
                                             </tr>
                                             <tr>
                                                 <td><b>Observaciones</b></td>
-                                                <td id="observaciones"></td>
+                                                <td id="genero"> <textarea class="form-control" id="observaciones" placeholder="Observaciones"></textarea> </td>
                                             </tr>
+                                            <tr>
+                                                <td>
+                                                    <button class="btn btn-primary mr-2" id="btnAgregarUsuario" data-target=".bd-example-modal-sm" type="button" data-toggle="modal">
+                                                        Enviar
+                                                    </button>
+                                                    <a href="pacientes.html">
+                                                        <button class="btn iq-bg-danger" id="btnCancelar" src="pacientes.html" type="button">Cancelar
+                                                        </button>
+                                                    </a>
+
+
+
+
+
+                                                </td>
+                                            </tr>
+
+
                                             </tbody>
                                         </table>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -541,6 +411,7 @@
         <script src="../js/custom.js"></script>
     </div>
 </div>
-
 </body>
+>
+
 </html>
