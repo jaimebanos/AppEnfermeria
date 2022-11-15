@@ -87,7 +87,7 @@ class Usuarios
             $sth->execute();
 
             //AÑADIR LA FECHA DE CADUCIDAD PARA EL TOKEN
-            $sql = "UPDATE usuario set Fecha_vencimiento_token = date_add(now(),INTERVAL 15 day) where email = '$email'";
+            $sql = "UPDATE usuario set fecha_vencimiento_token = date_add(now(),INTERVAL 15 day) where email = '$email'";
             $sth = $conexion->prepare($sql);
             $sth->execute();
         } catch (Exception $e) {
@@ -114,14 +114,14 @@ class Usuarios
             if ($campo_token != false) {
                 if ($token == $campo_token['token']) {
                     //COMPROBAR QUE LA FECHA ES MENOR QUE LA ACTUAL
-                    $sql = "select (now()>Fecha_vencimiento_token) as resultado from usuario where token = '$token'";
+                    $sql = "select (now()>fecha_vencimiento_token) as resultado from usuario where token = '$token'";
                     $sth = $conexion->prepare($sql);
                     $sth->execute();
                     $fecha = $sth->fetch(PDO::FETCH_ASSOC);
                     if($fecha['resultado'] == 0){
                         return true;
                     }else{
-                        $sql = "update usuario set token = '', Fecha_vencimiento_token = null where token = '$token'";
+                        $sql = "update usuario set token = '', fecha_vencimiento_token = null where token = '$token'";
                         $sth = $conexion->prepare($sql);
                         $sth->execute();
                     }
