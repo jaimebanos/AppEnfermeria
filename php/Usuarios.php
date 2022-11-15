@@ -258,18 +258,18 @@ class Usuarios
     {
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "SELECT a.*, u.admnistrador as admin,  FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad , ifnull((select count(*) from paciente where usuario_asignado=u.email and fecha_baja is null),0) AS pacientes_asignados, ('profesor') as rol from profesor a, usuario u where u.email ='$email' and u.email = a.id_usuario";
+            $sql = "SELECT a.*, u.administrador as admin,  FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad , ifnull((select count(*) from paciente where usuario_asignado=u.email and fecha_baja is null),0) AS pacientes_asignados, ('profesor') as rol from profesor a, usuario u where u.email ='$email' and u.email = a.id_usuario";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if (empty($data)) {
-                $sql = "SELECT a.*, u.admnistrador as admin,  g.nombre as nombre_grupo ,FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS  edad , ifnull((select count(*) from paciente where usuario_asignado=u.email and fecha_baja is null),0) AS pacientes_asignados, ('tecnico') as rol  from tecnico a, usuario u, grupo g where g.id = a.id_grupo and u.email ='$email' and u.email = a.id_usuario";
+                $sql = "SELECT a.*, u.administrador as admin,  g.nombre as nombre_grupo ,FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS  edad , ifnull((select count(*) from paciente where usuario_asignado=u.email and fecha_baja is null),0) AS pacientes_asignados, ('tecnico') as rol  from tecnico a, usuario u, grupo g where g.id = a.id_grupo and u.email ='$email' and u.email = a.id_usuario";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
                 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 if(empty($data)){
-                    $sql = "SELECT a.* ,u. admnistrador as admin,  FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad , ifnull((select count(*) from paciente where usuario_asignado=u.email and fecha_baja is null),0) AS pacientes_asignados,  ('tecnico') as rol  from tecnico a, usuario u where  u.email ='$email' and u.email = a.id_usuario";
+                    $sql = "SELECT a.* ,u. administrador as admin,  FLOOR(DATEDIFF(NOW(),a.fecha_nacimiento)/365) AS edad , ifnull((select count(*) from paciente where usuario_asignado=u.email and fecha_baja is null),0) AS pacientes_asignados,  ('tecnico') as rol  from tecnico a, usuario u where  u.email ='$email' and u.email = a.id_usuario";
                     $stmt = $pdo->prepare($sql);
                     $stmt->execute();
                     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -338,18 +338,18 @@ class Usuarios
 
         $pdo = ConexionSingle::getInstancia();
         try {
-            $sql = "SELECT t.* ,  ('Tecnico')  as rol, u.baja_usuario as inactivo, u.admnistrador as admin, g.nombre as grupo FROM usuario u, tecnico t, grupo g where  u.email = t.id_usuario and  g.id = t.id_grupo";
+            $sql = "SELECT t.* ,  ('Tecnico')  as rol, u.baja_usuario as inactivo, u.administrador as admin, g.nombre as grupo FROM usuario u, tecnico t, grupo g where  u.email = t.id_usuario and  g.id = t.id_grupo";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $data = $stmt->fetchAll();
 
-                $sql = "SELECT p.*, ('Profesor')  as rol , u.baja_usuario as inactivo, u.admnistrador as admin, ('Varios') as grupo from profesor p, usuario u where  u.email = p.id_usuario";
+                $sql = "SELECT p.*, ('Profesor')  as rol , u.baja_usuario as inactivo, u.administrador as admin, ('Varios') as grupo from profesor p, usuario u where  u.email = p.id_usuario";
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
                 $data2 = $stmt->fetchAll(PDO::FETCH_ASSOC) ;
 
 
-            $sql = "SELECT t.* ,  ('Tecnico')  as rol, u.baja_usuario as inactivo, u.admnistrador as admin, null as grupo FROM usuario u, tecnico t where  u.email = t.id_usuario  and t.id_grupo is null ";
+            $sql = "SELECT t.* ,  ('Tecnico')  as rol, u.baja_usuario as inactivo, u.administrador as admin, null as grupo FROM usuario u, tecnico t where  u.email = t.id_usuario  and t.id_grupo is null ";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $data3 = $stmt->fetchAll();
@@ -384,7 +384,7 @@ class Usuarios
             $stmt->execute();
             $password = password_hash($this->contrasenya,PASSWORD_BCRYPT);
 
-            $sql = "INSERT INTO usuario(email,contrasenya,  admnistrador) VALUES('$this->email', ('$password') , '$admin')";
+            $sql = "INSERT INTO usuario(email,contrasenya,  administrador) VALUES('$this->email', ('$password') , '$admin')";
             $stmt = $conexion->prepare($sql);
             $stmt->execute();
 
@@ -434,7 +434,7 @@ class Usuarios
             $stmt->execute();
             $password = password_hash($this->contrasenya,PASSWORD_BCRYPT);
 
-            $sql = "update  usuario set email = '$this->email',contrasenya = '$password' ,  admnistrador='$admin'   WHERE  email = '$email_anterior'";
+            $sql = "update  usuario set email = '$this->email',contrasenya = '$password' ,  administrador='$admin'   WHERE  email = '$email_anterior'";
             $stmt = $conexion->prepare($sql);
             $stmt->execute();
 
@@ -446,6 +446,7 @@ class Usuarios
                 $sql = "UPDATE  tecnico SET  id_usuario = '$this->email',nombre =  '$nombre' ,apellidos = '$apellido' ,telefono='$telefono' ,fecha_nacimiento ='$fecha_nacimiento',genero = '$genero', id_grupo = '$grupo'
                        WHERE  id_usuario = '$this->email'";
             }
+            $stmt = $conexion->prepare($sql);
             $stmt = $conexion->prepare($sql);
             $stmt->execute();
 
