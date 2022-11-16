@@ -28,14 +28,44 @@
         var string = ``;
 
         fillDiv.forEach((element) => {
+
+            var nombre;
+            var apellidos;
+            var hora;
+            var fecha;
+
+            if (element.nombre_paciente===null){
+                nombre = ""
+            }else {
+                nombre = element.nombre_paciente;
+            }
+
+            if ( element.apellido_paciente===null){
+                apellidos = ""
+            }else {
+                apellidos = element.apellido_paciente;
+            }
+            if (element.fecha==="0-0-0"){
+                fecha = ""
+            }else {
+                fecha = element.fecha;
+            }
+            if (element.hora==="0:0"){
+                hora = ""
+            }else {
+                hora = element.hora;
+            }
+
+
+
             string += `            
                   
                                 <li>
                                     <h6 class="float-left mb-1">${element.tipo_evento}</h6><br>
-                                    <small class="float-right mt-1">${element.fecha}</small>
-                                    <h7>Telefono: ${element.id_paciente} <br> Nombre: ${element.nombre_paciente}</h7>
+                                    <small class="float-right mt-1">${fecha}</small>
+                                    <h7>Telefono: ${element.id_paciente} <br> ${nombre}  ${apellidos}</h7>
                                     <div class="d-inline-block w-100">
-                                        <p class="badge badge-primary">${element.hora}</p>
+                                        <p class="badge badge-primary">${hora}</p>
                                     </div>
                          
                                 </li>
