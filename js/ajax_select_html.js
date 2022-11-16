@@ -78,38 +78,9 @@ $(document).ready(function () {
     });
 
 
-    //Listar usuarios para el select en crear_tareas.html
-    var request = $.ajax({
-        url: '../php/wb_Cusuarios.php',
-        method: "POST",
-        data: {
-            "accion": "listUser",
-            'token': localStorage.getItem('token')
-        },
-        dataType: "json"
-    });
-    request.done(function (response) {
-
-        var fillDiv = response;
-        fillDiv = fillDiv.data;
-        var string = ``;
-
-        fillDiv.forEach((element) => {
-
-            string += ` <option value="${element.id_usuario}">${element.id_usuario}</option>`;
-        });
 
 
 
-        /**
-         * Imprimir en el contenedor correspondiente
-         */
-
-
-        $("#usuario_tarea").html(string);
-
-
-    });
 
     //Listar los pacientes en un select en crear_tareas.html
     var request = $.ajax({
