@@ -119,7 +119,13 @@ class Usuarios
                     $sth->execute();
                     $fecha = $sth->fetch(PDO::FETCH_ASSOC);
                     if($fecha['resultado'] == 0){
-                        return true;
+                        $sql = "select baja_usuario from usuario where token = '$token'";
+                        $sth = $conexion->prepare($sql);
+                        $sth->execute();
+                        $baja = $sth->fetch(PDO::FETCH_ASSOC);
+                        if($baja['baja_usuario'] == null) {
+                            return true;
+                        }
                     }else{
                         $sql = "update usuario set token = '', fecha_vencimiento_token = null where token = '$token'";
                         $sth = $conexion->prepare($sql);
@@ -189,10 +195,12 @@ class Usuarios
     {
         $conexion = ConexionSingle::getInstancia();
         try {
+
             $sql = "select token from usuario where email = '$email'";
             $sth = $conexion->prepare($sql);
             $sth->execute();
             $token = $sth->fetch(PDO::FETCH_ASSOC);
+
             if ($token['token'] == "") {
                 return false;
             } else {

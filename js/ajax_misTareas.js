@@ -20,7 +20,7 @@
 
         //COMPRUEBA SI LA RESPUESTA ES UN FALSE, LO CUAL QUIERE DECIR QUE NO TIENE TOKEN, Y LO DEVUELVE AL LOGIN
         if(response['msg']==="login"){
-            window.location.href = "login.html";
+            window.location.href = "/AppEnfermeria/html/login.html";
         }
 
         var fillDiv = response;

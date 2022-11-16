@@ -15,7 +15,7 @@ $(document).ready(function () {
     request.done(function (msg) {
         //Si no tienes token, te devolverá false e iras al login
         if (msg['success'] === false) {
-            window.location.href = "html/login.html";
+            window.location.href = "/AppEnfermeria/html/login.html";
         }
 
         //Te rellena el nav básico, nombre y saludo
