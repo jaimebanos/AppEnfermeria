@@ -11,20 +11,19 @@ $(document).ready(function() {
         method: "POST",
         data: {
             "accion": "MostrarInfo",
-            'token': localStorage.getItem('token')
+            'token': localStorage.getItem('token'),
         },
-
         dataType: "json"
     });
 
     request.done(function (response) {
-
         if(response['success']===false){
-            window.location.href = "login.html";
+            window.location.href = "/localhost/AppEnfermeria/html/login.html";
         }
 
         $(".nombre_user").text(response['data'][0]['nombre']);
         $(".saludo_user").text("Bievenido "+ response['data'][0]['nombre']);
+
     });
 
     request.fail(function (jqXHR, textStatus) {
