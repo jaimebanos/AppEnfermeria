@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 
     var request = $.ajax({
-        url: '../php/wb_Cusuarios.php',
+        url: '/AppEnfermeria/php/wb_Cusuarios.php',
         method: "POST",
         data: {
             "accion": "MostrarInfo",
@@ -18,7 +18,7 @@ $(document).ready(function() {
 
     request.done(function (response) {
         if(response['success']===false){
-            window.location.href = "/localhost/AppEnfermeria/html/login.html";
+            window.location.href = "/AppEnfermeria/html/login.html";
         }
 
         $(".nombre_user").text(response['data'][0]['nombre']);
