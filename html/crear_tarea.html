@@ -21,6 +21,7 @@
     <!--Se cambia la ubicación del ajax a la carpeta js-->
     <script src="../js/ajax_rellenarDatos.js"></script>
     <script src="../js/ajax_select_html.js"></script>
+    <script src="../js/ajax_crear_tarea.js"></script>
     <script src="../js/ajax_cerrarSesion.js"></script>
 
 </head>
@@ -307,7 +308,7 @@
                                                     <div class="form-group col-sm-12">
                                                         <select class="form-control mb-3" id="tipo_evento">
 
-                                                            <option value="Cumpleaños">Cumpleaños</option>
+                                                            <option value="Cumpleanyos">Cumpleaños</option>
                                                             <option value="Recordatorio">Recordatorio</option>
                                                             <option value="Supervisar">Supervisar</option>
                                                             <option value="Otro">Otro tipo de evento</option>
@@ -338,9 +339,8 @@
                                                 <td><b>Fecha de evento</b></td>
                                                 <td>
                                                     <div class="form-group col-sm-12">
-                                                        <label for="fecha_nacimiento">Fecha de Nacimiento</label>
                                                         <input
-                                                                class="form-control" id="fecha_nacimiento"
+                                                                class="form-control" id="fecha_evento"
                                                                 name="dob"
                                                                 type="datetime-local">
                                                     </div>
@@ -348,17 +348,17 @@
                                             </tr>
                                             <tr>
                                                 <td><b>Observaciones</b></td>
-                                                <td id="genero"><textarea class="form-control" id="observaciones"
+                                                <td ><textarea class="form-control" id="observaciones"
                                                                           placeholder="Observaciones"></textarea></td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <button class="btn btn-primary mr-2" data-target=".bd-example-modal-sm"
-                                                            data-toggle="modal" id="btnAgregarUsuario"
+                                                            data-toggle="modal" id="btnCrearTarea"
                                                             type="button">
                                                         Enviar
                                                     </button>
-                                                    <a href="pacientes.html">
+                                                    <a href="tareas.html">
                                                         <button class="btn iq-bg-danger" id="btnCancelar"
                                                                 src="pacientes.html" type="button">Cancelar
                                                         </button>
