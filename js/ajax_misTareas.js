@@ -3,7 +3,7 @@
 
 
     var request = $.ajax({
-        url: 'php/wb_Ctareas.php',
+        url: '/AppEnfermeria/php/wb_Ctareas.php',
         method: "POST",
         data: {
             "accion": "ver_mis_tareas",
