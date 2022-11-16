@@ -21,7 +21,7 @@ USE `appenfermeria`;
 DROP TABLE IF EXISTS `evento`;
 
 CREATE TABLE `evento` (
-  `tipo_evento` enum('Cumpleaños','Recortadorio','Supervisar','Otro') NOT NULL,
+  `tipo_evento` enum('Cumpleanyos','Recordatorio','Supervisar','Otro') NOT NULL,
   `observaciones` varchar(150) NOT NULL,
   `id_paciente` char(9) NOT NULL,
   `fecha_evento` datetime NOT NULL,
