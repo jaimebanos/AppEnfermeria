@@ -78,9 +78,26 @@ class Tareas
             } catch (Exception $e) {
                 throw $e;
             }
-        }
+    }
+
+    public static function mis_eventos($token){
+        $pdo = ConexionSingle::getInstancia();
+
+        $sql = "SELECT email from usuario where token = '$token'";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        $miEmail = $data['email'];
 
 
+        $sql = "SELECT * , concat(day(fecha_evento),'-',month(fecha_evento),'-',year(fecha_evento)) as fecha, concat(hour(fecha_evento),':',minute(fecha_evento)) 
+        as hora,(select nombre from paciente where telefono = id_paciente) as nombre_paciente from evento where id_usuario = '$miEmail'";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $data;
+    }
 
 
 }

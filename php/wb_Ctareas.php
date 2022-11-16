@@ -8,7 +8,7 @@ include_once "Tareas.php";
 $accion = isset($_POST['accion']) ? $_POST['accion'] : "";
 $login = isset($_POST['datos']) ? $_POST['datos'] : [];
 $datos_tarea = isset($_POST['datos_tarea'])?$_POST['datos_tarea']:[];
-
+$token = isset($_POST['token'])?$_POST['token']:"";
 
 
 #LO QUE CONTENDRÁ EL JSON
@@ -41,6 +41,10 @@ try {
             } else {
                 $msg = "No has insertado nada";
             }
+            break;
+        case "ver_mis_tareas":
+            include_once "auth_inc.php";
+            $data = Tareas::mis_eventos($token);
             break;
 
 
