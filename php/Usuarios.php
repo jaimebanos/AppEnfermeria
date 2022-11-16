@@ -436,9 +436,14 @@ class Usuarios
             $data = $stmt->execute();
 
             //COMPRUEBA ANTES DE ENVIAR EL UPDATE, SI EL EMAIL PUESTO ES EL MISMO, O SI NO EXISTE EN LA BD
+
+            if (empty($this->contrasenya)){
+                $sql = "update  usuario set email = '$this->email',  administrador='$admin'   WHERE  email = '$email_anterior'";
+            }else{
+                $sql = "update  usuario set email = '$this->email',contrasenya = '$password' ,  administrador='$admin'   WHERE  email = '$email_anterior'";
+            }
             if($this->email == $email_anterior or empty($data)) {
 
-                $sql = "update  usuario set email = '$this->email',contrasenya = '$password' ,  administrador='$admin'   WHERE  email = '$email_anterior'";
                 $stmt = $conexion->prepare($sql);
                 $stmt->execute();
 
