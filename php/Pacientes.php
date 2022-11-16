@@ -91,7 +91,7 @@ class Pacientes
 
             $email_asignado = $data['email'];
 
-            $sql = "SELECT * , FLOOR(DATEDIFF(NOW(),fecha_nacimiento)/365) AS edad , fecha_baja FROM paciente where usuario_asignado = '$email_asignado' order by fecha_baja";
+            $sql = "SELECT * , FLOOR(DATEDIFF(NOW(),fecha_nacimiento)/365) AS edad , fecha_baja FROM paciente where usuario_asignado = '$email_asignado' and fecha_baja is null order by fecha_baja";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
 
