@@ -21,6 +21,7 @@
     <script src="../js/ajax_rellenarDatos.js"></script>
     <script src="../js/ajax_agregarUsuarios.js"></script>
     <script src="../js/ajax_cerrarSesion.js"></script>
+    <script src="../js/ajax_btnPersonal.js"></script>
 
 </head>
 <body>
@@ -50,7 +51,7 @@
                         <a class="iq-waves-effect" href="../html/pacientes.html"><span>Pacientes</span></a>
                     </li>
                     <li>
-                        <a class="iq-waves-effect" href="personal.html"><span>Personal</span></a>
+                        <a class="iq-waves-effect" href="personal.html" id="personal"><span>Personal</span></a>
                     </li>
                     <li>
                         <a class="iq-waves-effect" href="tareas.html"><span>Calendario</span></a>
@@ -322,7 +323,7 @@
                                             <button class="btn btn-primary mr-2" id="btnAgregarUsuario" data-target=".bd-example-modal-sm" type="button" data-toggle="modal">
                                                 Enviar
                                             </button>
-                                            <a href="personal.html">
+                                            <a id="personal">
                                                 <button class="btn iq-bg-danger" id="btnCancelarUsuarioCrear"
                                                         type="button">Cancelar
                                                 </button>
