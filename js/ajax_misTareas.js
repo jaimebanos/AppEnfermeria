@@ -33,6 +33,7 @@
             var apellidos;
             var hora;
             var fecha;
+            var evento;
 
             if (element.nombre_paciente===null){
                 nombre = ""
@@ -55,13 +56,18 @@
             }else {
                 hora = element.hora;
             }
+            if (element.tipo_evento==="Cumpleanyos"){
+                evento = "Cumpleaños"
+            }else {
+                evento = element.tipo_evento;
+            }
 
 
 
             string += `            
                   
                                 <li>
-                                    <h6 class="float-left mb-1">${element.tipo_evento}</h6><br>
+                                    <h6 class="float-left mb-1">${evento}</h6><br>
                                     <small class="float-right mt-1">${fecha}</small>
                                     <h7>Telefono: ${element.id_paciente} <br> ${nombre}  ${apellidos}</h7>
                                     <div class="d-inline-block w-100">
