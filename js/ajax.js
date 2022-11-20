@@ -12,7 +12,7 @@ $( document ).ready(function() {
     // BOTON CONECTAR
     $("#enviar").click(function () {
         var request = $.ajax({
-            url: '../php/wb_Cusuarios.php',
+            url: '/AppEnfermeria/php/wb_Cusuarios.php',
             method: "POST",
             data: {
                 "accion": "login",
@@ -28,7 +28,7 @@ $( document ).ready(function() {
         request.done(function (msg) {
             if (msg['success']){
               localStorage.setItem("token",msg['data'].token)
-              window.location.href = "../index.html";
+              window.location.href = "/AppEnfermeria/index.html";
             }
         });
 

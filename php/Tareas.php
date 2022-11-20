@@ -48,11 +48,7 @@ class Tareas
             $sql = "SELECT * from evento";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
-            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-
-            return $data;
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (Exception $e) {
             throw $e;
@@ -90,13 +86,11 @@ class Tareas
         $miEmail = $data['email'];
 
 
-        $sql = "SELECT * , concat(day(fecha_evento),'-',month(fecha_evento),'-',year(fecha_evento)) as fecha, concat(hour(fecha_evento),':',minute(fecha_evento)) 
-        as hora,(select nombre from paciente where telefono = id_paciente) as nombre_paciente, (select nombre from paciente where telefono = id_paciente) as apellido_paciente from evento where id_usuario = '$miEmail' and terminada = 0";
+        $sql = "SELECT * , Count(*) as tareas_por_finalizar , concat(day(fecha_evento),'-',month(fecha_evento),'-',year(fecha_evento)) as fecha, concat(hour(fecha_evento),':',minute(fecha_evento)) 
+        as hora,(select nombre from paciente where telefono = id_paciente) as nombre_paciente, (select apellidos from paciente where telefono = id_paciente) as apellido_paciente from evento where id_usuario = '$miEmail' and terminada = 0";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $data;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
@@ -114,9 +108,7 @@ class Tareas
         as hora,(select nombre from paciente where telefono = id_paciente) as nombre_paciente, (select nombre from paciente p where telefono = id_paciente) as apellido_paciente from evento, grupo g where id_usuario = '$miEmail'";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $data;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
