@@ -19,7 +19,7 @@ $(document).ready(function() {
             window.location.href = "/AppEnfermeria/html/login.html";
         }
 
-        $("#tareas_por_finalizar").text(response['data'][0].tareas_por_finalizar);
+        $("#tareas_por_finalizar").text(response['data'].length);
 
     });
 
