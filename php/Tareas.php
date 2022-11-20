@@ -91,7 +91,7 @@ class Tareas
 
 
         $sql = "SELECT * , concat(day(fecha_evento),'-',month(fecha_evento),'-',year(fecha_evento)) as fecha, concat(hour(fecha_evento),':',minute(fecha_evento)) 
-        as hora,(select nombre from paciente where telefono = id_paciente) as nombre_paciente, (select nombre from paciente where telefono = id_paciente) as apellido_paciente from evento where id_usuario = '$miEmail'";
+        as hora,(select nombre from paciente where telefono = id_paciente) as nombre_paciente, (select nombre from paciente where telefono = id_paciente) as apellido_paciente from evento where id_usuario = '$miEmail' and terminada = 0";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
