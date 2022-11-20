@@ -74,6 +74,10 @@
                                         <p class="badge badge-primary">${hora}</p>
                                     </div>
                          
+                         <div class="custom-control custom-switch custom-switch-color custom-control-inline">
+                              <input type="checkbox" class="custom-control-input bg-success terminada" id="customSwitch02" >
+                              <label class="custom-control-label" for="customSwitch02">Terminada</label>
+                           </div>
                                 </li>
                                 <hr>
                                   
