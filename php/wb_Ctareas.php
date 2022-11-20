@@ -46,6 +46,10 @@ try {
             include_once "auth_inc.php";
             $data = Tareas::mis_eventos($token);
             break;
+        case "terminar_tarea":
+            include_once "auth_inc.php";
+            $data = Tareas::finalizar_tarea($datos_tarea['id_paciente'], $datos_tarea['fecha_evento']);
+            break;
 
 
     }

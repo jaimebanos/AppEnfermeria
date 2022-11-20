@@ -66,17 +66,16 @@
 
             string += `            
                   
-                                <li>
+                                <li id=" ${element.id_paciente}">
                                     <h6 class="float-left mb-1">${evento}</h6><br>
                                     <small class="float-right mt-1">${fecha}</small>
                                     <h7>Telefono: ${element.id_paciente} <br> ${nombre}  ${apellidos}</h7>
                                     <div class="d-inline-block w-100">
                                         <p class="badge badge-primary">${hora}</p>
                                     </div>
-                         
-                         <div class="custom-control custom-switch custom-switch-color custom-control-inline">
-                              <input type="checkbox" class="custom-control-input bg-success terminada" id="customSwitch02" >
-                              <label class="custom-control-label" for="customSwitch02">Terminada</label>
+               <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+                              <input type="checkbox" class="custom-control-input bg-success terminada" id="${element.id_paciente}+${element.fecha_evento}" >
+                              <label class="custom-control-label" for="${element.id_paciente}+${element.fecha_evento}">Terminada</label>
                            </div>
                                 </li>
                                 <hr>

@@ -80,6 +80,21 @@ class Tareas
             }
     }
 
+
+    public static function finalizar_tarea($id_paciente, $fecha_evento)
+    {
+        $pdo = ConexionSingle::getInstancia();
+        try {
+
+            $sql = "update  evento set terminada = 1 where id_paciente = '$id_paciente' and fecha_evento ='$fecha_evento'";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            return true;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
     public static function mis_eventos($token){
         $pdo = ConexionSingle::getInstancia();
 
