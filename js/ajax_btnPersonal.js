@@ -17,9 +17,9 @@ $(document).ready(function() {
 
         request.done(function (response) {
            if(response['data'][0].administrador==1){
-               $("#personal").show();
+               $("#personal").html(`<a href="personal.html"  class="iq-waves-effect" ><i class="ri-user-fill"></i><span>Personal</span></a>`);
            }else if(response['data'][0].rol === 'profesor'){
-               $("#personal").show();
+               $("#personal").html(`<a href="personal.html"  class="iq-waves-effect" ><i class="ri-user-fill"></i><span>Personal</span></a>`);
            }else{
                $("#personal").hide();
            }
