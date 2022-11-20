@@ -175,9 +175,7 @@ class Usuarios
             $sql = "select email from usuario where baja_usuario is null" ;
             $sth = $conexion->prepare($sql);
             $sth->execute();
-            $data = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-            return $data;
+            return $sth->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             return false;
             throw $e;
