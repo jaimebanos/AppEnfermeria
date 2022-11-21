@@ -65,8 +65,8 @@ class Tareas
         $pdo = ConexionSingle::getInstancia();
             try {
 
-                    $sql = "insert into evento (tipo_evento,observaciones,id_paciente,id_usuario,fecha_evento)
-                    values ('$this->tipo_evento','$this->observaciones','$this->id_pacientes','$this->id_usuario','$this->fecha_evento')";
+                    $sql = "insert into evento (tipo_evento,observaciones,id_paciente,id_usuario,fecha_evento,terminada)
+                    values ('$this->tipo_evento','$this->observaciones','$this->id_pacientes','$this->id_usuario','$this->fecha_evento',0)";
 
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
